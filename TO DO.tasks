@@ -1,0 +1,15 @@
+Main tasks:
+    ✔ Create server @done (19/12/2022, 16:42:43)
+    ✔ Create main files/folders @done (19/12/2022, 16:37:24)
+    ✔ Connect to Mongo @done (19/12/2022, 16:42:41)
+    ✔ Start and run @done (19/12/2022, 16:42:45)
+
+Set-up server:
+    ☐ Make login.ejs
+    ☐ Make sign-up.ejs
+    ☐ Make router
+    ☐ Make controllers
+    ☐ Make models
+    ☐ Check if works
+
+
