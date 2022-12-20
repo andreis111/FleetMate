@@ -1,15 +1,131 @@
 Main tasks:
     ✔ Create server @done (19/12/2022, 16:42:43)
-    ✔ Create main files/folders @done (19/12/2022, 16:37:24)
+    ✘ Create main files/folders @cancelled (19/12/2022, 18:54:46)
     ✔ Connect to Mongo @done (19/12/2022, 16:42:41)
     ✔ Start and run @done (19/12/2022, 16:42:45)
 
 Set-up server:
-    ☐ Make login.ejs
-    ☐ Make sign-up.ejs
-    ☐ Make router
-    ☐ Make controllers
-    ☐ Make models
-    ☐ Check if works
+    ☐ Controllers @high 
+    ☐ Models @high
+    ☐ Views @high
 
+Routes:
+    ☐ @critical
 
+Controllers:  
+    1. Main: 
+        ☐ @critical
+    2. Admin:
+        ☐ @critical
+    3. Driver:
+        ☐ @critical
+Models:
+    1. Admin:
+        ☐ @critical
+        ☐ Model:
+            _id
+            role
+            name
+            email
+            password
+
+    2. Users:
+        ☐ @critical
+        ☐ Model:
+            _id
+            role
+            name
+            email
+            password
+            idCard
+            expireLicense
+            expirePermit
+            adr
+            expireAdr
+            truckPlate
+        
+    3. Trucks:
+        ☐ @critical
+        ☐ Model:
+            _id
+            type
+            model
+            plate
+            chassis
+            km
+            driverName
+            toRepair
+            photos
+            expirevignette
+            expireInsurance
+            expireCmr
+
+    4. To repair:   
+        ☐ Model:
+            _id
+            date
+            createdBy
+            content
+            truckId
+            photo
+
+    5. Weekly spreadsheet (?):
+    
+Views:
+    1. Login:
+        ☐ @critical 
+        ☐ Input email, password
+        ☐ Gif demo
+        ☐ Dummy account
+    2. Signup:
+        ☐ @critical 
+        ☐ Input email, password, confirm pass, name
+        ☐ Submit button
+        ☐ Text "admin account only"
+    3. Admin:
+        Trucks (/admin/trucks):
+            ☐ @critical 
+            ☐ Accordion list of trucks
+            ☐ Each truck shows: Plate no, doc expires, repairs, info truck, photo
+            ☐ admin/trucks/delete/:id - delete a truck
+            ☐ + button to create truck
+        Trucks/create(admin/trucks/create):
+            ☐ @critical 
+            ☐ Input: mark, model, plate, chassisnr, km, expirevignette, expire insurance, expirecmr, expiremot, buttonphoto
+            ☐ button submit
+        Users(admin/users):
+            ☐ /driversInfo: accordion list drivers, driver name, driver info details
+            ☐ admin/users/delete/:id - delete a driver
+            ☐ + button to add new driver
+        Users/create:
+            ☐ Inputs for: email, pass, confirm, expirelicense, expirePermit, role, name, id card, adr, expireAdr
+            ☐ button submit
+        Users edit (admin/users/edit/:id):
+            ☐ Input for email, pass, name, idCard,expireLicense, expirePermit, adr, expireAdr, truckPlate
+        Spreadsheet (admin/spreadsheet):
+            ☐ dropdown truck
+            ☐ dropdown spreadsheet for each truck
+            ☐ select and show spreadsheet
+        Repairs (admin/repair):
+            ☐ List with all repairs
+        Repair (admin/repair/:id):
+            ☐ show each repair from repairs list with truck number and date created
+            ☐ add like a todo list with checkboxes
+
+    4. Driver:
+        ☐ @critical 
+        Truck:
+            ☐ Interface with truck details which he is assigned to
+        Spreadsheet:
+            ☐ Create new spreadsheet
+            ☐ See submited spreadsheets, dropdown menu
+        Repair:
+            ☐ Create repair note
+            ☐ Submit button
+            ☐ Add photos
+            ☐ Linked checkbox with the admin
+
+Others:
+    ☐ 
+    ☐ 
+                

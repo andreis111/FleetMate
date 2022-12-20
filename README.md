@@ -16,8 +16,6 @@ A fleet manager app that helps businesses manage and optimize their fleet of tru
 
 ## Optimizations
 
-_(optional)_
-
 Will optimize the dinamic content with react for frontend
 
 ## Lessons Learned:
