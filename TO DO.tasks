@@ -21,20 +21,20 @@ Controllers:
         ☐ @critical
 Models:
     1. Admin:
-        ☐ @critical
-        ☐ Model:
+        ✔ @critical @done (21/12/2022, 16:39:40)
+        ✔ Model: @done (21/12/2022, 16:39:41)
             _id
             role
             name
             email
             password
 
-    2. Users:
-        ☐ @critical
-        ☐ Model:
+    2. Staff:
+        ✔ @critical @done (21/12/2022, 16:39:44)
+        ✔ Model: @done (21/12/2022, 16:39:45)
             _id
             role
-            name
+            userName
             email
             password
             idCard
