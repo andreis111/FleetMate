@@ -5,7 +5,7 @@ Main tasks:
     ✔ Start and run @done (19/12/2022, 16:42:45)
 
 Set-up server:
-    ☐ Controllers @high 
+    ☐ Controllers @high
     ☐ Models @high
     ☐ Views @high
 
@@ -98,6 +98,7 @@ Views:
             ☐ admin/users/delete/:id - delete a driver
             ☐ + button to add new driver
         Users/create:
+            ☐ @critical 
             ☐ Inputs for: email, pass, confirm, expirelicense, expirePermit, role, name, id card, adr, expireAdr
             ☐ button submit
         Users edit (admin/users/edit/:id):
