@@ -7,8 +7,11 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 //Main Routes
 
 router.get("/", ensureAuth, adminController.getAdminMainPage);
-// router.get("/staff", adminController.getStaff);
-// router.get("/tasksCompleted", adminController.getTasksCompleted);
-// router.post("/createStaff", authController.createStaff);
+router.get("/trucks", ensureAuth, adminController.getTrucks);
+router.get("/trucks/createTruck", ensureAuth, adminController.getCreateTruck);
+router.post("/trucks/createTruck", ensureAuth, adminController.postCreateTruck);
+router.get("/trucks/edit/:id", ensureAuth, adminController.getEditTruck);
+router.put("/trucks/edit/:id", ensureAuth, adminController.putEditTruck);
+router.delete("/trucks/deleteTruck/:id", ensureAuth, adminController.deleteTruck);
 
 module.exports = router;

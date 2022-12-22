@@ -43,10 +43,11 @@ Models:
             adr
             expireAdr
             truckPlate
+            adminId
         
     3. Trucks:
         ☐ @critical
-        ☐ Model:
+        ✔ Model: @done (22/12/2022, 09:10:54)
             _id
             type
             model
@@ -59,6 +60,7 @@ Models:
             expirevignette
             expireInsurance
             expireCmr
+            adminId
 
     4. To repair:   
         ☐ Model:
@@ -68,20 +70,21 @@ Models:
             content
             truckId
             photo
+            truckId
 
     5. Weekly spreadsheet (?):
     
 Views:
     1. Login:
-        ☐ @critical 
-        ☐ Input email, password
+        ☐ @critical
+        ✔ Input email, password @done (21/12/2022, 16:40:21)
         ☐ Gif demo
         ☐ Dummy account
     2. Signup:
         ☐ @critical 
-        ☐ Input email, password, confirm pass, name
-        ☐ Submit button
-        ☐ Text "admin account only"
+        ✔ Input email, password, confirm pass, name @done (21/12/2022, 16:40:28)
+        ✔ Submit button @done (21/12/2022, 16:40:32)
+        ✔ Text "admin account only" @done (21/12/2022, 16:44:37)
     3. Admin:
         Trucks (/admin/trucks):
             ☐ @critical 

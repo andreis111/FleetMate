@@ -1,0 +1,26 @@
+<%- include('partials/header') -%>
+<%- include('partials/adminNav') -%>
+
+<main class="container">
+    <h1>Trucks details page</h1>
+    <ul class="row list-unstyled">
+        <% for(var i=0; i<trucks.length; i++) {%>
+          <li class="col-6 justify-content-between mt-5">
+            <a href="/admin/trucks/edit/<%=trucks[i]._id%>">
+                <p><%= trucks[i].type%> - <%= trucks[i].model%></p>
+                <p><%= trucks[i].plate%></p>
+            </a>
+            <form action="/admin/trucks/deleteTruck/<%=trucks[i].id%>?_method=DELETE" method="POST">
+                <button  class="fa fa-trash" aria-hidden="true" type="submit"></button>
+            </form>
+          </li>
+        <% } %>
+        </ul>
+    <a href="/admin/trucks/createTruck">Create new truck</a>
+</main>
+
+
+
+<a href="/logout">Logout</a>
+
+<%- include('partials/footer') -%>

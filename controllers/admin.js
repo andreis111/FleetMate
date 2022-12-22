@@ -1,4 +1,5 @@
 const Driver = require("../models/Driver");
+const Truck = require("../models/Truck");
 
 module.exports = {
 
@@ -9,7 +10,7 @@ module.exports = {
       if (req.user.role === 'admin') {
         res.render("adminMainPage.ejs");
       } else {
-        res.redirect("/staff" )
+        res.redirect("/driver" )
       }
 
     } catch (err) {
@@ -17,38 +18,90 @@ module.exports = {
     }
   },
 
-  getStaff: async (req, res) => {
-    try {
-      // finding all the staff with the associed id
-      const staffMembers = await Staff.find({ adminId: req.user.id });
-
-      // rendering profile page with the data from the DB
-      if (req.user.role === 'admin') {
-        res.render("adminStaffMenu.ejs", { staff: staffMembers });
+  getTrucks: async (req, res) => {
+    const trucks = await Truck.find({adminId: req.user.id})
+      try {
+            res.render("trucksAdmin.ejs", {trucks:trucks});
+      }catch (err) {
+          console.log(err);
       }
+  },
+  getCreateTruck: async (req, res) => {
+    try {
+          res.render("createTruck.ejs");
+    }catch (err) {
+        console.log(err);
+    }
+  },
+  postCreateTruck: async (req, res) => {
+    try {
+      // Upload image to cloudinary
+      // const result = await cloudinary.uploader.upload(req.file.path);
+
+      await Truck.create({
+        type: req.body.type,
+        model: req.body.model,
+        plate: req.body.plate,
+        chassis: req.body.km,
+        driverName: req.body.driverName,
+        toRepair: req.body.toRepair,
+        photos: req.body.photos,
+        expireVignette: req.body.expireVignette,
+        expireInsurance: req.body.expireInsurance,
+        expireCmr: req.body.expireCmr,
+        km: req.body.km,
+        adminId: req.user.id
+      });
+      console.log("Truck has been added!");
+      res.redirect("/admin/trucks");
     } catch (err) {
       console.log(err);
     }
   },
-  
-  getTasksCompleted: async (req, res) => {
+  getEditTruck: async (req, res) => {
     try {
-      const tasks = await Task.find({ completed: true }).sort({ createdDate: 'desc' }).lean();
-      console.log(tasks);
-      const staff = []
-      for (task of tasks) {
-        console.log(task.completedBy);
-        staff.push(await Staff.findById(task.completedBy)); 
-      }
-      console.log(staff);
-      if (req.user.role === 'admin') {
-        res.render("profileAdminDone.ejs", { tasks: tasks, user: req.user, staff: staff });
-      } else {
-        res.redirect("/staff" )
-      }
-
+      const truck = await Truck.findById(req.params.id);
+      res.render("editTruck.ejs", { truck: truck, user: req.user });
     } catch (err) {
       console.log(err);
+    }
+  },
+  putEditTruck: async (req, res) => {
+    //iterate to see if body is empty or not and delete the empty fields
+    Object.keys(req.body).forEach((key) => {
+      if (
+        req.body[key] == null ||
+        req.body[key] == undefined ||
+        req.body[key] == ''
+      ) {
+        delete req.body[key]
+      }
+    })
+    try {
+      await Truck.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $set: req.body,
+        }
+      );
+      console.log("Truck updated");
+      res.redirect(`/admin/trucks`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  deleteTruck: async (req, res) => {
+    try {
+      // Find post by id
+      let truck = await Truck.findById({ _id: req.params.id });
+      // Delete image from cloudinary
+      // await cloudinary.uploader.destroy(post.cloudinaryId);
+      // Delete post from db
+      await Truck.deleteOne({ _id: req.params.id });
+      console.log("Deleted Truck");
+      res.redirect("/admin/trucks");
+    } catch (err) {
+      res.redirect("/admin/trucks");
     }
   },
 };

@@ -1,0 +1,59 @@
+<%- include('partials/header') -%>
+<%- include('partials/adminNav') -%>
+
+<main class="container">
+    <h1>Create new truck</h1>
+
+    <form action="/admin/trucks/createTruck" method="POST">
+        <div>
+            <label for="type">Type: </label>
+            <input type="text" id="type" name="type">
+        </div>
+        <div>
+            <label for="model">Model: </label>
+            <input type="text" id="model" name="model">
+        </div>
+        <div>
+            <label for="plate">Plate: </label>
+            <input type="text" id="plate" name="plate">
+        </div>
+        <div>
+            <label for="chassis">Chassis no:</label>
+            <input type="text" id="chassis" name="chassis">
+        </div>
+        <div>
+            <label for="km">KM (numbers only):</label>
+            <input type="text" id="km" name="km">
+        </div>
+        <div>
+            <label for="driverName">Driver assigned</label>
+            <input type="text" id="driverName" name="driverName">
+        </div>
+        <div>
+            <label for="toRepair">To repair: </label>
+            <input type="text" id="toRepair" name="toRepair">
+        </div>
+        <div>
+            <label for="photos">Photos add: </label>
+            <input type="text" id="photos" name="photos">
+        </div>
+        <div>
+            <label for="expireVignette">Vignette expires on: </label>
+            <input type="date" id="expireVignette" name="expireVignette">
+        </div>
+        <div>
+            <label for="expireInsurance">Isurance expires on: </label>
+            <input type="date" id="expireInsurance" name="expireInsurance">
+        </div>
+        <div>
+            <label for="expireCmr">CMR expires on</label>
+            <input type="date" id="expireCmr" name="expireCmr">
+        </div>
+
+        <button type="submit">Add new truck</button>
+    </form>
+</main>
+
+<a href="/logout">Logout</a>
+
+<%- include('partials/footer') -%>
