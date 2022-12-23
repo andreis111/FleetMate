@@ -2,7 +2,7 @@
 <%- include('partials/adminNav') -%>
 
 <main class="container">
-    <h1>Edit truck</h1>
+    <h1>Edit truck <%=truck.plate%></h1>
 
     <form action="/admin/trucks/edit/<%=truck._id%>?_method=PUT" method="POST">
         <div>

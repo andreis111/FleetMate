@@ -1,0 +1,51 @@
+<%- include('partials/header') -%>
+<%- include('partials/adminNav') -%>
+
+<main class="container">
+    <h1>Create new Driver</h1>
+
+    <form action="/admin/drivers/createDriver" method="POST">
+        <div>
+            <label for="userName">userName: </label>
+            <input type="text" id="userName" name="userName">
+        </div>
+        <div>
+            <label for="email">email: </label>
+            <input type="text" id="email" name="email">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+        </div>
+        <div>
+            <label for="confirmPassword">Confirm:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword">
+        </div>
+        <div>
+            <label for="idCard">ID card:</label>
+            <input type="text" id="idCard" name="idCard">
+        </div>
+        <div>
+            <label for="expireLicense">License expire on:</label>
+            <input type="date" id="expireLicense" name="expireLicense">
+        </div>
+        <div>
+            <label for="expireAdr">ADR expires on: </label>
+            <input type="date" id="expireAdr" name="expireAdr">
+        </div>
+        <div>
+            <label for="expirePermit">Permit expires on: </label>
+            <input type="date" id="expirePermit" name="expirePermit">
+        </div>
+        <div>
+            <label for="truckPlate">Truck plate assigned: </label>
+            <input type="text" id="truckPlate" name="truckPlate">
+        </div>
+
+        <button type="submit">Add new driver</button>
+    </form>
+</main>
+
+<a href="/logout">Logout</a>
+
+<%- include('partials/footer') -%>

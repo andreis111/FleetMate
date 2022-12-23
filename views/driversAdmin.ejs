@@ -1,0 +1,25 @@
+<%- include('partials/header') -%>
+<%- include('partials/adminNav') -%>
+
+<main class="container">
+    <h1>Driver profiles</h1>
+    <ul class="row list-unstyled">
+        <% for(var i=0; i<drivers.length; i++) {%>
+          <li class="col-6 justify-content-between mt-5">
+            <a href="/admin/drivers/edit/<%=drivers[i]._id%>">
+                <p><%= drivers[i].userName%></p>
+            </a>
+            <form action="/admin/drivers/deleteDriver/<%=drivers[i].id%>?_method=DELETE" method="POST">
+                <button  class="fa fa-trash" aria-hidden="true" type="submit"></button>
+            </form>
+          </li>
+        <% } %>
+        </ul>
+    <a href="/admin/drivers/createDriver">Create new driver</a>
+</main>
+
+
+
+<a href="/logout">Logout</a>
+
+<%- include('partials/footer') -%>

@@ -7,11 +7,21 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 //Main Routes
 
 router.get("/", ensureAuth, adminController.getAdminMainPage);
+
+//admin-truck
 router.get("/trucks", ensureAuth, adminController.getTrucks);
 router.get("/trucks/createTruck", ensureAuth, adminController.getCreateTruck);
 router.post("/trucks/createTruck", ensureAuth, adminController.postCreateTruck);
 router.get("/trucks/edit/:id", ensureAuth, adminController.getEditTruck);
 router.put("/trucks/edit/:id", ensureAuth, adminController.putEditTruck);
 router.delete("/trucks/deleteTruck/:id", ensureAuth, adminController.deleteTruck);
+
+//admin-driver
+router.get("/drivers", ensureAuth, adminController.getDrivers);
+router.get("/drivers/createDriver", ensureAuth, adminController.getCreateDriver);
+router.post("/drivers/createDriver", ensureAuth, adminController.postCreateDriver);
+router.get("/drivers/edit/:id", ensureAuth, adminController.getEditDriver);
+router.put("/drivers/edit/:id", ensureAuth, adminController.putEditDriver);
+router.delete("/drivers/deleteDriver/:id", ensureAuth, adminController.deleteDriver);
 
 module.exports = router;

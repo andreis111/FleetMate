@@ -29,7 +29,7 @@ Models:
             email
             password
 
-    2. Staff:
+    2. Driver:
         ✔ @critical @done (21/12/2022, 16:39:44)
         ✔ Model: @done (21/12/2022, 16:39:45)
             _id

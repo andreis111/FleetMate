@@ -8,7 +8,6 @@ const DriverSchema = new mongoose.Schema({
     idCard: { type: String },
     expireLicense: { type: String },
     expirePermit: { type: String },
-    adr: { type: Boolean },
     expireAdr: { type: String },
     truckPlate: { type: String },
     adminId: {type: mongoose.Schema.Types.ObjectId, ref: "Admin" },

@@ -1,0 +1,43 @@
+<%- include('partials/header') -%>
+<%- include('partials/adminNav') -%>
+
+<main class="container">
+    <h1>Edit Driver <%=driver.userName%></h1>
+
+    <form action="/admin/drivers/createDriver" method="POST">
+        <div>
+            <label for="userName">Username: </label>
+            <input type="text" id="userName" name="userName" value="<%=driver.userName%>">
+        </div>
+        <div>
+            <label for="email">email: </label>
+            <input type="text" id="email" name="email" <%=driver.email%>>
+        </div>
+        <div>
+            <label for="idCard">ID card:</label>
+            <input type="text" id="idCard" name="idCard" value="<%=driver.idCard%>">
+        </div>
+        <div>
+            <label for="expireLicense">License expire on:</label>
+            <input type="date" id="expireLicense" name="expireLicense" value="<%=driver.expireLicense%>">
+        </div>
+        <div>
+            <label for="expireAdr">ADR expires on: </label>
+            <input type="date" id="expireAdr" name="expireAdr" value="<%=driver.expireAdr%>">
+        </div>
+        <div>
+            <label for="expirePermit">Permit expires on: </label>
+            <input type="date" id="expirePermit" name="expirePermit" value="<%=driver.expirePermit%>">
+        </div>
+        <div>
+            <label for="truckPlate">Truck plate assigned: </label>
+            <input type="text" id="truckPlate" name="truckPlate" value="<%=driver.truckPlate%>">
+        </div>
+
+        <button type="submit">Edit driver</button>
+    </form>
+</main>
+
+<a href="/logout">Logout</a>
+
+<%- include('partials/footer') -%>

@@ -5,12 +5,12 @@ module.exports = {
 
   getAdminMainPage: async (req, res) => {
     try {
-    //   const tasks = await Task.find({completedBy: null}).sort({createdDate: 'desc'}).lean();
-    //   const activeStaff = await Staff.find({ active: true, role: 'staff', adminId: req.user.id }).lean()
+      //   const tasks = await Task.find({completedBy: null}).sort({createdDate: 'desc'}).lean();
+      //   const activeStaff = await Staff.find({ active: true, role: 'staff', adminId: req.user.id }).lean()
       if (req.user.role === 'admin') {
         res.render("adminMainPage.ejs");
       } else {
-        res.redirect("/driver" )
+        res.redirect("/driver")
       }
 
     } catch (err) {
@@ -18,19 +18,20 @@ module.exports = {
     }
   },
 
+  //trucks controllers
   getTrucks: async (req, res) => {
-    const trucks = await Truck.find({adminId: req.user.id})
-      try {
-            res.render("trucksAdmin.ejs", {trucks:trucks});
-      }catch (err) {
-          console.log(err);
-      }
+    const trucks = await Truck.find({ adminId: req.user.id })
+    try {
+      res.render("trucksAdmin.ejs", { trucks: trucks });
+    } catch (err) {
+      console.log(err);
+    }
   },
   getCreateTruck: async (req, res) => {
     try {
-          res.render("createTruck.ejs");
-    }catch (err) {
-        console.log(err);
+      res.render("createTruck.ejs");
+    } catch (err) {
+      console.log(err);
     }
   },
   postCreateTruck: async (req, res) => {
@@ -104,4 +105,94 @@ module.exports = {
       res.redirect("/admin/trucks");
     }
   },
-};
+
+  //drivers controllers
+  getDrivers: async (req, res) => {
+    const drivers = await Driver.find({ adminId: req.user.id })
+    try {
+      res.render("driversAdmin.ejs", { drivers: drivers });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
+  getCreateDriver: async (req, res) => {
+    try {
+      res.render("createDriver.ejs");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  postCreateDriver: async (req, res) => {
+    try {
+      // Upload image to cloudinary
+      // const result = await cloudinary.uploader.upload(req.file.path);
+
+      await Driver.create({
+        userName: req.body.userName,
+        email: req.body.email,
+        password: req.body.password,
+        confirmPassword: req.body.confirmPassword,
+        idCard: req.body.idCard,
+        expireLicense: req.body.expireLicense,
+        expirePermit: req.body.expirePermit,
+        expireAdr: req.body.expireAdr,
+        truckPlate: req.body.truckPlate,
+        adminId: req.user.id
+      });
+      console.log("Truck has been added!");
+      res.redirect("/admin/drivers");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  getEditDriver: async (req, res) => {
+    try {
+      const driver = await Driver.findById(req.params.id);
+      res.render("editDriver.ejs", { driver: driver, user: req.user });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  putEditDriver: async (req, res) => {
+    //iterate to see if body is empty or not and delete the empty fields
+    Object.keys(req.body).forEach((key) => {
+      if (
+        req.body[key] == null ||
+        req.body[key] == undefined ||
+        req.body[key] == ''
+      ) {
+        delete req.body[key]
+      }
+    })
+    try {
+      await Driver.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $set: req.body,
+        }
+      );
+      console.log("Driver updated");
+      res.redirect(`/admin/drivers`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  deleteDriver: async (req, res) => {
+    try {
+      // Find post by id
+      let driver = await Driver.findById({ _id: req.params.id });
+      // Delete image from cloudinary
+      // await cloudinary.uploader.destroy(post.cloudinaryId);
+      // Delete post from db
+      await Driver.deleteOne({ _id: req.params.id });
+      console.log("Deleted Driver");
+      res.redirect("/admin/drivers");
+    } catch (err) {
+      res.redirect("/admin/drivers");
+    }
+  },
+
+
+
+}
