@@ -181,4 +181,14 @@ module.exports = {
       console.log(err);
     }
   },
+
+    //Repair controllers:
+    getRepairs: async (req, res) => {
+      // const drivers = await Driver.find({ adminId: req.user.id })
+      try {
+        res.render("repairsAdmin.ejs");
+      } catch (err) {
+        console.log(err);
+      }
+    },
 }
