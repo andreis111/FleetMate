@@ -29,7 +29,7 @@ module.exports = {
   },
   getCreateTruck: async (req, res) => {
     try {
-      res.render("createTruck.ejs");
+      res.render("createTruckAdmin.ejs");
     } catch (err) {
       console.log(err);
     }
@@ -62,7 +62,7 @@ module.exports = {
   getEditTruck: async (req, res) => {
     try {
       const truck = await Truck.findById(req.params.id);
-      res.render("editTruck.ejs", { truck: truck, user: req.user });
+      res.render("editTruckAdmin.ejs", { truck: truck, user: req.user });
     } catch (err) {
       console.log(err);
     }
@@ -118,7 +118,7 @@ module.exports = {
 
   getCreateDriver: async (req, res) => {
     try {
-      res.render("createDriver.ejs");
+      res.render("createDriverAdmin.ejs");
     } catch (err) {
       console.log(err);
     }
@@ -126,7 +126,7 @@ module.exports = {
   getEditDriver: async (req, res) => {
     try {
       const driver = await Driver.findById(req.params.id);
-      res.render("editDriver.ejs", { driver: driver, user: req.user });
+      res.render("editDriverAdmin.ejs", { driver: driver, user: req.user });
     } catch (err) {
       console.log(err);
     }
@@ -158,7 +158,7 @@ module.exports = {
   },
   deleteDriver: async (req, res) => {
     try {
-      // Find post by id
+      // Find driver by id
       let driver = await Driver.findById({ _id: req.params.id });
       // Delete image from cloudinary
       // await cloudinary.uploader.destroy(post.cloudinaryId);
@@ -172,5 +172,13 @@ module.exports = {
   },
 
 
-
+  //Spreadsheets controllers:
+  getSpreadsheets: async (req, res) => {
+    // const drivers = await Driver.find({ adminId: req.user.id })
+    try {
+      res.render("spreadsheetsAdmin.ejs");
+    } catch (err) {
+      console.log(err);
+    }
+  },
 }

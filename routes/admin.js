@@ -25,4 +25,7 @@ router.get("/drivers/edit/:id", ensureAuth, adminController.getEditDriver);
 router.put("/drivers/edit/:id", ensureAuth, adminController.putEditDriver);
 router.delete("/drivers/deleteDriver/:id", ensureAuth, adminController.deleteDriver);
 
+//spreadsheets
+router.get("/spreadsheets", ensureAuth, adminController.getSpreadsheets);
+
 module.exports = router;
