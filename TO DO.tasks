@@ -14,7 +14,7 @@ Routes:
 
 Controllers:  
     1. Main: 
-        ☐ @critical
+        ✔ @critical @done (26/12/2022, 13:29:45)
     2. Admin:
         ☐ @critical
     3. Driver:
@@ -73,6 +73,24 @@ Models:
             truckId
 
     5. Weekly spreadsheet (?):
+        ☐ a. Have collection with doc for each week:
+            ☐ Model: 
+                startDate
+                endDate
+                createdBy
+
+        ☐ b. Create inputs inside each week model:
+
+            ☐ Model:
+                weekId
+                startLoc
+                endLoc
+                km
+                fuel
+                otherCosts
+                notes
+    
+        ☐ c. Button "End Week" -> dissapear edit/add buton for that week
     
 Views:
     1. Login:
@@ -89,23 +107,23 @@ Views:
         Trucks (/admin/trucks):
             ☐ @critical 
             ☐ Accordion list of trucks
-            ☐ Each truck shows: Plate no, doc expires, repairs, info truck, photo
-            ☐ admin/trucks/delete/:id - delete a truck
-            ☐ + button to create truck
+            ✔ Each truck shows: Plate no, doc expires, repairs, info truck, photo @done (26/12/2022, 13:21:40)
+            ✔ admin/trucks/delete/:id - delete a truck @done (26/12/2022, 13:20:39)
+            ✔ + button to create truck @done (26/12/2022, 13:20:44)
         Trucks/create(admin/trucks/create):
             ☐ @critical 
-            ☐ Input: mark, model, plate, chassisnr, km, expirevignette, expire insurance, expirecmr, expiremot, buttonphoto
-            ☐ button submit
+            ✔ Input: mark, model, plate, chassisnr, km, expirevignette, expire insurance, expirecmr, expiremot, buttonphoto @done (26/12/2022, 13:20:52)
+            ✔ button submit @done (26/12/2022, 13:20:51)
         Users(admin/users):
             ☐ /driversInfo: accordion list drivers, driver name, driver info details
             ☐ admin/users/delete/:id - delete a driver
             ☐ + button to add new driver
         Users/create:
             ☐ @critical 
-            ☐ Inputs for: email, pass, confirm, expirelicense, expirePermit, role, name, id card, adr, expireAdr
-            ☐ button submit
+            ✔ Inputs for: email, pass, confirm, expirelicense, expirePermit, role, name, id card, adr, expireAdr @done (26/12/2022, 13:21:15)
+            ✔ button submit @done (26/12/2022, 13:21:17)
         Users edit (admin/users/edit/:id):
-            ☐ Input for email, pass, name, idCard,expireLicense, expirePermit, adr, expireAdr, truckPlate
+            ✔ Input for email, pass, name, idCard,expireLicense, expirePermit, adr, expireAdr, truckPlate @done (26/12/2022, 13:21:19)
         Spreadsheet (admin/spreadsheet):
             ☐ dropdown truck
             ☐ dropdown spreadsheet for each truck
@@ -132,4 +150,3 @@ Views:
 Others:
     ☐ Check roles before each res.render (see getAdminMainPage from admin controller). Do it in both admin controller and driver controller
     ☐ 
-                
