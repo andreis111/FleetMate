@@ -30,7 +30,7 @@ exports.postLogin = (req, res, next) => {
     gmail_remove_dots: false,
   });
 
-  passport.authenticate("local", (err, user, info) => {
+  passport.authenticate(['admin', 'driver'], (err, user, info) => {
     if (err) {
       return next(err);
     }
@@ -43,7 +43,7 @@ exports.postLogin = (req, res, next) => {
         return next(err);
       }
       req.flash("success", { msg: "Success! You are logged in." });
-      res.redirect(req.session.returnTo || "/admin");
+      res.redirect(req.user.role === 'admin' ? '/admin' : '/driver');
     });
   })(req, res, next);
 };

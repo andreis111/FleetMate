@@ -10,7 +10,8 @@ const DriverSchema = new mongoose.Schema({
     expirePermit: { type: String },
     expireAdr: { type: String },
     truckPlate: { type: String },
-    adminId: {type: mongoose.Schema.Types.ObjectId, ref: "Admin" },
+    adminId: { type: mongoose.Schema.Types.ObjectId, ref: "Admin" },
+    role: { type: String, required: true, default: 'driver' },
 });
 
 // Password hash middleware.
