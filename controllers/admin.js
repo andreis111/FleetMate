@@ -123,29 +123,6 @@ module.exports = {
       console.log(err);
     }
   },
-  postCreateDriver: async (req, res) => {
-    try {
-      // Upload image to cloudinary
-      // const result = await cloudinary.uploader.upload(req.file.path);
-
-      await Driver.create({
-        userName: req.body.userName,
-        email: req.body.email,
-        password: req.body.password,
-        confirmPassword: req.body.confirmPassword,
-        idCard: req.body.idCard,
-        expireLicense: req.body.expireLicense,
-        expirePermit: req.body.expirePermit,
-        expireAdr: req.body.expireAdr,
-        truckPlate: req.body.truckPlate,
-        adminId: req.user.id
-      });
-      console.log("Truck has been added!");
-      res.redirect("/admin/drivers");
-    } catch (err) {
-      console.log(err);
-    }
-  },
   getEditDriver: async (req, res) => {
     try {
       const driver = await Driver.findById(req.params.id);

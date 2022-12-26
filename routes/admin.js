@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/auth");
 const adminController = require("../controllers/admin");
+const driverController = require("../controllers/driver");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 //Main Routes
@@ -19,7 +20,7 @@ router.delete("/trucks/deleteTruck/:id", ensureAuth, adminController.deleteTruck
 //admin-driver
 router.get("/drivers", ensureAuth, adminController.getDrivers);
 router.get("/drivers/createDriver", ensureAuth, adminController.getCreateDriver);
-router.post("/drivers/createDriver", ensureAuth, adminController.postCreateDriver);
+router.post("/drivers/createDriver", ensureAuth, authController.postSignupDriver);
 router.get("/drivers/edit/:id", ensureAuth, adminController.getEditDriver);
 router.put("/drivers/edit/:id", ensureAuth, adminController.putEditDriver);
 router.delete("/drivers/deleteDriver/:id", ensureAuth, adminController.deleteDriver);
