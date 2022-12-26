@@ -133,6 +133,7 @@ module.exports = {
   },
   putEditDriver: async (req, res) => {
     //iterate to see if body is empty or not and delete the empty fields
+    console.log(req.body);
     Object.keys(req.body).forEach((key) => {
       if (
         req.body[key] == null ||

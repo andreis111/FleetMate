@@ -4,15 +4,24 @@
 <main class="container">
     <h1>Edit Driver <%=driver.userName%></h1>
 
-    <form action="/admin/drivers/createDriver" method="POST">
+    <form action="/admin/drivers/edit/<%=driver._id%>?_method=PUT" method="POST">
         <div>
             <label for="userName">Username: </label>
             <input type="text" id="userName" name="userName" value="<%=driver.userName%>">
         </div>
         <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="<%=driver.email%>" disabled>
+        </div>
+        <div>
+            <label for="password">password:</label>
+            <input type="password" id="password" name="password" disabled>
+        </div>
+        <div>
             <label for="idCard">ID card:</label>
             <input type="text" id="idCard" name="idCard" value="<%=driver.idCard%>">
         </div>
+
         <div>
             <label for="expireLicense">License expire on:</label>
             <input type="date" id="expireLicense" name="expireLicense" value="<%=driver.expireLicense%>">
@@ -28,6 +37,10 @@
         <div>
             <label for="truckPlate">Truck plate assigned: </label>
             <input type="text" id="truckPlate" name="truckPlate" value="<%=driver.truckPlate%>">
+        </div>
+        <div>
+            <label for="role">Role: </label>
+            <input type="text" id="role" name="role" value="<%=driver.role%>" disabled>
         </div>
 
         <button type="submit">Edit driver</button>
