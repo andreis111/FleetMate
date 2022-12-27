@@ -1,5 +1,7 @@
 const Driver = require("../models/Driver");
 const Truck = require("../models/Truck");
+const WeeklySs = require("../models/WeeklySs");
+const Individual = require("../models/IndividualTrip");
 
 module.exports = {
 
@@ -174,9 +176,11 @@ module.exports = {
 
   //Spreadsheets controllers:
   getSpreadsheets: async (req, res) => {
-    // const drivers = await Driver.find({ adminId: req.user.id })
+    const drivers = await Driver.find({ adminId: req.user.id })
+    const spreadsheet = await WeeklySs.find({ createdBy: drivers.id })
+    const individuals = await Individual.find({ weekId: spreadsheet.id })
     try {
-      res.render("spreadsheetsAdmin.ejs");
+      res.render("spreadsheetsAdmin.ejs", {spreadsheet: spreadsheet});
     } catch (err) {
       console.log(err);
     }

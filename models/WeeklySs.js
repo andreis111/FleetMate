@@ -8,8 +8,8 @@ const WeeklySchema = new mongoose.Schema({
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Driver"
-    }
-    
+    },
+    type: { type: String, default: 'week' }
 });
 
 

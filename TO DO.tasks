@@ -73,24 +73,28 @@ Models:
             truckId
 
     5. Weekly spreadsheet (?):
-        ☐ a. Have collection with doc for each week:
-            ☐ Model: 
+        ✔ a. Have collection with doc for each week: @done (27/12/2022, 11:06:40)
+            ✔ Model: @done (27/12/2022, 08:25:31)
                 startDate
                 endDate
                 createdBy
+                truckPlate
 
-        ☐ b. Create inputs inside each week model:
+        ✔ b. Create inputs inside each week model: @done (27/12/2022, 11:06:42)
 
-            ☐ Model:
+            ✔ Model: @done (27/12/2022, 08:25:32)
                 weekId
                 startLoc
+                startDate
                 endLoc
+                endDate
                 km
                 fuel
                 otherCosts
                 notes
+                truckPlate
     
-        ☐ c. Button "End Week" -> dissapear edit/add buton for that week
+        ☐ c. Button "End Week" -> dissapear edit/add buton for that week @low 
     
 Views:
     1. Login:
@@ -106,7 +110,7 @@ Views:
     3. Admin:
         Trucks (/admin/trucks):
             ☐ @critical 
-            ☐ Accordion list of trucks
+            ✘ Accordion list of trucks @cancelled (27/12/2022, 11:06:58)
             ✔ Each truck shows: Plate no, doc expires, repairs, info truck, photo @done (26/12/2022, 13:21:40)
             ✔ admin/trucks/delete/:id - delete a truck @done (26/12/2022, 13:20:39)
             ✔ + button to create truck @done (26/12/2022, 13:20:44)
@@ -115,9 +119,9 @@ Views:
             ✔ Input: mark, model, plate, chassisnr, km, expirevignette, expire insurance, expirecmr, expiremot, buttonphoto @done (26/12/2022, 13:20:52)
             ✔ button submit @done (26/12/2022, 13:20:51)
         Users(admin/users):
-            ☐ /driversInfo: accordion list drivers, driver name, driver info details
-            ☐ admin/users/delete/:id - delete a driver
-            ☐ + button to add new driver
+            ✘ /driversInfo: accordion list drivers, driver name, driver info details @cancelled (27/12/2022, 11:07:10)
+            ✔ admin/users/delete/:id - delete a driver @done (27/12/2022, 11:07:18)
+            ✔ + button to add new driver @done (27/12/2022, 11:07:20)
         Users/create:
             ☐ @critical 
             ✔ Inputs for: email, pass, confirm, expirelicense, expirePermit, role, name, id card, adr, expireAdr @done (26/12/2022, 13:21:15)
@@ -139,8 +143,8 @@ Views:
         Truck:
             ☐ Interface with truck details which he is assigned to
         Spreadsheet:
-            ☐ Create new spreadsheet
-            ☐ See submited spreadsheets, dropdown menu
+            ✔ Create new spreadsheet @done (27/12/2022, 11:08:06)
+            ✔ See submited spreadsheets, dropdown menu @done (27/12/2022, 11:08:10)
         Repair:
             ☐ Create repair note
             ☐ Submit button

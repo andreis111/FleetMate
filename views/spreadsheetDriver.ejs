@@ -1,0 +1,35 @@
+<%- include('partials/header') -%>
+<%- include('partials/DriverNav') -%>
+
+<main class="container">
+    <h1>Create weekly spreadsheet</h1>
+    <p>Select the dates for which you want to create the spreadsheet (recommended weekly):</p>
+    <form action="/driver/spreadsheet/createWeek/" method="POST">
+        <div>
+            <label for="startDate">Start: </label>
+            <input type="date" id="startDate" name="startDate">
+        </div>
+        <div>
+            <label for="endDate">End: </label>
+            <input type="date" id="endDate" name="endDate">
+        </div>
+        <button type="submit">Create New Weekly Spreadsheet</button>
+    </form>
+
+    <div>
+        <h2>Created spreadsheets:</h2>
+        <ul class="list-unstyled">
+          <% for(var i=0; i<weekly.length; i++) {%>
+            <li class="col-6 justify-content-between mt-1">
+              <a href="/driver/spreadsheet/<%= weekly[i]._id%>">
+                <%= weekly[i].startDate%> - <%= weekly[i].endDate%>
+              </a>
+            </li>
+          <% } %>
+          </ul>
+      </div>
+</main>
+
+<a href="/logout">Logout</a>
+
+<%- include('partials/footer') -%>

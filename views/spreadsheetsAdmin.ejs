@@ -3,6 +3,13 @@
 
 <main class="container">
     <h1>Spreadsheets:</h1>
+    <ul class="list-unstyled">
+        <% for(var i=0; i<spreadsheet.length; i++) {%>
+          <li class="col-6 justify-content-between mt-1">
+            <%= spreadsheet[i].startDate%> <%= spreadsheet[i].endDate%>
+          </li>
+        <% } %>
+        </ul>
 </main>
 
 <a href="/logout">Logout</a>
