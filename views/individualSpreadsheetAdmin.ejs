@@ -1,0 +1,53 @@
+<%- include('partials/header') -%>
+<%- include('partials/AdminNav') -%>
+
+<main class="container">
+    <h1>Spreadsheet details </h1>
+    <h2><%= week.truckPlate%></h2>
+    <h2><%= week.startDate%> - <%= week.endDate%></h2>
+    <a href="/admin/spreadsheets">back</a>
+    <div class="row justify-content-center mt-5">
+      <table>
+        <tr>
+          <th>Start at</th>
+          <th>Start date</th>
+          <th>End at</th>
+          <th>End Date</th>
+          <th>Km</th>
+          <th>Other costs</th>
+          <th>Fuel</th>
+          <th>Notes</th>
+        </tr>
+        <% for(const individual of individuals) {%>
+          <tr>
+            <td><%= individual.startLoc%></td>
+            <td><%= individual.startDate%></td>
+            <td><%= individual.endLoc%></td>
+            <td><%= individual.endDate%></td>
+            <td><%= individual.km%></td>
+            <td><%= individual.otherCosts%></td>
+            <td><%= individual.fuel%></td>
+            <td><%= individual.notes%></td>
+          </tr>
+        <% } %>
+        <tfoot>
+          <tr>
+            <td colspan="4">Total:</td>
+            <td><%=totalKm%></td>
+            <td><%=totalCosts%></td>
+            <td><%=totalFuel%></td>
+          </tr>
+        </tfoot>
+      </table>
+        
+
+    </div>
+
+</main>
+
+
+<a href="/logout">Logout</a>
+
+
+
+<%- include('partials/footer') -%>

@@ -177,14 +177,36 @@ module.exports = {
   //Spreadsheets controllers:
   getSpreadsheets: async (req, res) => {
     const drivers = await Driver.find({ adminId: req.user.id })
-    const spreadsheet = await WeeklySs.find({ createdBy: drivers.id })
-    const individuals = await Individual.find({ weekId: spreadsheet.id })
+    const weekly = await WeeklySs.find({ weekId: drivers.id })
+    const individuals = await Individual.find({ createdBy: weekly.id })
+    console.log(individuals);
     try {
-      res.render("spreadsheetsAdmin.ejs", {spreadsheet: spreadsheet});
+      res.render("spreadsheetsAdmin.ejs", {weekly: weekly});
     } catch (err) {
       console.log(err);
     }
   },
+
+  getIndividualSpreadsheet: async (req, res) => {
+    try {
+        const week = await WeeklySs.findById(req.params.id);
+        const individuals = await Individual.find({ weekId: week.id })
+        console.log(week);
+        //sum for Km, Other Costs, Fuel
+        let totalKm = 0
+        let totalCosts = 0
+        let totalFuel = 0
+        for (let i = 0; i < individuals.length; i++) {
+            totalKm += individuals[i].km;
+            totalCosts += individuals[i].otherCosts;
+            totalFuel += individuals[i].fuel;
+          }
+        console.log(totalKm);
+      res.render("individualSpreadsheetAdmin.ejs", { week: week, user: req.user, individuals: individuals, totalKm:totalKm, totalCosts: totalCosts, totalFuel:totalFuel  });
+    } catch (err) {
+      console.log(err);
+    }
+},
 
     //Repair controllers:
     getRepairs: async (req, res) => {

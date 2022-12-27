@@ -27,6 +27,7 @@ router.delete("/drivers/deleteDriver/:id", ensureAuth, adminController.deleteDri
 
 //spreadsheets
 router.get("/spreadsheets", ensureAuth, adminController.getSpreadsheets);
+router.get("/spreadsheet/:id", ensureAuth, adminController.getIndividualSpreadsheet);
 
 //repairs
 router.get("/repairs", ensureAuth, adminController.getRepairs);
