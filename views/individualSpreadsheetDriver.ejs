@@ -5,7 +5,7 @@
     <h1>Spreadsheet details </h1>
     <h2><%= week.startDate%> - <%= week.endDate%></h2>
     <p>Add details for each individual job:</p>
-      <form action="/driver/spreadsheet/createIndividual/<%= week.id%>" method="POST" >
+      <form action="/driver/spreadsheet/createIndividual/<%= week.id%>" method="POST">
           <div>
               <label for="startLoc">Start location: </label>
               <input type="text" id="startLoc" name="startLoc">
@@ -81,7 +81,6 @@
 </main>
 
 <a href="/logout">Logout</a>
-
 
 
 <%- include('partials/footer') -%>
