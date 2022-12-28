@@ -34,10 +34,12 @@
             <label for="expirePermit">Permit expires on: </label>
             <input type="date" id="expirePermit" name="expirePermit" value="<%=driver.expirePermit%>">
         </div>
-        <div>
-            <label for="truckPlate">Truck plate assigned: </label>
-            <input type="text" id="truckPlate" name="truckPlate" value="<%=driver.truckPlate%>">
-        </div>
+        <select class="card-text" name = "truckPlate">
+            <option value="default">Select a truck</option>
+          <% for(truck of trucks) {%>
+            <option value="<%=truck._id%>"><%=truck.plate%></option>
+          <% } %>
+          </select>
         <div>
             <label for="role">Role: </label>
             <input type="text" id="role" name="role" value="<%=driver.role%>" disabled>

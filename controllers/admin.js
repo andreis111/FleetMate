@@ -127,8 +127,9 @@ module.exports = {
   },
   getEditDriver: async (req, res) => {
     try {
+      const trucks = await Truck.find({ adminId: req.user.id })
       const driver = await Driver.findById(req.params.id);
-      res.render("editDriverAdmin.ejs", { driver: driver, user: req.user });
+      res.render("editDriverAdmin.ejs", { driver: driver, user: req.user, trucks: trucks });
     } catch (err) {
       console.log(err);
     }
