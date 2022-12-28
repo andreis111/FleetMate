@@ -5,42 +5,7 @@
     <h1>Spreadsheet details </h1>
     <h2><%= week.startDate%> - <%= week.endDate%></h2>
     <p>Add details for each individual job:</p>
-      <form action="/driver/spreadsheet/createIndividual/<%= week.id%>" method="POST">
-          <div>
-              <label for="startLoc">Start location: </label>
-              <input type="text" id="startLoc" name="startLoc">
-          </div>
-          <div>
-            <label for="startDate">Start Date: </label>
-            <input type="date" id="startDate" name="startDate">
-        </div>
 
-          <div>
-              <label for="endLoc">End location: </label>
-              <input type="text" id="endLoc" name="endLoc">
-          </div>
-          <div>
-            <label for="endDate">End date: </label>
-            <input type="date" id="endDate" name="endDate">
-        </div>
-        <div>
-          <label for="km">Kilometers done (numbers only): </label>
-          <input type="number" id="km" name="km" required>
-        </div>
-        <div>
-          <label for="fuel">Fuel filled (numbers only): </label>
-          <input type="number" id="fuel" name="fuel" >
-        </div>
-        <div>
-          <label for="otherCosts">Other costs, like road taxes (numbers only): </label>
-          <input type="number" id="otherCosts" name="otherCosts">
-        </div>
-        <div>
-          <label for="notes">Notes: </label>
-          <input type="text" id="notes" name="notes">
-        </div>
-          <button type="submit">Create trip</button>
-      </form>
     <div class="row justify-content-center mt-5">
       <table>
         <tr>
@@ -53,6 +18,20 @@
           <th>Fuel</th>
           <th>Notes</th>
         </tr>
+        <form action="/driver/spreadsheet/createIndividual/<%= week.id%>" method="POST">
+          <tr>
+            <td><input type="text" id="startLoc" name="startLoc" class="form-control form-control-sm"></td>
+            <td><input type="date" id="startDate" name="startDate" class="form-control form-control-sm"></td>
+            <td><input type="text" id="endLoc" name="endLoc" class="form-control form-control-sm"></td>
+            <td><input type="date" id="endDate" name="endDate" class="form-control form-control-sm"></td>
+            <td><input type="number" id="km" name="km" required class="form-control form-control-sm"></td>
+            <td><input type="number" id="otherCosts" name="otherCosts" class="form-control form-control-sm"></td>
+            <td><input type="number" id="fuel" name="fuel" class="form-control form-control-sm"></td>
+            <td><input type="text" id="notes" name="notes" class="form-control form-control-sm"></td>
+            <td class="text-right"><button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></button></td>
+          </tr>
+          
+        </form>
         <% for(const individual of individuals) {%>
           <tr>
             <td><%= individual.startLoc%></td>
