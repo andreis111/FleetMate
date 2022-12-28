@@ -3,7 +3,13 @@
 
 <main class="container">
     <h1>Edit truck <%=truck.plate%></h1>
-    <p>Driver assigned: <%=driver[0].userName%> (<small><a href="/admin/drivers">Assign new driver</a>)</small></p>
+    <p>Driver assigned: <%if(driver[0]) {%> 
+        <%=driver[0].userName%>
+        (<small><a href="/admin/drivers">Assign new driver</a>)</small>
+        <% } else {%>
+        <p>No driver assigned</p>
+        <% } %>
+    </p>
     
     <form action="/admin/trucks/edit/<%=truck._id%>?_method=PUT" method="POST">
         <div>
