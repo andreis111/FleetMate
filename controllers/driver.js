@@ -29,9 +29,10 @@ module.exports = {
     
     //Spreadsheet
     getSpreadsheet: async (req, res) => {
-        const weekly = await WeeklySs.find({ createdBy: req.user.id })
+      const weekly = await WeeklySs.find({ createdBy: req.user.id })
+      
         try {
-          res.render("spreadsheetDriver.ejs", {weekly: weekly});
+          res.render("spreadsheetDriver.ejs", { weekly: weekly});
         } catch (err) {
           console.log(err);
         }
@@ -47,6 +48,7 @@ module.exports = {
             endDate: req.body.endDate,
             createdBy: req.user.id,
             truckPlate: req.user.truckPlate,
+            userName: req.user.userName,
           });
           console.log("Truck has been added!");
           res.redirect("/driver/spreadsheet");
