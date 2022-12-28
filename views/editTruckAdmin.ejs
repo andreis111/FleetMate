@@ -3,7 +3,8 @@
 
 <main class="container">
     <h1>Edit truck <%=truck.plate%></h1>
-
+    <p>Driver assigned: <%=driver[0].userName%> (<small><a href="/admin/drivers">Assign new driver</a>)</small></p>
+    
     <form action="/admin/trucks/edit/<%=truck._id%>?_method=PUT" method="POST">
         <div>
             <label for="type">Type: </label>
@@ -24,10 +25,6 @@
         <div>
             <label for="km">KM (numbers only):</label>
             <input type="text" id="km" name="km" value="<%=truck.km%>">
-        </div>
-        <div>
-            <label for="driverName">Driver assigned</label>
-            <input type="text" id="driverName" name="driverName" value="<%=truck.driverName%>">
         </div>
         <div>
             <label for="toRepair">To repair: </label>

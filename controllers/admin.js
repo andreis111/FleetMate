@@ -64,7 +64,9 @@ module.exports = {
   getEditTruck: async (req, res) => {
     try {
       const truck = await Truck.findById(req.params.id);
-      res.render("editTruckAdmin.ejs", { truck: truck, user: req.user });
+      const driver = await Driver.find({ truckPlate: req.params.id })
+      console.log(truck);
+      res.render("editTruckAdmin.ejs", { truck: truck, user: req.user , driver: driver});
     } catch (err) {
       console.log(err);
     }
@@ -111,8 +113,9 @@ module.exports = {
   //drivers controllers
   getDrivers: async (req, res) => {
     const drivers = await Driver.find({ adminId: req.user.id })
+    const truck = await Truck.find()
     try {
-      res.render("driversAdmin.ejs", { drivers: drivers });
+      res.render("driversAdmin.ejs", { drivers: drivers, truck : truck });
     } catch (err) {
       console.log(err);
     }

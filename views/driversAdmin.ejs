@@ -4,12 +4,17 @@
 <main class="container">
     <h1>Driver profiles</h1>
     <ul class="row list-unstyled">
-        <% for(var i=0; i<drivers.length; i++) {%>
+        <% for(driver of drivers) {%>
           <li class="col-6 justify-content-between mt-5">
-            <a href="/admin/drivers/edit/<%=drivers[i]._id%>">
-                <p><%= drivers[i].userName%></p>
+            <a href="/admin/drivers/edit/<%=driver._id%>">
+                <p><%= driver.userName%></p>
+                <% for(item of truck) {%>
+                  <% if(driver.truckPlate == item.id) {%>
+                    <p>Truck assigned: <%=item.plate%></p> 
+                  <% } %>
+                <% } %>
             </a>
-            <form action="/admin/drivers/deleteDriver/<%=drivers[i].id%>?_method=DELETE" method="POST">
+            <form action="/admin/drivers/deleteDriver/<%=driver.id%>?_method=DELETE" method="POST">
                 <button  class="fa fa-trash" aria-hidden="true" type="submit"></button>
             </form>
           </li>

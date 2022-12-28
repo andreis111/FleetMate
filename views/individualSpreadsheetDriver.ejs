@@ -18,20 +18,7 @@
           <th>Fuel</th>
           <th>Notes</th>
         </tr>
-        <form action="/driver/spreadsheet/createIndividual/<%= week.id%>" method="POST">
-          <tr>
-            <td><input type="text" id="startLoc" name="startLoc" class="form-control form-control-sm"></td>
-            <td><input type="date" id="startDate" name="startDate" class="form-control form-control-sm"></td>
-            <td><input type="text" id="endLoc" name="endLoc" class="form-control form-control-sm"></td>
-            <td><input type="date" id="endDate" name="endDate" class="form-control form-control-sm"></td>
-            <td><input type="number" id="km" name="km" required class="form-control form-control-sm"></td>
-            <td><input type="number" id="otherCosts" name="otherCosts" class="form-control form-control-sm"></td>
-            <td><input type="number" id="fuel" name="fuel" class="form-control form-control-sm"></td>
-            <td><input type="text" id="notes" name="notes" class="form-control form-control-sm"></td>
-            <td class="text-right"><button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></button></td>
-          </tr>
-          
-        </form>
+        
         <% for(const individual of individuals) {%>
           <tr>
             <td><%= individual.startLoc%></td>
@@ -44,9 +31,23 @@
             <td><%= individual.notes%></td>
           </tr>
         <% } %>
+        <form action="/driver/spreadsheet/createIndividual/<%= week.id%>" method="POST">
+          <tr>
+            <td><input type="text" id="startLoc" name="startLoc" class="form-control form-control-sm"></td>
+            <td><input type="date" id="startDate" name="startDate" class="form-control form-control-sm"></td>
+            <td><input type="text" id="endLoc" name="endLoc" class="form-control form-control-sm"></td>
+            <td><input type="date" id="endDate" name="endDate" class="form-control form-control-sm"></td>
+            <td><input type="number" id="km" name="km" required class="form-control form-control-sm" placeholder="Nums only"></td>
+            <td><input type="number" id="otherCosts" name="otherCosts" class="form-control form-control-sm" placeholder="Nums only"></td>
+            <td><input type="number" id="fuel" name="fuel" class="form-control form-control-sm" placeholder="Nums only"></td>
+            <td><input type="text" id="notes" name="notes" class="form-control form-control-sm"></td>
+            <td class="text-right"><button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></button></td>
+          </tr>
+          
+        </form>
         <tfoot>
           <tr>
-            <td colspan="4">Total:</td>
+            <td colspan="4"><strong>Total:</strong> </td>
             <td><%=totalKm%></td>
             <td><%=totalCosts%></td>
             <td><%=totalFuel%></td>
