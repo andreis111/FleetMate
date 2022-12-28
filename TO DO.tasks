@@ -46,7 +46,7 @@ Models:
             adminId
         
     3. Trucks:
-        ☐ @critical
+        ✔ @critical @done (28/12/2022, 11:00:38)
         ✔ Model: @done (22/12/2022, 09:10:54)
             _id
             type
@@ -141,7 +141,7 @@ Views:
     4. Driver:
         ☐ @critical 
         Truck:
-            ☐ Interface with truck details which he is assigned to
+            ✔ Interface with truck details which he is assigned to @done (28/12/2022, 11:01:10)
         Spreadsheet:
             ✔ Create new spreadsheet @done (27/12/2022, 11:08:06)
             ✔ See submited spreadsheets, dropdown menu @done (27/12/2022, 11:08:10)
