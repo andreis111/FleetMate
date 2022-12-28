@@ -7,6 +7,8 @@
     <p>Add details for each individual job:</p>
 
     <div class="row justify-content-center mt-5">
+
+      <!-- Table to show individual trips made by the driver -->
       <table>
         <tr>
           <th>Start at</th>
@@ -31,6 +33,8 @@
             <td><%= individual.notes%></td>
           </tr>
         <% } %>
+
+        <!-- Form inside the table to add more trips -->
         <form action="/driver/spreadsheet/createIndividual/<%= week.id%>" method="POST">
           <tr>
             <td><input type="text" id="startLoc" name="startLoc" class="form-control form-control-sm"></td>
@@ -45,6 +49,7 @@
           </tr>
           
         </form>
+        <!-- Table footer that receives Total km, costs and fuel from controller (function in controller) -->
         <tfoot>
           <tr>
             <td colspan="4"><strong>Total:</strong> </td>

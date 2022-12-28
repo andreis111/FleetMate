@@ -3,7 +3,7 @@
 
 <main class="container">
     <h1>Edit Driver <%=driver.userName%></h1>
-
+<!-- Edit driver form, when passed in controller will change only filled inputs -->
     <form action="/admin/drivers/edit/<%=driver._id%>?_method=PUT" method="POST">
         <div>
             <label for="userName">Username: </label>
@@ -34,6 +34,7 @@
             <label for="expirePermit">Permit expires on: </label>
             <input type="date" id="expirePermit" name="expirePermit" value="<%=driver.expirePermit%>">
         </div>
+        <!-- Dropdown menu to select from existing trucks -->
         <select class="card-text" name = "truckPlate">
             <option value="default">Select a truck</option>
           <% for(truck of trucks) {%>

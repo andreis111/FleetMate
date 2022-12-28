@@ -4,6 +4,8 @@ const Admin = require("../models/Admin");
 const Driver = require("../models/Driver");
 
 module.exports = function (passport) {
+
+  //two collections to look into for auth 'admin' and 'driver
   passport.use('admin', 
     new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
       Admin.findOne({ email: email.toLowerCase() }, (err, user) => {
@@ -64,6 +66,7 @@ module.exports = function (passport) {
     done(null, user.id);
   });
 
+  //deserialize both models
   passport.deserializeUser((id, done) => {
     Admin.findById(id, (err, user) => {
       if (err) {

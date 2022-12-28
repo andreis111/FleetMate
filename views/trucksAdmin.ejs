@@ -3,14 +3,16 @@
 
 <main class="container">
     <h1>Trucks details page</h1>
+    <!-- Loop and show all trucks created by the admin -->
     <ul class="row list-unstyled">
-        <% for(var i=0; i<trucks.length; i++) {%>
+        <% for(truck of trucks) {%>
           <li class="col-6 justify-content-between mt-5">
-            <a href="/admin/trucks/edit/<%=trucks[i]._id%>">
-                <p><%= trucks[i].type%> - <%= trucks[i].model%></p>
-                <p><%= trucks[i].plate%></p>
+            <a href="/admin/trucks/edit/<%=truck._id%>">
+                <p><%= truck.type%> - <%= truck.model%></p>
+                <p><%= truck.plate%></p>
             </a>
-            <form action="/admin/trucks/deleteTruck/<%=trucks[i].id%>?_method=DELETE" method="POST">
+            <!-- Delete button for each truck to delete it -->
+            <form action="/admin/trucks/deleteTruck/<%=truck.id%>?_method=DELETE" method="POST">
                 <button  class="fa fa-trash" aria-hidden="true" type="submit"></button>
             </form>
           </li>

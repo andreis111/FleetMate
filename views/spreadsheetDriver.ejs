@@ -4,6 +4,8 @@
 <main class="container">
     <h1>Create weekly spreadsheet</h1>
     <p>Select the dates for which you want to create the spreadsheet (recommended weekly):</p>
+
+    <!-- Form to create weekly spreadsheet -->
     <form action="/driver/spreadsheet/createWeek/" method="POST">
         <div>
             <label for="startDate">Start: </label>
@@ -17,12 +19,13 @@
     </form>
 
     <div>
+      <!-- Loop to show all spreadsheets created by the driver -->
         <h2>Created spreadsheets:</h2>
         <ul class="list-unstyled">
-          <% for(var i=0; i<weekly.length; i++) {%>
+          <% for(week of weekly) {%>
             <li class="col-6 justify-content-between mt-1">
-              <a href="/driver/spreadsheet/<%= weekly[i]._id%>">
-                <%= weekly[i].startDate%> - <%= weekly[i].endDate%>
+              <a href="/driver/spreadsheet/<%= week._id%>">
+                <%= week.startDate%> - <%= week.endDate%>
               </a>
             </li>
           <% } %>

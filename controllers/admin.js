@@ -1,10 +1,12 @@
 const Driver = require("../models/Driver");
 const Truck = require("../models/Truck");
+//WeeklySs and Individuals are both in same collection, but 2 different models. multiple Individual are linked to one WeeklySs
 const WeeklySs = require("../models/WeeklySs");
 const Individual = require("../models/IndividualTrip");
 
 module.exports = {
 
+  //render the admin main page
   getAdminMainPage: async (req, res) => {
     try {
       //   const tasks = await Task.find({completedBy: null}).sort({createdDate: 'desc'}).lean();
@@ -20,7 +22,9 @@ module.exports = {
     }
   },
 
-  //trucks controllers
+                  //TRUCKS controllers:
+  
+    //get all trucks, find "trucks" created by the admin
   getTrucks: async (req, res) => {
     const trucks = await Truck.find({ adminId: req.user.id })
     try {
@@ -29,6 +33,8 @@ module.exports = {
       console.log(err);
     }
   },
+
+    //get the createTruck page
   getCreateTruck: async (req, res) => {
     try {
       res.render("createTruckAdmin.ejs");
@@ -36,6 +42,8 @@ module.exports = {
       console.log(err);
     }
   },
+
+    //creating new truck using Truck model and taking all inputs from createTruckAdmin.ejs
   postCreateTruck: async (req, res) => {
     try {
       // Upload image to cloudinary
@@ -61,16 +69,19 @@ module.exports = {
       console.log(err);
     }
   },
+  
+    //get the editTruck page. find the truck by id and driver so we can pass by default the value that will be edited
   getEditTruck: async (req, res) => {
     try {
       const truck = await Truck.findById(req.params.id);
       const driver = await Driver.find({ truckPlate: req.params.id })
-      console.log(truck);
       res.render("editTruckAdmin.ejs", { truck: truck, user: req.user , driver: driver});
     } catch (err) {
       console.log(err);
     }
   },
+
+    //edit truck. if body inputs empty then delete and edit only the ones we need
   putEditTruck: async (req, res) => {
     //iterate to see if body is empty or not and delete the empty fields
     Object.keys(req.body).forEach((key) => {
@@ -95,6 +106,8 @@ module.exports = {
       console.log(err);
     }
   },
+
+    //delete truck, find it by id and .deleteOne (using a trash icon in ejs)
   deleteTruck: async (req, res) => {
     try {
       // Find post by id
@@ -110,7 +123,9 @@ module.exports = {
     }
   },
 
-  //drivers controllers
+                  //DRIVERS controllers
+  
+    //Get drivers main page, iterate through all 'drivers' created by the admin and show them in ejs. 'truck' will check in ejs too
   getDrivers: async (req, res) => {
     const drivers = await Driver.find({ adminId: req.user.id })
     const truck = await Truck.find()
@@ -120,7 +135,7 @@ module.exports = {
       console.log(err);
     }
   },
-
+    //get the createDriver page - the put in createDriver is in auth controller
   getCreateDriver: async (req, res) => {
     try {
       res.render("createDriverAdmin.ejs");
@@ -128,6 +143,8 @@ module.exports = {
       console.log(err);
     }
   },
+
+    //edit the driver page
   getEditDriver: async (req, res) => {
     try {
       const trucks = await Truck.find({ adminId: req.user.id })
@@ -137,6 +154,8 @@ module.exports = {
       console.log(err);
     }
   },
+
+    //editing it, iterate to see if body empty or not, if empty delete
   putEditDriver: async (req, res) => {
     //iterate to see if body is empty or not and delete the empty fields
     console.log(req.body);
@@ -178,12 +197,15 @@ module.exports = {
   },
 
 
-  //Spreadsheets controllers:
+              
+              //SPREADSHEET controllers:
+  
+  
   getSpreadsheets: async (req, res) => {
     const drivers = await Driver.find({ adminId: req.user.id })
     const weekly = await WeeklySs.find({ weekId: drivers.id })
     const individuals = await Individual.find({ createdBy: weekly.id })
-    console.log(individuals);
+
     try {
       res.render("spreadsheetsAdmin.ejs", {weekly: weekly});
     } catch (err) {

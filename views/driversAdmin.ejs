@@ -3,23 +3,31 @@
 
 <main class="container">
     <h1>Driver profiles</h1>
+
+  <!-- List of drivers -->
     <ul class="row list-unstyled">
+      <!-- loop through drivers to show each one created by the logged-in admin -->
         <% for(driver of drivers) {%>
           <li class="col-6 justify-content-between mt-5">
             <a href="/admin/drivers/edit/<%=driver._id%>">
                 <p><%= driver.userName%></p>
+                <!-- Loop once more to see which driver has same truckPlate with truck.id -->
                 <% for(item of truck) {%>
                   <% if(driver.truckPlate == item.id) {%>
                     <p>Truck assigned: <%=item.plate%></p> 
                   <% } %>
                 <% } %>
             </a>
+
+            <!-- delete button for each driver -->
             <form action="/admin/drivers/deleteDriver/<%=driver.id%>?_method=DELETE" method="POST">
                 <button  class="fa fa-trash" aria-hidden="true" type="submit"></button>
             </form>
           </li>
         <% } %>
         </ul>
+
+        <!-- Create new driver link -->
     <a href="/admin/drivers/createDriver">Create new driver</a>
 </main>
 
