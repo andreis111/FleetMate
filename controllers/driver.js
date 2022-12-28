@@ -7,7 +7,7 @@ module.exports = {
 
     //main page
     getDriverMainPage: async (req, res) => {
-        try {
+    try {
             //   const tasks = await Task.find({completedBy: null}).sort({createdDate: 'desc'}).lean();
             //   const activeStaff = await Staff.find({ active: true, role: 'staff', adminId: req.user.id }).lean()
             res.render("driverMainPage", { driver: req.user });
@@ -18,9 +18,10 @@ module.exports = {
     },
 
     //Get truck assigned page
-    getTruck: async (req, res) => {
+  getTruck: async (req, res) => {
+    const truck = await Truck.findById(req.user.truckPlate)
         try {
-          res.render("truckDriver.ejs");
+          res.render("truckDriver.ejs", {truck:truck});
         } catch (err) {
           console.log(err);
         }
