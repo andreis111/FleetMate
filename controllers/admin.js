@@ -167,6 +167,11 @@ module.exports = {
         delete req.body[key]
       }
     })
+      // Check if truckId is "noTruck"
+    if (req.body.truckId === 'noTruck') {
+      // If it is, set truckId to null
+      req.body.truckId = null;
+    }
     try {
       await Driver.findOneAndUpdate(
         { _id: req.params.id },

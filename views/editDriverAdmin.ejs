@@ -36,10 +36,11 @@
         </div>
         <!-- Dropdown menu to select from existing trucks -->
         <select class="card-text" name = "truckId">
-            <option value="default">Select a truck</option>
+            <option value="">Select a truck</option>
           <% for(truck of trucks) {%>
             <option value="<%=truck._id%>"><%=truck.plate%></option>
           <% } %>
+            <option value="noTruck">No truck </option>
           </select>
         <div>
             <label for="role">Role: </label>

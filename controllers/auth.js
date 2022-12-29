@@ -157,7 +157,6 @@ exports.postSignupDriver = (req, res, next) => {
     expireLicense: req.body.expireLicense,
     expirePermit: req.body.expirePermit,
     expireAdr: req.body.expireAdr,
-    truckPlate: req.body.truckPlate,
     adminId: req.user.id
   });
 
