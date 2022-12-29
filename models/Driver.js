@@ -9,7 +9,7 @@ const DriverSchema = new mongoose.Schema({
     expireLicense: { type: String },
     expirePermit: { type: String },
     expireAdr: { type: String },
-    truckPlate: { type: mongoose.Schema.Types.ObjectId, ref: "Truck" },
+    truckId: { type: mongoose.Schema.Types.ObjectId, ref: "Truck" },
     adminId: { type: mongoose.Schema.Types.ObjectId, ref: "Admin" },
     role: { type: String, required: true, default: 'driver' },
 });

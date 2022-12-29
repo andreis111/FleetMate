@@ -3,7 +3,7 @@
 
 <main class="container">
     <h1>Create new truck</h1>
-
+    
 <!-- Form to create new truck -->
     <form action="/admin/trucks/createTruck" method="POST">
         <div>
@@ -25,10 +25,6 @@
         <div>
             <label for="km">KM (numbers only):</label>
             <input type="text" id="km" name="km">
-        </div>
-        <div>
-            <label for="driverName">Driver assigned</label>
-            <input type="text" id="driverName" name="driverName">
         </div>
         <div>
             <label for="toRepair">To repair: </label>
@@ -53,6 +49,8 @@
 
         <button type="submit">Add new truck</button>
     </form>
+
+    <p>To assign driver create truck then go <a href="/admin/drivers">to drivers info</a></p>
 </main>
 
 <a href="/logout">Logout</a>

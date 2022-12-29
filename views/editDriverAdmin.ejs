@@ -35,7 +35,7 @@
             <input type="date" id="expirePermit" name="expirePermit" value="<%=driver.expirePermit%>">
         </div>
         <!-- Dropdown menu to select from existing trucks -->
-        <select class="card-text" name = "truckPlate">
+        <select class="card-text" name = "truckId">
             <option value="default">Select a truck</option>
           <% for(truck of trucks) {%>
             <option value="<%=truck._id%>"><%=truck.plate%></option>

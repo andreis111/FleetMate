@@ -13,7 +13,7 @@
                 <p><%= driver.userName%></p>
                 <!-- Loop once more to see which driver has same truckPlate with truck.id -->
                 <% for(item of truck) {%>
-                  <% if(driver.truckPlate == item.id) {%>
+                  <% if(driver.truckId == item.id) {%>
                     <p>Truck assigned: <%=item.plate%></p> 
                   <% } %>
                 <% } %>

@@ -54,7 +54,6 @@ module.exports = {
         model: req.body.model,
         plate: req.body.plate,
         chassis: req.body.km,
-        driverName: req.body.driverName,
         toRepair: req.body.toRepair,
         photos: req.body.photos,
         expireVignette: req.body.expireVignette,

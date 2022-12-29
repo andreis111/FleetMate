@@ -40,9 +40,8 @@ Models:
             idCard
             expireLicense
             expirePermit
-            adr
             expireAdr
-            truckPlate
+            truckId
             adminId
         
     3. Trucks:
@@ -54,7 +53,6 @@ Models:
             plate
             chassis
             km
-            driverName
             toRepair
             photos
             expirevignette

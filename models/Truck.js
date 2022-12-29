@@ -7,7 +7,6 @@ const TruckSchema = new mongoose.Schema({
     plate: { type: String },
     chassis: { type: String },
     km: { type: Number },
-    driverName: { type: String },
     toRepair: { type: String },
     cloudinaryId: { type: String },
     expireVignette: { type: String },
