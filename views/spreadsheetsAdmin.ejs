@@ -2,17 +2,17 @@
 <%- include('partials/adminNav') -%>
 
 <main class="container">
-    <h1>Spreadsheets:</h1>
-    <!-- Loop and show all spreadsheets from all it's drivers -->
-    <ul class="list-unstyled">
-        <% for(week of weekly) {%>
-          <li class="col-6 justify-content-between mt-1">
-            <a href="/admin/spreadsheet/<%= week._id%>">
-              <%=week.truckPlate%>: <%=week.startDate%> - <%= week.endDate%> 
-            </a>
-          </li>
-        <% } %>
-    </ul>
+  <h1>Spreadsheets:</h1>
+  <!-- Loop and show all spreadsheets from all it's drivers -->
+  <ul class="list-unstyled">
+      <% for(week of weekly) {%>
+        <li class="col-6 justify-content-between mt-1">
+          <a href="/admin/spreadsheet/<%= week._id%>">
+             <%=week.startDate%> - <%= week.endDate%> 
+          </a>
+        </li>
+      <% } %>
+  </ul>
 </main>
 
 <a href="/logout">Logout</a>

@@ -47,10 +47,10 @@ module.exports = {
             startDate: req.body.startDate,
             endDate: req.body.endDate,
             createdBy: req.user.id,
-            truckPlate: req.user.truckPlate,
+            truckId: req.user.truckPlate,
             userName: req.user.userName,
           });
-          console.log("Truck has been added!");
+          console.log("Spreadsheet has been added!");
           res.redirect("/driver/spreadsheet");
         } catch (err) {
           console.log(err);

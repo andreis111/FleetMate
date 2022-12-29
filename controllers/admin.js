@@ -205,17 +205,17 @@ module.exports = {
               //SPREADSHEET controllers:
   
   
-  getSpreadsheets: async (req, res) => {
-    const drivers = await Driver.find({ adminId: req.user.id })
-    const weekly = await WeeklySs.find({ weekId: drivers.id })
-    const individuals = await Individual.find({ createdBy: weekly.id })
-
-    try {
-      res.render("spreadsheetsAdmin.ejs", {weekly: weekly});
-    } catch (err) {
-      console.log(err);
-    }
-  },
+    getSpreadsheets: async (req, res) => {
+      const drivers = await Driver.find({ adminId: req.user.id })
+      const weekly = await WeeklySs.find({ weekId: drivers.id })
+      const individuals = await Individual.find({ createdBy: weekly.id })
+  
+      try {
+        res.render("spreadsheetsAdmin.ejs", {weekly: weekly});
+      } catch (err) {
+        console.log(err);
+      }
+    },
 
   getIndividualSpreadsheet: async (req, res) => {
     try {
