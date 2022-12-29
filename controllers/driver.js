@@ -6,7 +6,8 @@ const Individual = require("../models/IndividualTrip");
 module.exports = {
 
     //main page
-    getDriverMainPage: async (req, res) => {
+  getDriverMainPage: async (req, res) => {
+    console.log(req);
     try {
             //   const tasks = await Task.find({completedBy: null}).sort({createdDate: 'desc'}).lean();
             //   const activeStaff = await Staff.find({ active: true, role: 'staff', adminId: req.user.id }).lean()
@@ -28,7 +29,8 @@ module.exports = {
     },
     
     //Spreadsheet
-    getSpreadsheet: async (req, res) => {
+  getSpreadsheet: async (req, res) => {
+      
       const weekly = await WeeklySs.find({ createdBy: req.user.id })
       
         try {
@@ -38,7 +40,8 @@ module.exports = {
         }
     },
 
-    postCreateSpreadsheet: async (req, res) => {
+  postCreateSpreadsheet: async (req, res) => {
+    const truck = await Truck.findById(req.user.truckId)
         try {
           // Upload image to cloudinary
           // const result = await cloudinary.uploader.upload(req.file.path);
@@ -49,6 +52,7 @@ module.exports = {
             createdBy: req.user.id,
             truckId: req.user.truckPlate,
             userName: req.user.userName,
+            truckPlate: truck.plate
           });
           console.log("Spreadsheet has been added!");
           res.redirect("/driver/spreadsheet");
