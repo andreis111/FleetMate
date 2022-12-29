@@ -19,7 +19,7 @@ module.exports = {
 
     //Get truck assigned page
   getTruck: async (req, res) => {
-    const truck = await Truck.findById(req.user.truckPlate)
+    const truck = await Truck.findById(req.user.truckId)
         try {
           res.render("truckDriver.ejs", {truck:truck});
         } catch (err) {
