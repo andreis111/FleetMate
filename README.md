@@ -18,6 +18,8 @@ A fleet manager app that helps businesses manage and optimize their fleet of tru
 
 Will optimize the dinamic content with react for frontend
 
+Refactor controllers with .populate() instead of current code
+
 ## Lessons Learned:
 
 Creating a full-stack app thought me that it's important to plan and design the app carefully before starting coding. This can save a lot of time and effort in the long run.
