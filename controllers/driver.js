@@ -108,18 +108,16 @@ module.exports = {
 
     //To Repair
     getRepair: async (req, res) => {
-      const truck = await Truck.findById(req.user.truckId)
       const repairs = await Repair.find({ createdBy: req.user.id })
-      console.log(truck);
         try {
-          res.render("toRepairDriver.ejs", {repairs: repairs, truck: truck});
+          res.render("toRepairDriver.ejs", {repairs: repairs});
         } catch (err) {
           console.log(err);
         }
     },
     
   postRepair: async (req, res) => {
-      const truck = Truck.findById(req.user.truckId)
+    const truck = await Truck.findById(req.user.truckId)
       try {
         // Upload image to cloudinary
         // const result = await cloudinary.uploader.upload(req.file.path);
