@@ -3,6 +3,7 @@ const Truck = require("../models/Truck");
 //WeeklySs and Individuals are both in same collection, but 2 different models. multiple Individual are linked to one WeeklySs
 const WeeklySs = require("../models/WeeklySs");
 const Individual = require("../models/IndividualTrip");
+const Repair = require("../models/Repair");
 
 module.exports = {
 
@@ -240,9 +241,11 @@ module.exports = {
 
     //Repair controllers:
     getRepairs: async (req, res) => {
-      // const drivers = await Driver.find({ adminId: req.user.id })
+      const drivers = await Driver.find({ adminId: req.user.id });
+      const driverIds = drivers.map(driver => driver.id);
+      const repairs = await Repair.find({ createdBy: { $in: driverIds } });
       try {
-        res.render("repairsAdmin.ejs");
+        res.render("toRepairAdmin.ejs", {repairs: repairs});
       } catch (err) {
         console.log(err);
       }

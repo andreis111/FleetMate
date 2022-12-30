@@ -1,18 +1,8 @@
 <%- include('partials/header') -%>
-<%- include('partials/DriverNav') -%>
+<%- include('partials/adminNav') -%>
 
 <main class="container">
-    <h1>What needs to be repaired on this truck</h1>
-
-    <form action="/driver/repairs" method="POST">
-        <div>
-            <label for="content">Repair note: </label>
-            <input type="text" id="content" name="content">
-        </div>
-
-        <button type="submit">Add new</button>
-    </form>
-
+    <h1>To repair:</h1>
     <ul>
         <% for (const repair of repairs) { %>
           <li>
@@ -21,6 +11,7 @@
           </li>
         <% } %>
       </ul>
+
 </main>
 
 <a href="/logout">Logout</a>
