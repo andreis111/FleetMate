@@ -63,12 +63,13 @@ Models:
     4. To repair:   
         ☐ Model:
             _id
-            date
-            createdBy
             content
-            truckId
-            photo
-            truckId
+            completed
+            date
+            truckPlate
+            createdBy
+            
+            
 
     5. Weekly spreadsheet (?):
         ✔ a. Have collection with doc for each week: @done (27/12/2022, 11:06:40)
