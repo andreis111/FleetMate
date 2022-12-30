@@ -249,5 +249,20 @@ module.exports = {
       } catch (err) {
         console.log(err);
       }
-    },
+  },
+    
+  updateRepair: async (req, res) => {
+    try {
+      // Find the repair in the database
+      const repair = await Repair.findById(req.body.id);
+      // Toggle the completed field
+      repair.completed = !repair.completed;
+      // Save the updated repair
+      await repair.save();
+      res.send('OK');
+    } catch (error) {
+      console.error(error);
+      res.send('Error');
+    }
+  }
 }

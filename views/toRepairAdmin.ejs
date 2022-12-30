@@ -5,8 +5,8 @@
     <h1>To repair:</h1>
     <ul>
         <% for (const repair of repairs) { %>
-          <li>
-            <input type="checkbox" <%= repair.completed ? 'checked' : '' %>>
+          <li class="<%= repair.completed ? 'completed' : '' %>">
+            <input type="checkbox" value="<%= repair._id %>" <%= repair.completed ? 'checked' : '' %>>
             <%= repair.content %> - <%= repair.truckPlate %>
           </li>
         <% } %>
@@ -15,5 +15,5 @@
 </main>
 
 <a href="/logout">Logout</a>
-
+<script src="/js/main.js"></script>
 <%- include('partials/footer') -%>

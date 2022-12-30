@@ -31,5 +31,6 @@ router.get("/spreadsheet/:id", ensureAuth, adminController.getIndividualSpreadsh
 
 //repairs
 router.get("/repairs", ensureAuth, adminController.getRepairs);
+router.post("/updateRepair", ensureAuth, adminController.updateRepair);
 
 module.exports = router;
