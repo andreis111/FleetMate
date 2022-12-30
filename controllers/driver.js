@@ -2,12 +2,12 @@ const Driver = require("../models/Driver");
 const Truck = require("../models/Truck");
 const WeeklySs = require("../models/WeeklySs");
 const Individual = require("../models/IndividualTrip");
+const Repair = require("../models/Repair");
 
 module.exports = {
 
     //main page
   getDriverMainPage: async (req, res) => {
-    console.log(req);
     try {
             //   const tasks = await Task.find({completedBy: null}).sort({createdDate: 'desc'}).lean();
             //   const activeStaff = await Staff.find({ active: true, role: 'staff', adminId: req.user.id }).lean()
@@ -108,12 +108,32 @@ module.exports = {
 
     //To Repair
     getRepair: async (req, res) => {
-        
+      const truck = await Truck.findById(req.user.truckId)
+      const repairs = await Repair.find({ createdBy: req.user.id })
+      console.log(truck);
         try {
-          res.render("toRepairDriver.ejs");
+          res.render("toRepairDriver.ejs", {repairs: repairs, truck: truck});
         } catch (err) {
           console.log(err);
         }
     },
+    
+  postRepair: async (req, res) => {
+      const truck = Truck.findById(req.user.truckId)
+      try {
+        // Upload image to cloudinary
+        // const result = await cloudinary.uploader.upload(req.file.path);
+
+          await Repair.create({
+            content: req.body.content,
+            truckPlate: truck.plate,
+            createdBy: req.user.id,
+        });
+        console.log("Repair has been added!");
+        res.redirect(`/driver/repairs/`);
+      } catch (err) {
+        console.log(err);
+      }
+},
     
 }

@@ -19,5 +19,6 @@ router.post("/spreadsheet/createIndividual/:id", ensureAuth, driverController.po
 
 //Repair Routes
 router.get("/repairs", ensureAuth, driverController.getRepair);
+router.post("/repairs", ensureAuth, driverController.postRepair);
 
 module.exports = router;

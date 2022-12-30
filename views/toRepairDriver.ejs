@@ -3,6 +3,24 @@
 
 <main class="container">
     <h1>What needs to be repaired on this truck</h1>
+
+    <form action="/driver/repairs" method="POST">
+        <div>
+            <label for="content">Repair note: </label>
+            <input type="text" id="content" name="content">
+        </div>
+
+        <button type="submit">Add new</button>
+    </form>
+
+    <ul>
+        <% for (const repair of repairs) { %>
+          <li>
+            <input type="checkbox" <%= repair.completed ? 'checked' : '' %>>
+            <%= repair.content %> - <%= truck.plate %>
+          </li>
+        <% } %>
+      </ul>
 </main>
 
 <a href="/logout">Logout</a>
