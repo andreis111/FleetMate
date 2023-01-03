@@ -6,6 +6,7 @@ const AdminSchema = new mongoose.Schema({
   email: { type: String, unique: true },
   password: String,
   role: { type: String, required: true, default: 'admin' },
+  createdAt: { type: Date, default: Date.now },
 });
 
 // Password hash middleware.

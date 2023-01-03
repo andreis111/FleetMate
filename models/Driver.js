@@ -12,6 +12,7 @@ const DriverSchema = new mongoose.Schema({
     truckId: { type: mongoose.Schema.Types.ObjectId, ref: "Truck" },
     adminId: { type: mongoose.Schema.Types.ObjectId, ref: "Admin" },
     role: { type: String, required: true, default: 'driver' },
+    createdAt: { type: Date, default: Date.now },
 });
 
 // Password hash middleware.

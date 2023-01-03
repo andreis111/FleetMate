@@ -15,8 +15,8 @@ const TruckSchema = new mongoose.Schema({
     adminId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Admin"
-    }
-    
+    },
+    createdAt: { type: Date, default: Date.now },
 });
 
 

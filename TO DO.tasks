@@ -61,7 +61,7 @@ Models:
             adminId
 
     4. To repair:   
-        ☐ Model:
+        ✔ Model: @done (30/12/2022, 09:32:52)
             _id
             content
             completed
@@ -132,10 +132,10 @@ Views:
             ☐ dropdown spreadsheet for each truck
             ☐ select and show spreadsheet
         Repairs (admin/repair):
-            ☐ List with all repairs
+            ✔ List with all repairs @done (30/12/2022, 09:33:13)
         Repair (admin/repair/:id):
-            ☐ show each repair from repairs list with truck number and date created
-            ☐ add like a todo list with checkboxes
+            ✔ show each repair from repairs list with truck number and date created @done (30/12/2022, 09:33:18)
+            ✔ add like a todo list with checkboxes @done (30/12/2022, 09:33:20)
 
     4. Driver:
         ☐ @critical 
@@ -145,10 +145,10 @@ Views:
             ✔ Create new spreadsheet @done (27/12/2022, 11:08:06)
             ✔ See submited spreadsheets, dropdown menu @done (27/12/2022, 11:08:10)
         Repair:
-            ☐ Create repair note
-            ☐ Submit button
+            ✔ Create repair note @done (30/12/2022, 09:33:24)
+            ✔ Submit button @done (30/12/2022, 09:33:28)
             ☐ Add photos
-            ☐ Linked checkbox with the admin
+            ✔ Linked checkbox with the admin @done (30/12/2022, 09:33:29)
 
 Others:
     ☐ Check roles before each res.render (see getAdminMainPage from admin controller). Do it in both admin controller and driver controller

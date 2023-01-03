@@ -15,7 +15,8 @@ const InlineSsSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "WeeklySs"
     },
-    type: { type: String, default: 'individual' }
+    type: { type: String, default: 'individual' },
+    createdAt: { type: Date, default: Date.now },
 });
 
 
