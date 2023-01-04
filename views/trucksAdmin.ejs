@@ -9,23 +9,48 @@
         <li class="breadcrumb-item active">Trucks</li>
       </ol>
     </nav>
-    <!-- Loop and show all trucks created by the admin -->
-    <ul class="row list-unstyled">
-        <% for(truck of trucks) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <a href="/admin/trucks/edit/<%=truck._id%>">
-                <p><%= truck.type%> - <%= truck.model%></p>
-                <p><%= truck.plate%></p>
-            </a>
-            <!-- Delete button for each truck to delete it -->
-            <form action="/admin/trucks/deleteTruck/<%=truck.id%>?_method=DELETE" method="POST">
-                <button  class="btn btn-primary bi bi-trash" aria-hidden="true" type="submit"></button>
-            </form>
-          </li>
-        <% } %>
-        </ul>
-    <a href="/admin/trucks/createTruck" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Add truck</a>
   </div>
+
+    <a href="/admin/trucks/createTruck" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Add truck</a>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="accordion" id="accordionExample">
+          <% let counter = 1; %>
+          <% for(truck of trucks) {%>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="heading<%= counter %>">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= counter %>"           aria-expanded="true" aria-controls="collapse<%= counter %>">
+                  <%= truck.plate%>
+                </button>
+              </h2>
+              <div id="collapse<%= counter %>" class="accordion-collapse collapse" aria-labelledby="heading<%= counter %>"          data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <ul class="list-group">
+                    <li class="list-group-item">Mark: <%=truck.type%></li>
+                    <li class="list-group-item">Model: <%= truck.model%></li>
+                    <li class="list-group-item">Chassis nr: <%= truck.chassis%></li>
+                    <li class="list-group-item">Vignette valid until: <%= truck.expireVignette%></li>
+                    <li class="list-group-item">Insurance valid until: <%= truck.expireInsurance%></li>
+                    <li class="list-group-item">CMR valid until: <%= truck.expireCmr%></li>
+                    <li class="list-group-item">Kilometers: <%= truck.km%></li>
+                  </ul>
+                  <div class="button-container" style="display: flex; align-items: center;">
+                    <form action="/admin/trucks/deleteTruck/<%=truck.id%>?_method=DELETE" method="POST">
+                      <button class="btn btn-danger btn-sm bi bi-trash" aria-hidden="true" type="submit"></button>
+                    </form>
+                    <form action="/admin/trucks/edit/<%=truck._id%>">
+                      <button class="btn btn-primary btn-sm bi bi-pencil-square" aria-hidden="true" type="submit"></button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% counter++; %>
+          <% } %>
+        </div><!-- End Default Accordion Example -->
+      </div>
+    </div>
+
 </main>
 
 
