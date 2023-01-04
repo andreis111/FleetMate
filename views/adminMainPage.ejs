@@ -1,8 +1,14 @@
 <%- include('partials/headerAdmin', {user: user}) -%>
 
 <main id="main" class="main">
-    <h1>Admin main page</h1>
-    <a href="/logout">Logout</a>
+    <div class="pagetitle">
+        <h1>Admin Page</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+        </nav>
 </main>
 
 
