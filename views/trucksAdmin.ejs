@@ -1,7 +1,14 @@
 <%- include('partials/headerAdmin', {user: user}) -%>
 
 <main id="main" class="main">
+  <div class="pagetitle">
     <h1>Trucks details page</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+        <li class="breadcrumb-item active">Trucks</li>
+      </ol>
+    </nav>
     <!-- Loop and show all trucks created by the admin -->
     <ul class="row list-unstyled">
         <% for(truck of trucks) {%>
@@ -12,12 +19,13 @@
             </a>
             <!-- Delete button for each truck to delete it -->
             <form action="/admin/trucks/deleteTruck/<%=truck.id%>?_method=DELETE" method="POST">
-                <button  class="fa fa-trash" aria-hidden="true" type="submit"></button>
+                <button  class="btn btn-primary bi bi-trash" aria-hidden="true" type="submit"></button>
             </form>
           </li>
         <% } %>
         </ul>
-    <a href="/admin/trucks/createTruck">Create new truck</a>
+    <a href="/admin/trucks/createTruck" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Add truck</a>
+  </div>
 </main>
 
 

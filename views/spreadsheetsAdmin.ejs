@@ -1,7 +1,17 @@
 <%- include('partials/headerAdmin', {user: user}) -%>
 
 <main id="main" class="main">
-  <h1>Spreadsheets:</h1>
+
+  <div class="pagetitle">
+    <h1>Spreadsheets:</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+        <li class="breadcrumb-item active">Spreadsheets</li>
+      </ol>
+    </nav>
+</div>
+  
   <!-- Loop and show all spreadsheets from all it's drivers -->
   <ul class="list-unstyled">
       <% for(week of weekly) {%>

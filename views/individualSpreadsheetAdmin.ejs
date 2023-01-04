@@ -1,7 +1,17 @@
 <%- include('partials/headerAdmin', {user: user}) -%>
 
 <main id="main" class="main">
+  <div class="pagetitle">
     <h1>Spreadsheet details </h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+        <li class="breadcrumb-item"><a href="/admin/spreadsheets">Spreadsheets</a></li>
+        <li class="breadcrumb-item active">Trips</li>
+      </ol>
+    </nav>
+</div>
+
     <h2><%= week.truckPlate%></h2>
     <h2><%= week.startDate%> - <%= week.endDate%></h2>
     <a href="/admin/spreadsheets">back</a>
