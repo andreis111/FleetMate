@@ -13,7 +13,7 @@ module.exports = {
       //   const tasks = await Task.find({completedBy: null}).sort({createdDate: 'desc'}).lean();
       //   const activeStaff = await Staff.find({ active: true, role: 'staff', adminId: req.user.id }).lean()
       if (req.user.role === 'admin') {
-        res.render("adminMainPage.ejs");
+        res.render("adminMainPage.ejs", {user : req.user});
       } else {
         res.redirect("/driver")
       }
@@ -29,7 +29,7 @@ module.exports = {
   getTrucks: async (req, res) => {
     const trucks = await Truck.find({ adminId: req.user.id })
     try {
-      res.render("trucksAdmin.ejs", { trucks: trucks });
+      res.render("trucksAdmin.ejs", { trucks: trucks, user : req.user });
     } catch (err) {
       console.log(err);
     }
@@ -38,7 +38,7 @@ module.exports = {
     //get the createTruck page
   getCreateTruck: async (req, res) => {
     try {
-      res.render("createTruckAdmin.ejs");
+      res.render("createTruckAdmin.ejs", {user : req.user});
     } catch (err) {
       console.log(err);
     }
@@ -130,7 +130,7 @@ module.exports = {
     const drivers = await Driver.find({ adminId: req.user.id })
     const truck = await Truck.find()
     try {
-      res.render("driversAdmin.ejs", { drivers: drivers, truck : truck });
+      res.render("driversAdmin.ejs", { drivers: drivers, truck : truck, user : req.user });
     } catch (err) {
       console.log(err);
     }
@@ -138,7 +138,7 @@ module.exports = {
     //get the createDriver page - the put in createDriver is in auth controller
   getCreateDriver: async (req, res) => {
     try {
-      res.render("createDriverAdmin.ejs");
+      res.render("createDriverAdmin.ejs", {user : req.user});
     } catch (err) {
       console.log(err);
     }
@@ -213,7 +213,7 @@ module.exports = {
       const individuals = await Individual.find({ createdBy: weekly.id })
       console.log(weekly);
       try {
-        res.render("spreadsheetsAdmin.ejs", {weekly: weekly});
+        res.render("spreadsheetsAdmin.ejs", {weekly: weekly, user : req.user});
       } catch (err) {
         console.log(err);
       }
@@ -233,7 +233,7 @@ module.exports = {
             totalCosts += individuals[i].otherCosts;
             totalFuel += individuals[i].fuel;
           }
-      res.render("individualSpreadsheetAdmin.ejs", { week: week, user: req.user, individuals: individuals, totalKm:totalKm, totalCosts: totalCosts, totalFuel:totalFuel  });
+      res.render("individualSpreadsheetAdmin.ejs", { week: week, user: req.user, individuals: individuals, totalKm:totalKm, totalCosts: totalCosts, totalFuel:totalFuel, user : req.user  });
     } catch (err) {
       console.log(err);
     }
@@ -245,7 +245,7 @@ module.exports = {
       const driverIds = drivers.map(driver => driver.id);
       const repairs = await Repair.find({ createdBy: { $in: driverIds } });
       try {
-        res.render("toRepairAdmin.ejs", {repairs: repairs});
+        res.render("toRepairAdmin.ejs", {repairs: repairs, user : req.user});
       } catch (err) {
         console.log(err);
       }

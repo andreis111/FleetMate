@@ -1,7 +1,6 @@
-<%- include('partials/header') -%>
-<%- include('partials/adminNav') -%>
+<%- include('partials/headerAdmin', {user: user}) -%>
 
-<main class="container">
+<main id="main" class="main">
     <h1>To repair:</h1>
     <ul>
         <% for (const repair of repairs) { %>
@@ -15,5 +14,5 @@
 </main>
 
 <a href="/logout">Logout</a>
-<script src="/js/main.js"></script>
+
 <%- include('partials/footer') -%>

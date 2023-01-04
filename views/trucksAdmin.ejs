@@ -1,7 +1,6 @@
-<%- include('partials/header') -%>
-<%- include('partials/adminNav') -%>
+<%- include('partials/headerAdmin', {user: user}) -%>
 
-<main class="container">
+<main id="main" class="main">
     <h1>Trucks details page</h1>
     <!-- Loop and show all trucks created by the admin -->
     <ul class="row list-unstyled">
@@ -23,6 +22,5 @@
 
 
 
-<a href="/logout">Logout</a>
 
 <%- include('partials/footer') -%>

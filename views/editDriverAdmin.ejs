@@ -1,7 +1,6 @@
-<%- include('partials/header') -%>
-<%- include('partials/adminNav') -%>
+<%- include('partials/headerAdmin', {user: user}) -%>
 
-<main class="container">
+<main id="main" class="main">
     <h1>Edit Driver <%=driver.userName%></h1>
 <!-- Edit driver form, when passed in controller will change only filled inputs -->
     <form action="/admin/drivers/edit/<%=driver._id%>?_method=PUT" method="POST">

@@ -1,7 +1,6 @@
-<%- include('partials/header') -%>
-<%- include('partials/adminNav') -%>
+<%- include('partials/headerAdmin', {user: user}) -%>
 
-<main class="container">
+<main id="main" class="main">
     <h1>Edit truck <%=truck.plate%></h1>
     <p>Driver assigned: <%if(driver[0]) {%> 
         <%=driver[0].userName%>
