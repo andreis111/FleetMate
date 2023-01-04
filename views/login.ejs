@@ -1,15 +1,39 @@
-<%- include('partials/header') -%>
+<%- include('partials/headerLogin') -%>
 
-<main class="container">
-    <div class="row justify-content-center">
-      <section class="col-6 mt-5">
-        <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
-        <div class="alert alert-danger"><%= el.msg %></div>
-        <% }) %> <% } %> <% if (locals.messages.info) { %> <%
-        messages.info.forEach( el => { %>
-        <div class="alert alert-info"><%= el.msg %></div>
-        <% }) %> <% } %>
-        <form action="/login" method="POST">
+
+
+<main>
+  <div class="container">
+
+    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+      <div class="container">
+        <div class="row justify-content-center">
+          <section class="row justify-content-center">
+            <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
+            <div class="alert alert-danger"><%= el.msg %></div>
+            <% }) %> <% } %> <% if (locals.messages.info) { %> <%
+            messages.info.forEach( el => { %>
+            <div class="alert alert-info"><%= el.msg %></div>
+            <% }) %> <% } %>
+          <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+            <div class="d-flex justify-content-center py-4">
+              <a href="#" class="logo d-flex align-items-center w-auto">
+                <img src="imgs/favicon-32x32.png" alt="">
+                <span class="d-none d-lg-block">FleetMate</span>
+              </a>
+            </div><!-- End Logo -->
+
+            <div class="card mb-3">
+
+              <div class="card-body">
+
+                <div class="pt-4 pb-2">
+                  <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
+                  <p class="text-center small">Enter email & password </p>
+                </div>
+
+                <form action="/login" method="POST">
           <div class="mb-3">
             <label for="inputEmail" class="form-label">Email address</label>
             <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" name="email"/>
@@ -19,10 +43,20 @@
             <input type="password" class="form-control" id="inputPassword" name="password"/>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </section>
-      <a href="/signup">SIGNUP</a>
-    </div>
-  </main>
+                    <p class="small mb-0">Don't have account? <a href="/signup">Create an account</a></p>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+
+          </div>
+          </section>
+        </div>
+
+
+</main> <!-- End #main -->
+
+  
 
 <%- include('partials/footer') -%>

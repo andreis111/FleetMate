@@ -152,4 +152,9 @@ Views:
 
 Others:
     ☐ Check roles before each res.render (see getAdminMainPage from admin controller). Do it in both admin controller and driver controller
-    ☐ 
+    
+    ☐ Add photos to:
+     ☐ admin profile, 
+     ☐ driver profile, 
+     ☐ POD in spread,
+     ☐ repair

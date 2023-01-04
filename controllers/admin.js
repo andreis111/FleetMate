@@ -208,9 +208,10 @@ module.exports = {
   
     getSpreadsheets: async (req, res) => {
       const drivers = await Driver.find({ adminId: req.user.id })
-      const weekly = await WeeklySs.find({ weekId: drivers.id })
+      const driversIds = drivers.map(driver => driver.id)
+      const weekly = await WeeklySs.find({ createdBy: {$in: driversIds} })
       const individuals = await Individual.find({ createdBy: weekly.id })
-  
+      console.log(weekly);
       try {
         res.render("spreadsheetsAdmin.ejs", {weekly: weekly});
       } catch (err) {
@@ -232,7 +233,6 @@ module.exports = {
             totalCosts += individuals[i].otherCosts;
             totalFuel += individuals[i].fuel;
           }
-        console.log(totalKm);
       res.render("individualSpreadsheetAdmin.ejs", { week: week, user: req.user, individuals: individuals, totalKm:totalKm, totalCosts: totalCosts, totalFuel:totalFuel  });
     } catch (err) {
       console.log(err);
