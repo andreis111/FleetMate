@@ -11,7 +11,7 @@ module.exports = {
     try {
             //   const tasks = await Task.find({completedBy: null}).sort({createdDate: 'desc'}).lean();
             //   const activeStaff = await Staff.find({ active: true, role: 'staff', adminId: req.user.id }).lean()
-            res.render("driverMainPage", { driver: req.user });
+            res.render("driverMainPage", { user: req.user });
 
         } catch (err) {
             console.log(err);
@@ -22,7 +22,7 @@ module.exports = {
   getTruck: async (req, res) => {
     const truck = await Truck.findById(req.user.truckId)
         try {
-          res.render("truckDriver.ejs", {truck:truck});
+          res.render("truckDriver.ejs", {truck:truck, user: req.user});
         } catch (err) {
           console.log(err);
         }
@@ -34,7 +34,7 @@ module.exports = {
       const weekly = await WeeklySs.find({ createdBy: req.user.id })
       
         try {
-          res.render("spreadsheetDriver.ejs", { weekly: weekly});
+          res.render("spreadsheetDriver.ejs", { weekly: weekly, user: req.user});
         } catch (err) {
           console.log(err);
         }
@@ -110,7 +110,7 @@ module.exports = {
     getRepair: async (req, res) => {
       const repairs = await Repair.find({ createdBy: req.user.id })
         try {
-          res.render("toRepairDriver.ejs", {repairs: repairs});
+          res.render("toRepairDriver.ejs", {repairs: repairs, user: req.user});
         } catch (err) {
           console.log(err);
         }

@@ -1,8 +1,15 @@
-<%- include('partials/header') -%>
-<%- include('partials/DriverNav') -%>
+<%- include('partials/headerDriver', {user: user}) -%>
 
-<main class="container">
+<main id="main" class="main">
+  <div class="pagetitle">
+
     <h1>Create weekly spreadsheet</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/driver">Home</a></li>
+        <li class="breadcrumb-item active">Spreadsheets</li>
+      </ol>
+    </nav>
     <p>Select the dates for which you want to create the spreadsheet (recommended weekly):</p>
 
     <!-- Form to create weekly spreadsheet -->
@@ -31,6 +38,7 @@
           <% } %>
           </ul>
       </div>
+  </div>
 </main>
 
 <a href="/logout">Logout</a>

@@ -1,8 +1,16 @@
-<%- include('partials/header') -%>
-<%- include('partials/DriverNav') -%>
+<%- include('partials/headerDriver', {user: user}) -%>
 
-<main class="container">
+<main id="main" class="main">
+  <div class="pagetitle">
+
+
     <h1>What needs to be repaired on this truck</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/driver">Home</a></li>
+        <li class="breadcrumb-item active">To Repair</li>
+      </ol>
+    </nav>
 
     <form action="/driver/repairs" method="POST">
         <div>
@@ -16,13 +24,13 @@
     <ul>
       <% for (const repair of repairs) { %>
         <li class="<%= repair.completed ? 'completed' : '' %>">
-          <input type="checkbox" value="<%= repair._id %>" <%= repair.completed ? 'checked' : '' %>>
           <%= repair.content %> - <%= repair.truckPlate %>
         </li>
       <% } %>
     </ul>
+  </div>
 </main>
 
-<a href="/logout">Logout</a>
+
 
 <%- include('partials/footer') -%>

@@ -1,9 +1,18 @@
-<%- include('partials/header') -%>
-<%- include('partials/DriverNav') -%>
+<%- include('partials/headerDriver', {user: user}) -%>
 
-<main class="container">
+<main id="main" class="main">
+  <div class="pagetitle">
+    
     <h1>Spreadsheet details </h1>
-    <h2><%= week.startDate%> - <%= week.endDate%></h2>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/driver">Home</a></li>
+        <li class="breadcrumb-item"><a href="/driver/spreadsheet">Spreadsheets</a></li>
+        <li class="breadcrumb-item active">Trips</li>
+      </ol>
+  </nav>
+  <h1><%= week.startDate%> - <%= week.endDate%></h1>
+  
     <p>Add details for each individual job:</p>
 
     <div class="row justify-content-center mt-5">
@@ -45,7 +54,7 @@
             <td><input type="number" id="otherCosts" name="otherCosts" class="form-control form-control-sm" placeholder="Nums only"></td>
             <td><input type="number" id="fuel" name="fuel" class="form-control form-control-sm" placeholder="Nums only"></td>
             <td><input type="text" id="notes" name="notes" class="form-control form-control-sm"></td>
-            <td class="text-right"><button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></button></td>
+            <td class="text-right"><button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg"></i></button></td>
           </tr>
           
         </form>
@@ -62,7 +71,7 @@
         
 
     </div>
-
+  </div>
 </main>
 
 <a href="/logout">Logout</a>

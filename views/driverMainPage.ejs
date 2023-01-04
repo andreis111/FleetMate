@@ -1,8 +1,14 @@
-<%- include('partials/header') -%>
-<%- include('partials/DriverNav') -%>
+<%- include('partials/headerDriver', {user: user}) -%>
 
-<main class="container">
-    <h1>DRIVER main page <%= driver.userName%></h1>
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Driver Page</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/driver">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+        </nav>
 </main>
 
 <a href="/logout">Logout</a>

@@ -1,10 +1,18 @@
-<%- include('partials/header') -%>
-<%- include('partials/DriverNav') -%>
+<%- include('partials/headerDriver', {user: user}) -%>
 
-<main class="container">
+<main id="main" class="main">
     <!-- Show truck details assigned to the driver -->
+
+    <div class="pagetitle">
+
     <% if (truck) { %>
       <h1>Truck details (driver page)</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/driver">Home</a></li>
+          <li class="breadcrumb-item active">Truck</li>
+        </ol>
+      </nav>
       <p>Plate: <%=truck.plate%></p>
       <p>Type: <%=truck.type%></p>
       <p>Model: <%=truck.model%></p>
@@ -17,6 +25,7 @@
       <h1>No truck assigned</h1>
       <p>There is no truck assigned to you at this time.</p>
     <% } %>
+    </div>
 </main>  
 
 <a href="/logout">Logout</a>
