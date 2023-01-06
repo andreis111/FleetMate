@@ -158,3 +158,5 @@ Others:
      ☐ driver profile, 
      ☐ POD in spread,
      ☐ repair
+
+    ☐ Add edit/delete button to weekly spreadsheet for driver (deleting weekly spreadsheet will delete also all it's individual trips)

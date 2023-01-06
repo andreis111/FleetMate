@@ -216,7 +216,7 @@ module.exports = {
     getSpreadsheets: async (req, res) => {
       const drivers = await Driver.find({ adminId: req.user.id })
       const driversIds = drivers.map(driver => driver.id)
-      const weekly = await WeeklySs.find({ createdBy: {$in: driversIds} })
+      const weekly = await WeeklySs.find({ createdBy: {$in: driversIds} }).sort({ createdAt: 'desc' })
       const individuals = await Individual.find({ createdBy: weekly.id })
       console.log(weekly);
       try {
