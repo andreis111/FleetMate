@@ -2,92 +2,40 @@
 
 <main id="main" class="main">
     <h1>Edit Driver <%=driver.userName%></h1>
-<!-- Edit driver form, when passed in controller will change only filled inputs -->
-    <form action="/admin/drivers/edit/<%=driver._id%>?_method=PUT" method="POST">
-        <div>
-            <label for="userName">Username: </label>
-            <input type="text" id="userName" name="userName" value="<%=driver.userName%>">
-        </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="<%=driver.email%>" disabled>
-        </div>
-        <div>
-            <label for="password">password:</label>
-            <input type="password" id="password" name="password" disabled>
-        </div>
-        <div>
-            <label for="idCard">ID card:</label>
-            <input type="text" id="idCard" name="idCard" value="<%=driver.idCard%>">
-        </div>
-
-        <div>
-            <label for="expireLicense">License expire on:</label>
-            <input type="date" id="expireLicense" name="expireLicense" value="<%=driver.expireLicense%>">
-        </div>
-        <div>
-            <label for="expireAdr">ADR expires on: </label>
-            <input type="date" id="expireAdr" name="expireAdr" value="<%=driver.expireAdr%>">
-        </div>
-        <div>
-            <label for="expirePermit">Permit expires on: </label>
-            <input type="date" id="expirePermit" name="expirePermit" value="<%=driver.expirePermit%>">
-        </div>
-        <!-- Dropdown menu to select from existing trucks -->
-        <select class="card-text" name = "truckId">
-            <option value="">Select a truck</option>
-          <% for(truck of trucks) {%>
-            <option value="<%=truck._id%>"><%=truck.plate%></option>
-          <% } %>
-            <option value="noTruck">No truck </option>
-          </select>
-        <div>
-            <label for="role">Role: </label>
-            <input type="text" id="role" name="role" value="<%=driver.role%>" disabled>
-        </div>
-
-        <button type="submit">Edit driver</button>
-    </form>
 
     <section class="section profile">
         <div class="row">
           <div class="col-xl-4">
   
             <div class="card">
-              <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-  
-                <img src="/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                <h2><%=driver.userName%></h2>
-                <h3><%=driver.role%></h3>
-                <!-- <div class="social-links mt-2">
-                  <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                  <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                  <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                  <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                </div> -->
-              </div>
-              <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-              <form action="/admin/drivers/edit/<%=driver._id%>?_method=PUT" method="POST">
-                <div class="row mb-3">
-                    <label class="text-center">Assign truck</label>
-                    <div class="col-sm-10">
-                        
-                      <select class="form-select" name = "truckId">
-                        <option value="">Select truck</option>
-                        <% for(truck of trucks) {%>
-                          <option value="<%=truck._id%>"><%=truck.plate%></option>
-                        <% } %>
-                          <option value="noTruck">No truck </option>
-                      </select>
-                    </div>
+                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                
+                  <img src="/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                  <h2><%=driver.userName%></h2>
+                  <h3><%=driver.role%></h3>
+                  <!-- <div class="social-links mt-2">
+                    <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                  </div> -->
+                </div>
+                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                    <form action="/admin/drivers/edit/<%=driver._id%>?_method=PUT" method="POST">
+                     <div class="row mb-3">
+                         <div class=" d-flex align-items-center">
+                           <select class="form-select" name = "truckId">
+                             <option value="">Assign truck</option>
+                             <% for(truck of trucks) {%>
+                               <option value="<%=truck._id%>"><%=truck.plate%></option>
+                             <% } %>
+                               <option value="noTruck">No truck </option>
+                           </select>
+                           <button type="submit" class="btn btn-primary"><i class="bi bi-check"></i></button>
+                         </div>
+                       </div>
+                    </form>
                   </div>
-
-
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Assign truck</button>
-                  </div>
-                </form>
-            </div>
             </div>
   
           </div>
