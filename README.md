@@ -4,7 +4,7 @@ A fleet manager app that helps businesses manage and optimize their fleet of tru
 
 **Link to project:** ##
 
-![alt tag](http://placecorgi.com/1200/650)
+<!-- ![alt tag](http://placecorgi.com/1200/650) -->
 
 ## How It's Made:
 
