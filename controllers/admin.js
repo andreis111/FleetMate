@@ -181,7 +181,7 @@ module.exports = {
         }
       );
       console.log("Driver updated");
-      res.redirect(`/admin/drivers`);
+      res.redirect(`/admin/drivers/edit/${req.params.id}`);
     } catch (err) {
       console.log(err);
     }
