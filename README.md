@@ -16,9 +16,11 @@ A fleet manager app that helps businesses manage and optimize their fleet of tru
 
 ## Optimizations
 
-Will optimize the dinamic content with react for frontend
+- Will optimize the dinamic content with react for frontend
 
-Refactor controllers with .populate() instead of current code
+- Refactor controllers with .populate() instead of current code
+
+- Add google maps api to spreadsheets
 
 ## Lessons Learned:
 

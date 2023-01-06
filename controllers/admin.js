@@ -149,7 +149,14 @@ module.exports = {
     try {
       const trucks = await Truck.find({ adminId: req.user.id })
       const driver = await Driver.findById(req.params.id);
-      res.render("editDriverAdmin.ejs", { driver: driver, user: req.user, trucks: trucks });
+      
+      //Find truck assigned
+      const assignedTruck = await Truck.findById(driver.truckId)
+
+      //if there is a truck assigned give the plate, if not default message 'No truck assigned'
+      const truckPlate = assignedTruck?.plate || 'No truck assigned';
+
+      res.render("editDriverAdmin.ejs", { driver: driver, user: req.user, trucks: trucks, truckPlate: truckPlate });
     } catch (err) {
       console.log(err);
     }
