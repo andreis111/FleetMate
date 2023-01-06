@@ -2,7 +2,7 @@
 
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Driver profiles</h1>
+    <h1>Drivers</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/admin">Home</a></li>
@@ -11,41 +11,43 @@
     </nav>
 </div>
     
+  <!-- Create new driver -->
+  <a href="/admin/drivers/createDriver" class="btn btn-primary"><i class="bi bi-person-plus"></i> Add Driver</a>
 
-  <!-- List of drivers -->
-  <ul class="row list-unstyled">
-    <!-- loop through drivers to show each one created by the logged-in admin -->
+  <section class="section">
+    <div class="row align-items-top">
+      
       <% for(driver of drivers) {%>
-        <li class="col-6 justify-content-between mt-5">
-          <a href="/admin/drivers/edit/<%=driver._id%>">
-              <p><%= driver.userName%></p>
-              <!-- set flag to false -->
-              <% var flag = false; %>
-              <!-- Loop once more to see which driver has same truckPlate with truck.id -->
-              <% for(item of truck) {%>
-                <% if(driver.truckId == item.id) {%>
-                  <p>Truck assigned: <%=item.plate%></p> 
-                  <!-- set flag to true -->
-                  <% flag = true; %>
-                <% } %>
-              <% } %>
-              <!-- if flag is false, display message -->
-              <% if(!flag) { %>
-                <p>No truck assigned</p>
-              <% } %>
-          </a>
-
-          <!-- delete button for each driver -->
-          <form action="/admin/drivers/deleteDriver/<%=driver.id%>?_method=DELETE" method="POST">
-              <button  class="btn btn-primary bi bi-trash" aria-hidden="true" type="submit"></button>
-          </form>
-        </li>
+        <div class="col-xxl-2 col-lg-3 col-md-4 col-sm-6">
+          <div class="card h-100 position-relative">
+            <a href="/admin/drivers/edit/<%=driver._id%>">
+              <img src="/img/profile-img.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><%= driver.userName%></h5>
+                <% var flag = false; %>
+                  <!-- Loop once more to see which driver has same truckPlate with truck.id -->
+                  <% for(item of truck) {%>
+                    <% if(driver.truckId == item.id) {%>
+                      <p>Truck assigned: <%=item.plate%></p> 
+                      <!-- set flag to true -->
+                      <% flag = true; %>
+                    <% } %>
+                  <% } %>
+                  <!-- if flag is false, display message -->
+                  <% if(!flag) { %>
+                    <p>No truck assigned</p>
+                  <% } %>
+                </div>
+              </a>
+              <form action="/admin/drivers/deleteDriver/<%=driver.id%>?_method=DELETE" method="POST">
+                <button  class="btn btn-danger btn-sm bi bi-trash position-absolute" style="bottom: 0; left: 0;" aria-hidden="true" type="submit"></button>
+              </form>
+            </div>
+      </div>
       <% } %>
-  </ul>
-
-
-        <!-- Create new driver link -->
-    <a href="/admin/drivers/createDriver" class="btn btn-primary"><i class="bi bi-person-plus"></i> Add Driver</a>
+      
+    </div>
+  </section>
 </main>
 
 
