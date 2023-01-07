@@ -10,34 +10,66 @@
         <li class="breadcrumb-item active">Spreadsheets</li>
       </ol>
     </nav>
-    <p>Select the dates for which you want to create the spreadsheet (recommended weekly):</p>
 
     <!-- Form to create weekly spreadsheet -->
-    <form action="/driver/spreadsheet/createWeek/" method="POST">
-        <div>
-            <label for="startDate">Start: </label>
-            <input type="date" id="startDate" name="startDate" required>
-        </div>
-        <div>
-            <label for="endDate">End: </label>
-            <input type="date" id="endDate" name="endDate" required>
-        </div>
-        <button type="submit">Create New Weekly Spreadsheet</button>
-    </form>
+    <div class="col-lg-4 col-sm-6 col-6">
+      <h5 class="card-title">Select dates (recommended weekly)</h5>
 
-    <div>
-      <!-- Loop to show all spreadsheets created by the driver -->
-        <h2>Created spreadsheets:</h2>
-        <ul class="list-unstyled">
-          <% for(week of weekly) {%>
-            <li class="col-6 justify-content-between mt-1">
-              <a href="/driver/spreadsheet/<%= week._id%>">
-                <%= week.startDate%> - <%= week.endDate%>
-              </a>
-            </li>
-          <% } %>
-          </ul>
+      <div class="card">
+        <div class="card-body">
+
+          <form action="/driver/spreadsheet/createWeek/" method="POST">
+              <div class="row my-3">
+                <label for="startDate" class="col-sm-3 col-form-label">Start</label>
+                <div class="col-sm-8">
+                  <input type="date" id="startDate" name="startDate" required class="form-control">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="endDate" class="col-sm-3 col-form-label">End</label>
+                <div class="col-sm-8">
+                  <input type="date" id="endDate" name="endDate" required class="form-control">
+                </div>
+              </div>
+            
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Create Weekly</button>
+              </div>
+          </form>
+        </div>
       </div>
+    </div>
+
+      <!-- Loop to show all spreadsheets created by the driver -->
+        <h2>Spreadsheets:</h2>
+        
+      <section class="section">
+        <div class="row align-items-top">
+          <% for(week of weekly) {%>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+              <% const options = {  year: 'numeric', month: 'numeric', day: 'numeric', separator: '.' }; %>
+              <div class="card h-100">
+                <a href="/driver/spreadsheet/<%= week._id%>">
+                <div class="card-body">
+                  <h5 class="card-title"><%= week.startDate%> - <%= week.endDate%></h5>
+                  <ul class="list-group">
+                    <li class="list-group-item">Created by: <%= week.userName%> </li>
+                    <li class="list-group-item">Truck plate: <%= week.truckPlate%></li>
+                  </ul><!-- End Default List group -->
+                </div>
+                
+                </a>
+                <div class="card-footer">
+                  <small class="text-muted">
+                    Created on: <%= week.createdAt.toLocaleDateString('en-GB', options) %>
+                  </small>
+                </div>
+              </div>
+        
+            </div>
+          <% } %>
+        </div>
+      </section>
   </div>
 </main>
 

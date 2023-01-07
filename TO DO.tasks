@@ -59,6 +59,8 @@ Models:
             expireInsurance
             expireCmr
             adminId
+            Mot
+            expireOmnium
 
     4. To repair:   
         ✔ Model: @done (30/12/2022, 09:32:52)
@@ -152,6 +154,7 @@ Views:
 
 Others:
     ☐ Check roles before each res.render (see getAdminMainPage from admin controller). Do it in both admin controller and driver controller
+    ☐ Add edit/delete buttons for repairs
     
     ☐ Add photos to:
      ☐ admin profile, 
@@ -160,3 +163,4 @@ Others:
      ☐ repair
 
     ☐ Add edit/delete button to weekly spreadsheet for driver (deleting weekly spreadsheet will delete also all it's individual trips)
+    ☐ Add new custom option to add new document in model, 

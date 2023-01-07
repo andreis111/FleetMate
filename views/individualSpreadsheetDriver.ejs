@@ -29,21 +29,6 @@
           <th>Fuel</th>
           <th>Notes</th>
         </tr>
-        
-        <% for(const individual of individuals) {%>
-          <tr>
-            <td><%= individual.startLoc%></td>
-            <td><%= individual.startDate%></td>
-            <td><%= individual.endLoc%></td>
-            <td><%= individual.endDate%></td>
-            <td><%= individual.km%></td>
-            <td><%= individual.otherCosts%></td>
-            <td><%= individual.fuel%></td>
-            <td><%= individual.notes%></td>
-          </tr>
-        <% } %>
-
-        <!-- Form inside the table to add more trips -->
         <form action="/driver/spreadsheet/createIndividual/<%= week.id%>" method="POST">
           <tr>
             <td><input type="text" id="startLoc" name="startLoc" class="form-control form-control-sm"></td>
@@ -58,6 +43,21 @@
           </tr>
           
         </form>
+        <% for(const individual of individuals) {%>
+          <tr>
+            <td><%= individual.startLoc%></td>
+            <td><%= individual.startDate%></td>
+            <td><%= individual.endLoc%></td>
+            <td><%= individual.endDate%></td>
+            <td><%= individual.km%></td>
+            <td><%= individual.otherCosts%></td>
+            <td><%= individual.fuel%></td>
+            <td><%= individual.notes%></td>
+          </tr>
+        <% } %>
+
+        <!-- Form inside the table to add more trips -->
+        
         <!-- Table footer that receives Total km, costs and fuel from controller (function in controller) -->
         <tfoot>
           <tr>

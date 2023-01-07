@@ -13,7 +13,7 @@ module.exports = {
       //   const tasks = await Task.find({completedBy: null}).sort({createdDate: 'desc'}).lean();
       //   const activeStaff = await Staff.find({ active: true, role: 'staff', adminId: req.user.id }).lean()
       if (req.user.role === 'admin') {
-        res.render("adminMainPage.ejs", {user : req.user});
+        res.render("adminMainpage.ejs", {user : req.user});
       } else {
         res.redirect("/driver")
       }
