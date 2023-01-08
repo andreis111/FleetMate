@@ -11,25 +11,25 @@
         <li class="breadcrumb-item active">Trips</li>
       </ol>
   </nav>
-  <h1><%= week.startDate%> - <%= week.endDate%></h1>
-  
-    <p>Add details for each individual job:</p>
+  <h1 class="text-center text-primary"><%= week.startDate%> - <%= week.endDate%></h1>
 
     <div class="row justify-content-center mt-5">
 
       <!-- Table to show individual trips made by the driver -->
-      <table>
-        <tr>
-          <th>Start at</th>
-          <th>Start date</th>
-          <th>End at</th>
-          <th>End Date</th>
-          <th>Km</th>
-          <th>Other costs</th>
-          <th>Fuel</th>
-          <th>Notes</th>
-        </tr>
-        <form action="/driver/spreadsheet/createIndividual/<%= week.id%>" method="POST">
+      <table class="table table-bordered w-auto">
+        <thead>
+          <tr>
+            <th scope="col">Start at</th>
+            <th scope="col">Start date</th>
+            <th scope="col">End at</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Km</th>
+            <th scope="col">Other costs</th>
+            <th scope="col">Fuel</th>
+            <th scope="col">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
           <tr>
             <td><input type="text" id="startLoc" name="startLoc" class="form-control form-control-sm"></td>
             <td><input type="date" id="startDate" name="startDate" class="form-control form-control-sm"></td>
@@ -55,10 +55,7 @@
             <td><%= individual.notes%></td>
           </tr>
         <% } %>
-
-        <!-- Form inside the table to add more trips -->
-        
-        <!-- Table footer that receives Total km, costs and fuel from controller (function in controller) -->
+        </tbody>
         <tfoot>
           <tr>
             <td colspan="4"><strong>Total:</strong> </td>
@@ -68,8 +65,6 @@
           </tr>
         </tfoot>
       </table>
-        
-
     </div>
   </div>
 </main>
