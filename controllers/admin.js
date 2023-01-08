@@ -1,9 +1,11 @@
+const Admin = require("../models/Admin");
 const Driver = require("../models/Driver");
 const Truck = require("../models/Truck");
 //WeeklySs and Individuals are both in same collection, but 2 different models. multiple Individual are linked to one WeeklySs
 const WeeklySs = require("../models/WeeklySs");
 const Individual = require("../models/IndividualTrip");
 const Repair = require("../models/Repair");
+const Company = require("../models/Company");
 
 module.exports = {
 
@@ -26,14 +28,90 @@ module.exports = {
   //Admin profile 
   getAdminProfile: async (req, res) => {
     try {
-      //   const tasks = await Task.find({completedBy: null}).sort({createdDate: 'desc'}).lean();
-      //   const activeStaff = await Staff.find({ active: true, role: 'staff', adminId: req.user.id }).lean()
+      const company = await Company.find({ adminId: req.user.id });
+      console.log(company);
       if (req.user.role === 'admin') {
-        res.render("profileAdmin", {user : req.user});
+        if (company.length > 0) {
+          // render the edit form
+          res.render("profileAdmin", {user : req.user, company: company, companyExist: true});
+        } else {
+          // render the create button
+          res.render("profileAdmin", {user : req.user, companyExist: false});
+        }
       } else {
-        res.redirect("/driver")
+        res.redirect("/admin/profile");
       }
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  putEditAdmin: async (req, res) => {
+    //iterate to see if body is empty or not and delete the empty fields
+    Object.keys(req.body).forEach((key) => {
+      if (
+        req.body[key] == null ||
+        req.body[key] == undefined ||
+        req.body[key] == ''
+      ) {
+        delete req.body[key]
+      }
+    })
+    try {
+      await Admin.findOneAndUpdate(
+        { _id: req.user.id },
+        {
+          $set: req.body,
+        }
+      );
+      console.log("Admin updated");
+      res.redirect(`/admin/profile`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
 
+  //COmpany
+  postCreateCompany: async (req, res) => {
+    try {
+      // Upload image to cloudinary
+      // const result = await cloudinary.uploader.upload(req.file.path);
+
+      await Company.create({
+        name: req.body.name,
+        address: req.body.address,
+        vat: req.body.vat,
+        contactName: req.body.contactName,
+        contactPhone: req.body.contactPhone,
+        contactEmail: req.body.contactEmail,
+        adminId: req.user.id
+      });
+      console.log("Company has been added!");
+      res.redirect("/admin/profile");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
+  putEditCompany: async (req, res) => {
+    //iterate to see if body is empty or not and delete the empty fields
+    Object.keys(req.body).forEach((key) => {
+      if (
+        req.body[key] == null ||
+        req.body[key] == undefined ||
+        req.body[key] == ''
+      ) {
+        delete req.body[key]
+      }
+    })
+    try {
+      await Company.findOneAndUpdate(
+        { adminId: req.user.id },
+        {
+          $set: req.body,
+        }
+      );
+      console.log("Company updated");
+      res.redirect(`/admin/profile`);
     } catch (err) {
       console.log(err);
     }
@@ -181,7 +259,6 @@ module.exports = {
     //editing it, iterate to see if body empty or not, if empty delete
   putEditDriver: async (req, res) => {
     //iterate to see if body is empty or not and delete the empty fields
-    console.log(req.body);
     Object.keys(req.body).forEach((key) => {
       if (
         req.body[key] == null ||

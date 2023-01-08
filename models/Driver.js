@@ -11,7 +11,7 @@ const DriverSchema = new mongoose.Schema({
     expireAdr: { type: String },
     truckId: { type: mongoose.Schema.Types.ObjectId, ref: "Truck" },
     adminId: { type: mongoose.Schema.Types.ObjectId, ref: "Admin" },
-    role: { type: String, required: true, default: 'driver' },
+    role: { type: String, required: true, default: 'Driver' },
     createdAt: { type: Date, default: Date.now },
 });
 
