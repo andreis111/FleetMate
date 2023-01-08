@@ -10,25 +10,29 @@
         <li class="breadcrumb-item active">Trips</li>
       </ol>
     </nav>
-</div>
-
-    <h2><%= week.truckPlate%></h2>
-    <h2><%= week.startDate%> - <%= week.endDate%></h2>
-    <a href="/admin/spreadsheets">back</a>
+  </div>
+    <h2 class="text-center text-primary"><%= week.startDate%> - <%= week.endDate%></h2>
+    <h3 class="text-center text-primary"><%= week.truckPlate%></h3>
+    
     <div class="row justify-content-center mt-5">
 
       <!-- Table to show details in each individual trips - trips made by drivers -->
-      <table>
-        <tr>
-          <th>Start at</th>
-          <th>Start date</th>
-          <th>End at</th>
-          <th>End Date</th>
-          <th>Km</th>
-          <th>Other costs</th>
-          <th>Fuel</th>
-          <th>Notes</th>
-        </tr>
+      <table class="table table-bordered w-auto">
+        <thead>
+          <tr>
+            <th scope="col">Start at</th>
+            <th scope="col">Start date</th>
+            <th scope="col">End at</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Km</th>
+            <th scope="col">Other costs</th>
+            <th scope="col">Fuel</th>
+            <th scope="col">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </form>
         <% for(const individual of individuals) {%>
           <tr>
             <td><%= individual.startLoc%></td>
@@ -41,12 +45,13 @@
             <td><%= individual.notes%></td>
           </tr>
         <% } %>
+        </tbody>
         <tfoot>
           <tr>
-            <td colspan="4">Total:</td>
-            <td><%=totalKm%></td>
-            <td><%=totalCosts%></td>
-            <td><%=totalFuel%></td>
+            <td colspan="4"><strong>Total:</strong> </td>
+            <td><strong><%=totalKm%></strong></td>
+            <td><strong><%=totalCosts%></strong></td>
+            <td><strong><%=totalFuel%></strong></td>
           </tr>
         </tfoot>
       </table>
