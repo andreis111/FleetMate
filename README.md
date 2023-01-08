@@ -24,7 +24,7 @@ A fleet manager app that helps businesses manage and optimize their fleet of tru
 
 ## Lessons Learned:
 
-Creating a full-stack app thought me that it's important to plan and design the app carefully before starting coding. This can save a lot of time and effort in the long run.
+Creating a full-stack app taught me that it's important to plan and design the app carefully before starting to code. This can save a lot of time and effort in the long run.
 
 <!-- ## Examples:
 

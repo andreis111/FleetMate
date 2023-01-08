@@ -52,18 +52,11 @@
                 <a href="/driver/spreadsheet/<%= week._id%>">
                 <div class="card-body">
                   <h5 class="card-title"><%= week.startDate%> - <%= week.endDate%></h5>
-                  <ul class="list-group">
-                    <li class="list-group-item">Created by: <%= week.userName%> </li>
-                    <li class="list-group-item">Truck plate: <%= week.truckPlate%></li>
-                  </ul><!-- End Default List group -->
-                </div>
-                
-                </a>
-                <div class="card-footer">
                   <small class="text-muted">
                     Created on: <%= week.createdAt.toLocaleDateString('en-GB', options) %>
                   </small>
                 </div>
+                </a>
               </div>
         
             </div>
