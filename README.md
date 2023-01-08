@@ -26,9 +26,9 @@ A fleet manager app that helps businesses manage and optimize their fleet of tru
 
 Creating a full-stack app thought me that it's important to plan and design the app carefully before starting coding. This can save a lot of time and effort in the long run.
 
-## Examples:
+<!-- ## Examples:
 
-Take a look at these couple examples that I have in my own portfolio:
+Take a look at these couple examples that I have in my own portfolio: -->
 
 <!-- **Palettable:** https://github.com/alecortega/palettable
 
