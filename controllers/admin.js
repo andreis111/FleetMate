@@ -23,6 +23,22 @@ module.exports = {
     }
   },
 
+  //Admin profile 
+  getAdminProfile: async (req, res) => {
+    try {
+      //   const tasks = await Task.find({completedBy: null}).sort({createdDate: 'desc'}).lean();
+      //   const activeStaff = await Staff.find({ active: true, role: 'staff', adminId: req.user.id }).lean()
+      if (req.user.role === 'admin') {
+        res.render("profileAdmin", {user : req.user});
+      } else {
+        res.redirect("/driver")
+      }
+
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
                   //TRUCKS controllers:
   
     //get all trucks, find "trucks" created by the admin

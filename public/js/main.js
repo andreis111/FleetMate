@@ -329,7 +329,12 @@ document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: checkbox.value, completed }),
     })
-      .then(response => response.json())
+    .then(response => {
+      if (response.ok) {
+        window.location.reload();
+      }
+      return response.json();
+    })
       .then(data => {
         console.log(data);
       })

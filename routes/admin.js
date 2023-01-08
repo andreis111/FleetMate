@@ -8,6 +8,7 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 //Main Routes
 
 router.get("/", ensureAuth, adminController.getAdminMainPage);
+router.get("/profile", ensureAuth, adminController.getAdminProfile);
 
 //admin-truck
 router.get("/trucks", ensureAuth, adminController.getTrucks);
