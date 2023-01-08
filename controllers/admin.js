@@ -218,7 +218,6 @@ module.exports = {
       const driversIds = drivers.map(driver => driver.id)
       const weekly = await WeeklySs.find({ createdBy: {$in: driversIds} }).sort({ createdAt: 'desc' })
       const individuals = await Individual.find({ createdBy: weekly.id })
-      console.log(weekly);
       try {
         res.render("spreadsheetsAdmin.ejs", {weekly: weekly, user : req.user});
       } catch (err) {

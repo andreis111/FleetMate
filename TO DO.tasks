@@ -80,6 +80,9 @@ Models:
                 endDate
                 createdBy
                 truckPlate
+                contactName
+                contactEmail
+                contactPhone
 
         ✔ b. Create inputs inside each week model: @done (27/12/2022, 11:06:42)
 
@@ -96,6 +99,13 @@ Models:
                 truckPlate
     
         ☐ c. Button "End Week" -> dissapear edit/add buton for that week @low 
+    
+    6. Company details:
+        ☐ Model: 
+            name
+            vat
+            address
+
     
 Views:
     1. Login:
@@ -164,3 +174,7 @@ Others:
 
     ☐ Add edit/delete button to weekly spreadsheet for driver (deleting weekly spreadsheet will delete also all it's individual trips)
     ☐ Add new custom option to add new document in model, 
+    ☐ Add company details
+
+    ☐ Create user profiles containing company details too
+    ☐ Admin has an extra option for company details next to profile and signout
