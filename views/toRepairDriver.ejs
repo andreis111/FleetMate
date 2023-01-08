@@ -14,15 +14,14 @@
   </div>
 
   <form action="/driver/repairs" method="POST">
-      <div>
-          <label for="content">Repair note: </label>
-          <input type="text" id="content" name="content">
-      </div>
-
-      <button type="submit">Add new</button>
+    <div class="form-group">
+      <label for="content">Repair note: </label>
+      <input type="text" id="content" name="content">
+      <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg"></i></button>
+    </div>
   </form>
 
-  <div class="col-lg-6 col-md-8">
+  <div class="col-lg-6 col-md-8 mt-3">
     <ul class="list-group">
       <% for (const repair of repairs) { %>
         <li class="list-group-item <%= repair.completed ? 'completed' : '' %>">
