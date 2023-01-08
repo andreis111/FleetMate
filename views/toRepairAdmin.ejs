@@ -12,14 +12,16 @@
     </nav>
 </div>
     
-    <ul>
-        <% for (const repair of repairs) { %>
-          <li class="<%= repair.completed ? 'completed' : '' %>">
-            <input type="checkbox" value="<%= repair._id %>" <%= repair.completed ? 'checked' : '' %>>
-            <%= repair.content %> - <%= repair.truckPlate %>
-          </li>
-        <% } %>
-      </ul>
+<div class="col-lg-6 col-md-8">
+  <ul class="list-group">
+    <% for (const repair of repairs) { %>
+      <li class="list-group-item <%= repair.completed ? 'completed' : '' %>">
+        <input class="form-check-input me-1" type="checkbox" value="<%= repair._id %>" <%= repair.completed ? 'checked' : '' %>>
+        <%= repair.content %> - <%= repair.truckPlate %>
+      </li>
+    <% } %>
+  </ul>
+</div>
 
 </main>
 
