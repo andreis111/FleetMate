@@ -176,7 +176,7 @@ Others:
 
     ☐ Add edit/delete button to weekly spreadsheet for driver (deleting weekly spreadsheet will delete also all it's individual trips)
     ☐ Add new custom option to add new document in model, 
-    ☐ Add company details
+    ✔ Add company details @done (09/01/2023, 08:04:53)
 
-    ☐ Create user profiles containing company details too
-    ☐ Admin has an extra option for company details next to profile and signout
+    ✔ Create user profiles containing company details too @done (09/01/2023, 08:04:51)
+    ✘ Admin has an extra option for company details next to profile and signout @cancelled (09/01/2023, 08:05:09)
