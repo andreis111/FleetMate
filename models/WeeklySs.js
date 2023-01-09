@@ -11,6 +11,7 @@ const WeeklySchema = new mongoose.Schema({
         ref: "Driver"
     },
     type: { type: String, default: 'week' },
+    compeleted: { type: Boolean, default: false },
     createdAt: { type: Date, default: Date.now },
 });
 
