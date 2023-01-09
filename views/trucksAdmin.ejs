@@ -33,6 +33,15 @@
                     <li class="list-group-item">Insurance valid until: <%= truck.expireInsurance%></li>
                     <li class="list-group-item">CMR valid until: <%= truck.expireCmr%></li>
                     <li class="list-group-item">Kilometers: <%= truck.km%></li>
+                    <%
+                      // Filter the customoptiontrucks array to only include the custom options for the current truck
+                      const truckCustomOptions = customoptiontrucks.filter(cot => cot.truckId.equals(truck._id));
+                      // Loop through the filtered array and display the custom options
+                      for (const customoptiontruck of truckCustomOptions) { %>
+                      <li class="list-group-item"><%= customoptiontruck.name %>: <%= customoptiontruck.content %></li>
+
+          <% } %>
+                    
                   </ul>
                   <div class="button-container" style="display: flex; align-items: center;">
                     <form action="/admin/trucks/deleteTruck/<%=truck.id%>?_method=DELETE" method="POST">

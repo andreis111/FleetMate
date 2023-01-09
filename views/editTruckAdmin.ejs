@@ -51,9 +51,21 @@
             <label for="expireCmr">CMR expires on</label>
             <input type="date" id="expireCmr" name="expireCmr" value="<%=truck.expireCmr%>">
         </div>
+        <h5 class="mt-4 fw-bold">Custom options:</h5>
+        <% for(option of customOptions) {%>
+            <div>
+              <input type="hidden" name="customOption<%=option._id%>" value="<%=option._id%>">
+              <label for="name<%=option._id%>">Name:</label>
+              <input type="text" id="name<%=option._id%>" name="name<%=option._id%>" value="<%=option.name%>">
+              <label for="content<%=option._id%>">Info:</label>
+              <input type="text" id="content<%=option._id%>" name="content<%=option._id%>" value="<%=option.content%>">
+            </div>
+        <% } %>
 
-        <button type="submit">Edit truck</button>
+        <button type="submit" class="btn btn-primary">Edit truck</button>
     </form>
+
+    <form action="/admin/trucks/addCustom/<%=truck._id%>" method="POST"><button type="submit" class="btn btn-secondary"><i class="bi bi-plus"></i>Add custom info</button></form>
 </main>
 
 <a href="/logout">Logout</a>

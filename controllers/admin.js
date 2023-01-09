@@ -6,6 +6,7 @@ const WeeklySs = require("../models/WeeklySs");
 const Individual = require("../models/IndividualTrip");
 const Repair = require("../models/Repair");
 const Company = require("../models/Company");
+const CustomOptionTruck = require("../models/CustomOptionTruck");
 
 module.exports = {
 
@@ -120,14 +121,18 @@ module.exports = {
                   //TRUCKS controllers:
   
     //get all trucks, find "trucks" created by the admin
-  getTrucks: async (req, res) => {
-    const trucks = await Truck.find({ adminId: req.user.id })
-    try {
-      res.render("trucksAdmin.ejs", { trucks: trucks, user : req.user });
-    } catch (err) {
-      console.log(err);
-    }
-  },
+    getTrucks: async (req, res) => {
+      try {
+        // Retrieve the trucks and customoptiontrucks for the logged in user
+        const trucks = await Truck.find({ adminId: req.user.id });
+        const customoptiontrucks = await CustomOptionTruck.find({ adminId: req.user.id });
+    
+        // Render the EJS template and pass the trucks and customoptiontrucks as local variables
+        res.render("trucksAdmin.ejs", { trucks: trucks, customoptiontrucks: customoptiontrucks, user : req.user });
+      } catch (err) {
+        console.log(err);
+      }
+    },
 
     //get the createTruck page
   getCreateTruck: async (req, res) => {
@@ -169,37 +174,67 @@ module.exports = {
     try {
       const truck = await Truck.findById(req.params.id);
       const driver = await Driver.find({ truckPlate: req.params.id })
-      res.render("editTruckAdmin.ejs", { truck: truck, user: req.user , driver: driver});
+      const customOptions = await CustomOptionTruck.find({ truckId: req.params.id })
+      console.log(customOptions);
+      res.render("editTruckAdmin.ejs", { truck: truck, user: req.user , driver: driver, customOptions: customOptions});
     } catch (err) {
       console.log(err);
     }
   },
 
     //edit truck. if body inputs empty then delete and edit only the ones we need
-  putEditTruck: async (req, res) => {
-    //iterate to see if body is empty or not and delete the empty fields
-    Object.keys(req.body).forEach((key) => {
-      if (
-        req.body[key] == null ||
-        req.body[key] == undefined ||
-        req.body[key] == ''
-      ) {
-        delete req.body[key]
-      }
-    })
-    try {
-      await Truck.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          $set: req.body,
+    putEditTruck: async (req, res) => {
+      //iterate to see if body is empty or not and delete the empty fields
+      Object.keys(req.body).forEach((key) => {
+        if (
+          req.body[key] == null ||
+          req.body[key] == undefined ||
+          req.body[key] == ''
+        ) {
+          delete req.body[key]
         }
-      );
-      console.log("Truck updated");
-      res.redirect(`/admin/trucks`);
-    } catch (err) {
-      console.log(err);
-    }
-  },
+      });
+      try {
+        // Update the Truck document
+        await Truck.findOneAndUpdate(
+          { _id: req.params.id },
+          {
+            $set: req.body,
+          }
+        );
+        console.log("Truck updated");
+    
+        // Update the CustomOptionTruck documents
+        for (const key in req.body) {
+          if (key.startsWith('name')) {
+            const customOptionId = key.replace('name', '');
+            await CustomOptionTruck.findOneAndUpdate(
+              { _id: customOptionId },
+              {
+                $set: {
+                  name: req.body[key]
+                }
+              }
+            );
+          }
+          if (key.startsWith('content')) {
+            const customOptionId = key.replace('content', '');
+            await CustomOptionTruck.findOneAndUpdate(
+              { _id: customOptionId },
+              {
+                $set: {
+                  content: req.body[key]
+                }
+              }
+            );
+          }
+        }
+    
+        res.redirect(`/admin/trucks`);
+      } catch (err) {
+        console.log(err);
+      }
+    },
 
     //delete truck, find it by id and .deleteOne (using a trash icon in ejs)
   deleteTruck: async (req, res) => {
@@ -216,6 +251,27 @@ module.exports = {
       res.redirect("/admin/trucks");
     }
   },
+
+
+      //CUSTOM OPTION TRUCKS
+  
+  postCustomOption: async (req, res) => {
+    try {
+      // Upload image to cloudinary
+      // const result = await cloudinary.uploader.upload(req.file.path);
+
+      await CustomOptionTruck.create({
+        truckId: req.params.id,
+        adminId: req.user.id,
+
+      });
+      console.log("Custom has been added!");
+      res.redirect(`/admin/trucks/edit/${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+      
 
                   //DRIVERS controllers
   

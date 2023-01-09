@@ -25,6 +25,8 @@ router.get("/trucks/edit/:id", ensureAuth, adminController.getEditTruck);
 router.put("/trucks/edit/:id", ensureAuth, adminController.putEditTruck);
 router.delete("/trucks/deleteTruck/:id", ensureAuth, adminController.deleteTruck);
 
+router.post("/trucks/addCustom/:id", ensureAuth, adminController.postCustomOption);
+
 //admin-driver
 router.get("/drivers", ensureAuth, adminController.getDrivers);
 router.get("/drivers/createDriver", ensureAuth, adminController.getCreateDriver);
