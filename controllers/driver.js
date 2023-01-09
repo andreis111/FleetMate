@@ -76,7 +76,7 @@ module.exports = {
     //Spreadsheet
   getSpreadsheet: async (req, res) => {
       
-      const weekly = await WeeklySs.find({ createdBy: req.user.id })
+      const weekly = await WeeklySs.find({ createdBy: req.user.id }).sort({ createdAt: "desc" })
       
         try {
           res.render("spreadsheetDriver.ejs", { weekly: weekly, user: req.user});
@@ -149,9 +149,25 @@ module.exports = {
         } catch (err) {
           console.log(err);
         }
-    },
+  },
+  putCompleteWeek: async (req, res) => {
+    try {
+      await WeeklySs.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $set: { completed: true },
+        }
+      );
+      console.log("Week completed");
+      res.redirect(`/driver/spreadsheet/${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  
 
-    //To Repair
+
+                      //To Repair
     getRepair: async (req, res) => {
       const repairs = await Repair.find({ createdBy: req.user.id })
         try {

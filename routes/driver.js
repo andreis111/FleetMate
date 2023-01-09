@@ -20,6 +20,7 @@ router.get("/spreadsheet", ensureAuth, driverController.getSpreadsheet);
 router.post("/spreadsheet/createWeek", ensureAuth, driverController.postCreateSpreadsheet);
 router.get("/spreadsheet/:id", ensureAuth, driverController.getIndividualSpreadsheet);
 router.post("/spreadsheet/createIndividual/:id", ensureAuth, driverController.postIndividualTrip);
+router.put("/spreadsheet/complete/:id", ensureAuth, driverController.putCompleteWeek);
 
 //Repair Routes
 router.get("/repairs", ensureAuth, driverController.getRepair);

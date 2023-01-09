@@ -13,7 +13,7 @@
     </nav>
   </div>
   <h1 class="text-center text-primary"><%= week.startDate%> - <%= week.endDate%></h1>
-
+    
     <div class="row justify-content-center mt-5">
 
       <!-- Table to show individual trips made by the driver -->
@@ -31,6 +31,7 @@
           </tr>
         </thead>
         <tbody>
+          <% if (!week.completed) { %>
           <form action="/driver/spreadsheet/createIndividual/<%= week.id%>" method="POST">
           <tr>
             <td><input type="text" id="startLoc" name="startLoc" class="form-control form-control-sm"></td>
@@ -45,6 +46,7 @@
           </tr>
           
         </form>
+        <% } %>
         <% for(const individual of individuals) {%>
           <tr>
             <td><%= individual.startLoc%></td>
@@ -68,7 +70,13 @@
         </tfoot>
       </table>
     </div>
-
+    <% if (!week.completed) { %>
+    <form action="/driver/spreadsheet/complete/<%= week.id%>?_method=PUT" method="POST">
+      <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-check"></i> Close week</button>
+    </form>
+    
+    <small>Once closed it can't be updated anymore</small>
+    <% } %>
 </main>
 
 <a href="/logout">Logout</a>
