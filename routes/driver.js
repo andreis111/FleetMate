@@ -8,6 +8,10 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 //Main Route
 router.get("/", ensureAuth, driverController.getDriverMainPage);
 
+//Profile Route
+router.get("/profile", ensureAuth, driverController.getDriverProfile);
+router.put("/profile/edit", ensureAuth, driverController.putEditDriver);
+
 //Truck Route
 router.get("/truck", ensureAuth, driverController.getTruck);
 

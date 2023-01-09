@@ -3,6 +3,7 @@ const Truck = require("../models/Truck");
 const WeeklySs = require("../models/WeeklySs");
 const Individual = require("../models/IndividualTrip");
 const Repair = require("../models/Repair");
+const Company = require("../models/Company");
 
 module.exports = {
 
@@ -16,7 +17,51 @@ module.exports = {
         } catch (err) {
             console.log(err);
         }
-    },
+  },
+  //driver profile
+  getDriverProfile: async (req, res) => {
+    try {
+      const company = await Company.find({ adminId: req.user.adminId });
+      if (req.user.role === 'Driver') {
+        if (company.length > 0) {
+          // render the edit form
+          res.render("profileDriver", {user : req.user, company: company, companyExist: true});
+        } else {
+          // render the create button
+          res.render("profileDriver", {user : req.user, companyExist: false});
+        }
+      } else {
+        res.redirect("/login");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  putEditDriver: async (req, res) => {
+    //iterate to see if body is empty or not and delete the empty fields
+    Object.keys(req.body).forEach((key) => {
+      if (
+        req.body[key] == null ||
+        req.body[key] == undefined ||
+        req.body[key] == ''
+      ) {
+        delete req.body[key]
+      }
+    })
+    try {
+      await Driver.findOneAndUpdate(
+        { _id: req.user.id },
+        {
+          $set: req.body,
+        }
+      );
+      console.log("Driver updated");
+      res.redirect(`/driver/profile`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
 
     //Get truck assigned page
   getTruck: async (req, res) => {

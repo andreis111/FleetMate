@@ -14,7 +14,7 @@ module.exports = {
     try {
       //   const tasks = await Task.find({completedBy: null}).sort({createdDate: 'desc'}).lean();
       //   const activeStaff = await Staff.find({ active: true, role: 'staff', adminId: req.user.id }).lean()
-      if (req.user.role === 'admin') {
+      if (req.user.role === 'Admin') {
         res.render("adminMainPage.ejs", {user : req.user});
       } else {
         res.redirect("/driver")
@@ -30,7 +30,7 @@ module.exports = {
     try {
       const company = await Company.find({ adminId: req.user.id });
       console.log(company);
-      if (req.user.role === 'admin') {
+      if (req.user.role === 'Admin') {
         if (company.length > 0) {
           // render the edit form
           res.render("profileAdmin", {user : req.user, company: company, companyExist: true});
@@ -70,7 +70,7 @@ module.exports = {
     }
   },
 
-  //COmpany
+  //Company
   postCreateCompany: async (req, res) => {
     try {
       // Upload image to cloudinary

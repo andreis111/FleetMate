@@ -5,7 +5,7 @@ const Driver = require("../models/Driver");
 
 exports.getLogin = (req, res) => {
   if (req.user) {
-    if (req.user.role === 'admin') {
+    if (req.user.role === 'Admin') {
       return res.redirect("/admin");
     } else {
       return res.redirect("/driver")
@@ -45,7 +45,7 @@ exports.postLogin = (req, res, next) => {
         return next(err);
       }
       req.flash("success", { msg: "Success! You are logged in." });
-      res.redirect(req.user.role === 'admin' ? '/admin' : '/driver');
+      res.redirect(req.user.role === 'Admin' ? '/admin' : '/driver');
     });
   })(req, res, next);
 };
@@ -64,7 +64,7 @@ exports.logout = (req, res) => {
 
 exports.getSignup = (req, res) => {
   if (req.user) {
-    if (req.user.role === 'admin') {
+    if (req.user.role === 'Admin') {
       return res.redirect("/admin");
     } else {
       return res.redirect("/driver")

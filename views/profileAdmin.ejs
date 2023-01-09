@@ -106,6 +106,7 @@
                           <div class="col-lg-8 col-md-8"><%= company[0].contactEmail %></div>
                         </div>
                       <% } else { %>
+                        <h5 class="card-title mt-4">Company Details</h5>
                         <p>No company created</p>
                       <% } %>
 
@@ -141,9 +142,9 @@
                       </div>
   
                       <div class="row mb-3">
-                        <label for="idCard" class="col-md-4 col-lg-3 col-form-label">ID card</label>
+                        <label for="role" class="col-md-4 col-lg-3 col-form-label">Role</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="idCard" type="text" class="form-control" id="idCard" value="<%=user.role%>" disabled>
+                          <input name="role" type="text" class="form-control" id="role" value="<%=user.role%>" disabled>
                         </div>
                       </div>
   
