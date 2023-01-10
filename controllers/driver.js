@@ -74,12 +74,16 @@ module.exports = {
     },
     
     //Spreadsheet
-  getSpreadsheet: async (req, res) => {
+    getSpreadsheet: async (req, res) => {
       
-      const weekly = await WeeklySs.find({ createdBy: req.user.id }).sort({ createdAt: "desc" })
+      const weekly = await WeeklySs.find({ createdBy: req.user.id }).sort({ createdAt: "desc" });
+      
+      // Filter for completed or not completed spreadsheets so it will show different in ejs
+      const completed = weekly.filter(week => week.completed === true);
+      const notCompleted = weekly.filter(week => week.completed === false);
       
         try {
-          res.render("spreadsheetDriver.ejs", { weekly: weekly, user: req.user});
+          res.render("spreadsheetDriver.ejs", { completed: completed, notCompleted: notCompleted, user: req.user });
         } catch (err) {
           console.log(err);
         }

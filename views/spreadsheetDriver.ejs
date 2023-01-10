@@ -40,29 +40,51 @@
       </div>
     </div>
 
-      <!-- Loop to show all spreadsheets created by the driver -->
-        <h2>Spreadsheets:</h2>
+      <!-- Loop to show all spreadsheets created by the driver (separated into completed or not completed) -->
         
-      <section class="section">
-        <div class="row align-items-top">
-          <% for(week of weekly) {%>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-              <% const options = {  year: 'numeric', month: 'numeric', day: 'numeric', separator: '.' }; %>
-              <div class="card h-100">
-                <a href="/driver/spreadsheet/<%= week._id%>">
-                <div class="card-body">
-                  <h5 class="card-title"><%= week.startDate%> - <%= week.endDate%></h5>
-                  <small class="text-muted">
-                    Created on: <%= week.createdAt.toLocaleDateString('en-GB', options) %>
-                  </small>
+        <section class="section">
+
+          <h5 class="mt-4 text-danger  text-center">Ongoing </h5>
+          <div class="row align-items-top">
+            <% for(week of notCompleted) {%>
+              <div class="col-lg-3 col-md-4 col-sm-6">
+                <% const options = {  year: 'numeric', month: 'numeric', day: 'numeric', separator: '.' }; %>
+                <div class="card h-100">
+                  <a href="/driver/spreadsheet/<%= week._id%>">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= week.startDate%> - <%= week.endDate%></h5>
+                      <small class="text-muted">
+                        Created on: <%= week.createdAt.toLocaleDateString('en-GB', options) %>
+                      </small>
+                    </div>
+                  </a>
                 </div>
-                </a>
               </div>
+            <% } %>
+          </div>
+        </section>
         
-            </div>
-          <% } %>
-        </div>
-      </section>
+        <section class="section">
+
+          <h5 class="mt-4 text-muted text-center">Completed</h5>
+          <div class="row align-items-top">
+            <% for(week of completed) {%>
+              <div class="col-lg-3 col-md-4 col-sm-6">
+                <% const options = {  year: 'numeric', month: 'numeric', day: 'numeric', separator: '.' }; %>
+                <div class="card h-100">
+                  <a href="/driver/spreadsheet/<%= week._id%>">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= week.startDate%> - <%= week.endDate%></h5>
+                      <small class="text-muted">
+                        Created on: <%= week.createdAt.toLocaleDateString('en-GB', options) %>
+                      </small>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            <% } %>
+          </div>
+        </section>
   </div>
 </main>
 
