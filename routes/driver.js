@@ -23,6 +23,8 @@ router.delete("/spreadsheet/delete/:id", ensureAuth, driverController.deleteSpre
 router.get("/spreadsheet/:id", ensureAuth, driverController.getIndividualSpreadsheet);
 router.post("/spreadsheet/createIndividual/:id", ensureAuth, driverController.postIndividualTrip);
 router.put("/spreadsheet/complete/:id", ensureAuth, driverController.putCompleteWeek);
+router.get("/spreadsheet/editIndividual/:weekId/:individualId", ensureAuth, driverController.getEditIndividual);
+router.put("/spreadsheet/editIndividual/:weekId/:individualId", ensureAuth, driverController.putEditIndividual);
 
 //Repair Routes
 router.get("/repairs", ensureAuth, driverController.getRepair);

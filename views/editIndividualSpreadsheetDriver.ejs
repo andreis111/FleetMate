@@ -9,7 +9,8 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/driver">Home</a></li>
         <li class="breadcrumb-item"><a href="/driver/spreadsheet">Spreadsheets</a></li>
-        <li class="breadcrumb-item active">Trips</li>
+        <li class="breadcrumb-item"><a href="/driver/spreadsheet/<%=week.id%>">Trips</a></li>
+        <li class="breadcrumb-item active">Edit</li>
       </ol>
     </nav>
   </div>
@@ -33,24 +34,23 @@
           </tr>
         </thead>
         <tbody>
-          <% if (!week.completed) { %>
-          <form action="/driver/spreadsheet/createIndividual/<%= week.id%>" method="POST">
-          <tr>
-            <td><input type="text" id="startLoc" name="startLoc" class="form-control form-control-sm"></td>
-            <td><input type="date" id="startDate" name="startDate" class="form-control form-control-sm"></td>
-            <td><input type="text" id="endLoc" name="endLoc" class="form-control form-control-sm"></td>
-            <td><input type="date" id="endDate" name="endDate" class="form-control form-control-sm"></td>
-            <td><input type="number" id="km" name="km" required class="form-control form-control-sm" placeholder="Nums only"></td>
-            <td><input type="number" id="otherCosts" name="otherCosts" class="form-control form-control-sm" placeholder="Nums only"></td>
-            <td><input type="number" id="fuel" name="fuel" class="form-control form-control-sm" placeholder="Nums only"></td>
-            <td><input type="text" id="notes" name="notes" class="form-control form-control-sm"></td>
-            <td class="text-right"><button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg"></i></button></td>
-          </tr>
-          
-        </form>
-
-        <% } %>
         <% for(const individual of individuals) {%>
+            <%if (individual.id === editTrip.id){%>
+                <form action="/driver/spreadsheet/editIndividual/<%= week.id%>/<%= individual.id%>?_method=PUT" method="POST">
+                    <tr>
+                      <td><input type="text" id="startLoc" name="startLoc" class="form-control form-control-sm" value="<%=individual.startLoc%>"></td>
+                      <td><input type="date" id="startDate" name="startDate" class="form-control form-control-sm" value="<%=individual.startDate%>"></td>
+                      <td><input type="text" id="endLoc" name="endLoc" class="form-control form-control-sm" value="<%=individual.endLoc%>"></td>
+                      <td><input type="date" id="endDate" name="endDate" class="form-control form-control-sm" value="<%=individual.endDate%>"></td>
+                      <td><input type="number" id="km" name="km" required class="form-control form-control-sm" placeholder="Nums only" value="<%=individual.km%>"></td>
+                      <td><input type="number" id="otherCosts" name="otherCosts" class="form-control form-control-sm" placeholder="Nums only" value="<%=individual.otherCosts%>"></td>
+                      <td><input type="number" id="fuel" name="fuel" class="form-control form-control-sm" placeholder="Nums only" value="<%=individual.fuel%>"></td>
+                      <td><input type="text" id="notes" name="notes" class="form-control form-control-sm" value="<%=individual.notes%>"></td>
+                      <td class="text-right"><button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-check"></i></button></td>
+                    </tr>
+                    
+                  </form>
+                  <% } else {%>
           <tr>
             <td><%= individual.startLoc%></td>
             <td><%= individual.startDate%></td>
@@ -60,14 +60,9 @@
             <td><%= individual.otherCosts%></td>
             <td><%= individual.fuel%></td>
             <td><%= individual.notes%></td>
-            <% if (!week.completed) { %>
-            <td class="text-right">
-              <form action="/driver/spreadsheet/editIndividual/<%= week.id%>/<%= individual.id%>" >
-              <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></button>
-              </form>
-            </td>
-            <% } %>
+        
           </tr>
+          <% } %>
         <% } %>
         </tbody>
         <tfoot>

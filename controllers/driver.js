@@ -180,6 +180,54 @@ module.exports = {
       console.log(err);
     }
   },
+
+  // Edit individual trips
+  getEditIndividual: async (req, res) => {
+    try {
+        const week = await WeeklySs.findById(req.params.weekId);
+        const individuals = await Individual.find({ weekId: req.params.weekId })
+        const editTrip = await Individual.findById(req.params.individualId)
+        
+        //sum for Km, Other Costs, Fuel
+        let totalKm = 0
+        let totalCosts = 0
+        let totalFuel = 0
+        for (let i = 0; i < individuals.length; i++) {
+            totalKm += individuals[i].km;
+            totalCosts += individuals[i].otherCosts;
+            totalFuel += individuals[i].fuel;
+          }
+        console.log(totalKm);
+      res.render("editIndividualSpreadsheetDriver.ejs", { week: week, user: req.user, individuals: individuals, totalKm:totalKm, totalCosts: totalCosts, totalFuel:totalFuel, editTrip: editTrip  });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  
+  putEditIndividual: async (req, res) => {
+    //iterate to see if body is empty or not and delete the empty fields
+    Object.keys(req.body).forEach((key) => {
+      if (
+        req.body[key] == null ||
+        req.body[key] == undefined ||
+        req.body[key] == ''
+      ) {
+        delete req.body[key]
+      }
+    })
+    try {
+      await Individual.findOneAndUpdate(
+        { _id: req.params.individualId },
+        {
+          $set: req.body,
+        }
+      );
+      console.log("Driver updated");
+      res.redirect(`/driver/spreadsheet/${req.params.weekId}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
   
 
 
