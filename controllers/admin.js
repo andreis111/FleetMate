@@ -362,21 +362,21 @@ module.exports = {
               //SPREADSHEET controllers:
   
   
-              getSpreadsheets: async (req, res) => {
-                try {
-                  const drivers = await Driver.find({ adminId: req.user.id });
-                  const driversIds = drivers.map(driver => driver.id);
-                  
-                  //Used $eq in the find method, stands for 'equal' and is a way to filter
-                  const weekly = await WeeklySs.find({ createdBy: {$in: driversIds}, completed: {$eq: true} }).sort({ createdAt: 'desc' });
-                  const individuals = await Individual.find({ createdBy: weekly.id });
-              
-                  res.render("spreadsheetsAdmin.ejs", {weekly: weekly, user : req.user});
-                } catch (err) {
-                  console.log(err);
-                }
-              },
-
+   getSpreadsheets: async (req, res) => {
+     try {
+       const drivers = await Driver.find({ adminId: req.user.id });
+       const driversIds = drivers.map(driver => driver.id);
+       
+       //Used $eq in the find method, stands for 'equal' and is a way to filter
+       const weekly = await WeeklySs.find({ createdBy: {$in: driversIds}, completed: {$eq: true} }).sort({ createdAt: 'desc' });
+       const individuals = await Individual.find({ createdBy: weekly.id });
+   
+       res.render("spreadsheetsAdmin.ejs", {weekly: weekly, user : req.user});
+     } catch (err) {
+       console.log(err);
+     }
+  },
+   
   getIndividualSpreadsheet: async (req, res) => {
     try {
         const week = await WeeklySs.findById(req.params.id);

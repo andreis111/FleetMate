@@ -108,7 +108,19 @@ module.exports = {
         } catch (err) {
           console.log(err);
         }
-    },
+  },
+  
+  deleteSpreadsheet: async (req, res) => {
+    try {
+      await WeeklySs.deleteOne({ _id: req.params.id });
+      await Individual.deleteMany({ weekId: req.params.id });
+      console.log("Deleted Spreadsheet and linked jobs");
+      res.redirect("/driver/spreadsheet");
+    } catch (err) {
+      console.log(err);
+      res.redirect("/driver/spreadsheet");
+    }
+},
     
     getIndividualSpreadsheet: async (req, res) => {
         try {

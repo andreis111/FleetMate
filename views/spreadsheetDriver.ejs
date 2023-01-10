@@ -49,7 +49,7 @@
             <% for(week of notCompleted) {%>
               <div class="col-lg-3 col-md-4 col-sm-6">
                 <% const options = {  year: 'numeric', month: 'numeric', day: 'numeric', separator: '.' }; %>
-                <div class="card h-100">
+                <div class="card">
                   <a href="/driver/spreadsheet/<%= week._id%>">
                     <div class="card-body">
                       <h5 class="card-title"><%= week.startDate%> - <%= week.endDate%></h5>
@@ -58,6 +58,9 @@
                       </small>
                     </div>
                   </a>
+                  <form action="/driver/spreadsheet/delete/<%=week.id%>?_method=DELETE" method="POST">
+                    <button  class="btn btn-danger btn-sm bi bi-trash position-absolute" style="bottom: 0; right: 0;" aria-hidden="true" type="submit"></button>
+                  </form>
                 </div>
               </div>
             <% } %>
@@ -71,7 +74,7 @@
             <% for(week of completed) {%>
               <div class="col-lg-3 col-md-4 col-sm-6">
                 <% const options = {  year: 'numeric', month: 'numeric', day: 'numeric', separator: '.' }; %>
-                <div class="card h-100">
+                <div class="card">
                   <a href="/driver/spreadsheet/<%= week._id%>">
                     <div class="card-body">
                       <h5 class="card-title"><%= week.startDate%> - <%= week.endDate%></h5>
@@ -80,6 +83,9 @@
                       </small>
                     </div>
                   </a>
+                  <form action="/driver/spreadsheet/delete/<%=week.id%>?_method=DELETE" method="POST">
+                    <button  class="btn btn-danger btn-sm bi bi-trash position-absolute" style="bottom: 0; right: 0;" aria-hidden="true" type="submit"></button>
+                  </form>
                 </div>
               </div>
             <% } %>

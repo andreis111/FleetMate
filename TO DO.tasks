@@ -166,7 +166,7 @@ Views:
 
 Others:
     ☐ Check roles before each res.render (see getAdminMainPage from admin controller). Do it in both admin controller and driver controller
-    ☐ Add edit/delete buttons for repairs
+    ☐ Add delete buttons for repairs
     
     ☐ Add photos to:
      ☐ admin profile, 
@@ -175,7 +175,7 @@ Others:
      ☐ repair
 
     ☐ Add edit/delete button to weekly spreadsheet for driver (deleting weekly spreadsheet will delete also all it's individual trips)
-    ☐ Add new custom option to add new document in model, 
+    ✔ Add new custom option to add new document in model, @done (10/01/2023, 08:52:45)
     ✔ Add company details @done (09/01/2023, 08:04:53)
 
     ✔ Create user profiles containing company details too @done (09/01/2023, 08:04:51)

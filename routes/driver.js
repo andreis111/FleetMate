@@ -18,6 +18,8 @@ router.get("/truck", ensureAuth, driverController.getTruck);
 //Spreadsheet Route
 router.get("/spreadsheet", ensureAuth, driverController.getSpreadsheet);
 router.post("/spreadsheet/createWeek", ensureAuth, driverController.postCreateSpreadsheet);
+router.delete("/spreadsheet/delete/:id", ensureAuth, driverController.deleteSpreadsheet);
+
 router.get("/spreadsheet/:id", ensureAuth, driverController.getIndividualSpreadsheet);
 router.post("/spreadsheet/createIndividual/:id", ensureAuth, driverController.postIndividualTrip);
 router.put("/spreadsheet/complete/:id", ensureAuth, driverController.putCompleteWeek);
