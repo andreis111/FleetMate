@@ -60,19 +60,19 @@
             <td><%= individual.otherCosts%></td>
             <td><%= individual.fuel%></td>
             <td><%= individual.notes%></td>
+            
             <% if (!week.completed) { %>
             <td class="text-right">
-
-              <!-- Edit and delete button group -->
-            <div class="btn-group" role="group" aria-label="Basic example">
               <form action="/driver/spreadsheet/editIndividual/<%= week.id%>/<%= individual.id%>" >
                 <button type="submit" class="btn btn-success btn-sm rounded-3"><i class="bi bi-pencil-fill"></i></button>
               </form>
+            </td>
+
+            <td class="text-right">
               <form action="/driver/spreadsheet/deleteIndividual/<%= week.id%>/<%= individual.id%>?_method=DELETE" method="POST">
                 <button type="submit" class="btn btn-danger btn-sm rounded-3"><i class="bi bi-trash"></i></button>
               </form>
-            </div>
-          </td>
+            </td>
             <% } %>
           </tr>
         <% } %>
