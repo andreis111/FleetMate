@@ -73,11 +73,13 @@
       </table>
     </div>
     <% if (!week.completed) { %>
-    <form action="/driver/spreadsheet/complete/<%= week.id%>?_method=PUT" method="POST">
-      <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-check"></i> Close week</button>
+    <form action="/driver/spreadsheet/complete/<%= week.id%>?_method=PUT" method="POST" class="text-center">
+      <button type="submit" class="btn btn-danger btn-sm" > Close week</button>
+      <i class="bi bi-info-circle-fill" data-bs-toggle="tooltip" data-bs-placement="right" title="Once closed it will be sent to your admin and it can't be updated anymore"></i>
     </form>
     
-    <small>Once closed it will be sent to your admin and it can't be updated anymore</small>
+    
+    <small></small>
     <% } %>
 </main>
 
