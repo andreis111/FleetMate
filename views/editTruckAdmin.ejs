@@ -1,57 +1,91 @@
 <%- include('partials/headerAdmin', {user: user}) -%>
 
 <main id="main" class="main">
-    <h1>Edit truck <%=truck.plate%></h1>
+    <div class="pagetitle">
+        <h1>Edit truck <%=truck.plate%></h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+            <li class="breadcrumb-item"><a href="/admin/trucks">Trucks</a></li>
+            <li class="breadcrumb-item active">Edit</li>
+          </ol>
+        </nav>
     <p>Driver assigned: <%if(driver[0]) {%> 
-        <%=driver[0].userName%>
-        (<small><a href="/admin/drivers">Assign new driver</a>)</small>
+        <span class="text-secondary fw-bold"><%=driver[0].userName%></span> 
+        <small><a href="/admin/drivers/" class="btn btn-secondary btn-sm rounded-3"><i class="bi bi-person-square"></i></a></small>
         <% } else {%>
-        <p>No driver assigned</p>
+        <span class="text-danger">No driver assigned</span>
+        <small><a href="/admin/drivers/" class="btn btn-primary btn-sm rounded-3"><i class="bi bi-person-plus"></i></a></small>
         <% } %>
     </p>
     
+    
     <form action="/admin/trucks/edit/<%=truck._id%>?_method=PUT" method="POST">
-        <div>
-            <label for="type">Type: </label>
-            <input type="text" id="type" name="type" value="<%=truck.type%>">
-        </div>
-        <div>
-            <label for="model">Model: </label>
-            <input type="text" id="model" name="model" value="<%=truck.model%>">
-        </div>
-        <div>
-            <label for="plate">Plate: </label>
-            <input type="text" id="plate" name="plate" value="<%=truck.plate%>">
-        </div>
-        <div>
-            <label for="chassis">Chassis no:</label>
-            <input type="text" id="chassis" name="chassis" value="<%=truck.chassis%>">
-        </div>
-        <div>
-            <label for="km">KM (numbers only):</label>
-            <input type="text" id="km" name="km" value="<%=truck.km%>">
-        </div>
-        <div>
-            <label for="toRepair">To repair: </label>
-            <input type="text" id="toRepair" name="toRepair" value="<%=truck.toRepair%>">
-        </div>
-        <div>
-            <label for="photos">Photos add: </label>
-            <input type="text" id="photos" name="photos" value="<%=truck.photos%>">
-        </div>
-        <div>
-            <label for="expireVignette">Vignette expires on: </label>
-            <input type="date" id="expireVignette" name="expireVignette" value="<%=truck.expireVignette%>">
-        </div>
-        <div>
-            <label for="expireInsurance">Isurance expires on: </label>
-            <input type="date" id="expireInsurance" name="expireInsurance" value="<%=truck.expireInsurance%>">
-        </div>
-        <div>
-            <label for="expireCmr">CMR expires on</label>
-            <input type="date" id="expireCmr" name="expireCmr" value="<%=truck.expireCmr%>">
-        </div>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div>
+                    <label for="type">Type: </label>
+                    <input type="text" id="type" name="type" value="<%=truck.type%>">
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <label for="model">Model: </label>
+                    <input type="text" id="model" name="model" value="<%=truck.model%>">
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <label for="plate">Plate: </label>
+                    <input type="text" id="plate" name="plate" value="<%=truck.plate%>">
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <label for="chassis">Chassis no:</label>
+                    <input type="text" id="chassis" name="chassis" value="<%=truck.chassis%>">
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <label for="km">KM (numbers only):</label>
+                    <input type="text" id="km" name="km" value="<%=truck.km%>">
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <label for="toRepair">To repair: </label>
+                    <input type="text" id="toRepair" name="toRepair" value="<%=truck.toRepair%>">
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <label for="photos">Photos add: </label>
+                    <input type="text" id="photos" name="photos" value="<%=truck.photos%>">
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <label for="expireVignette">Vignette expires on: </label>
+                    <input type="date" id="expireVignette" name="expireVignette" value="<%=truck.expireVignette%>">
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <label for="expireInsurance">Isurance expires on: </label>
+                    <input type="date" id="expireInsurance" name="expireInsurance" value="<%=truck.expireInsurance%>">
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <label for="expireCmr">CMR expires on</label>
+                    <input type="date" id="expireCmr" name="expireCmr" value="<%=truck.expireCmr%>">
+                </div>
+            </li>
+            <li class="list-group-item">
         <h5 class="mt-4 fw-bold">Custom options:</h5>
+    </li>
+        <li class="list-group-item">
         <% for(option of customOptions) {%>
             <div>
               <input type="hidden" name="customOption<%=option._id%>" value="<%=option._id%>">
@@ -61,11 +95,12 @@
               <input type="text" id="content<%=option._id%>" name="content<%=option._id%>" value="<%=option.content%>">
             </div>
         <% } %>
-
-        <button type="submit" class="btn btn-primary">Edit truck</button>
+        </li>
+    </ul>
+        <button type="submit" class="btn btn-primary rounded-pill">Edit truck</button>
     </form>
 
-    <form action="/admin/trucks/addCustom/<%=truck._id%>" method="POST"><button type="submit" class="btn btn-secondary"><i class="bi bi-plus"></i>Add custom info</button></form>
+    <form action="/admin/trucks/addCustom/<%=truck._id%>" method="POST"><button type="submit" class="btn btn-secondary rounded-pill"><i class="bi bi-plus"></i>Add custom info</button></form>
 </main>
 
 <a href="/logout">Logout</a>

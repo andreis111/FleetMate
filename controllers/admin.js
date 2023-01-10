@@ -173,9 +173,9 @@ module.exports = {
   getEditTruck: async (req, res) => {
     try {
       const truck = await Truck.findById(req.params.id);
-      const driver = await Driver.find({ truckPlate: req.params.id })
+      const driver = await Driver.find({ truckId: req.params.id })
       const customOptions = await CustomOptionTruck.find({ truckId: req.params.id })
-      console.log(customOptions);
+      console.log(driver);
       res.render("editTruckAdmin.ejs", { truck: truck, user: req.user , driver: driver, customOptions: customOptions});
     } catch (err) {
       console.log(err);
@@ -375,7 +375,7 @@ module.exports = {
      } catch (err) {
        console.log(err);
      }
-  },
+   },
    
   getIndividualSpreadsheet: async (req, res) => {
     try {
