@@ -18,6 +18,7 @@
     <div class="row align-items-top">
       <% for(week of weekly) {%>
         <div class="col-lg-3 col-md-4 col-sm-6">
+          <!-- Date format -->
           <% const options = {  year: 'numeric', month: 'numeric', day: 'numeric', separator: '.' }; %>
           <div class="card h-100">
             <a href="/admin/spreadsheet/<%= week._id%>">
@@ -26,7 +27,7 @@
               <ul class="list-group">
                 <li class="list-group-item">Created by: <%= week.userName%> </li>
                 <li class="list-group-item">Truck plate: <%= week.truckPlate%></li>
-              </ul><!-- End Default List group -->
+              </ul>
             </div>
             
             </a>
