@@ -174,7 +174,7 @@ Others:
      ☐ POD in spread,
      ☐ repair
 
-    ☐ Add edit/delete button to weekly spreadsheet for driver (deleting weekly spreadsheet will delete also all it's individual trips)
+    ✔ Add edit/delete button to weekly spreadsheet for driver (deleting weekly spreadsheet will delete also all it's individual trips) @done (10/01/2023, 12:21:29)
     ✔ Add new custom option to add new document in model, @done (10/01/2023, 08:52:45)
     ✔ Add company details @done (09/01/2023, 08:04:53)
 
