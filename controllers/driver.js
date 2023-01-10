@@ -228,7 +228,18 @@ module.exports = {
       console.log(err);
     }
   },
-  
+
+
+  deleteIndividual: async (req, res) => {
+    try {
+      await Individual.deleteOne({ _id: req.params.individualId });
+      console.log("Deleted job");
+      res.redirect(`/driver/spreadsheet/${req.params.weekId}`);
+    } catch (err) {
+      console.log(err);
+      res.redirect(`/driver/spreadsheet/${req.params.weekId}`);
+    }
+},
 
 
                       //To Repair

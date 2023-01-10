@@ -46,10 +46,17 @@
                       <td><input type="number" id="otherCosts" name="otherCosts" class="form-control form-control-sm" placeholder="Nums only" value="<%=individual.otherCosts%>"></td>
                       <td><input type="number" id="fuel" name="fuel" class="form-control form-control-sm" placeholder="Nums only" value="<%=individual.fuel%>"></td>
                       <td><input type="text" id="notes" name="notes" class="form-control form-control-sm" value="<%=individual.notes%>"></td>
-                      <td class="text-right"><button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-check"></i></button></td>
-                    </tr>
+                      <td class="text-right"><button type="submit" class="btn btn-primary btn-sm rounded-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Confirm edit"><i class="bi bi-check"></i></button></td>
+                      
+                    
                     
                   </form>
+                  <td>
+                  <form action="/driver/spreadsheet/<%= week.id%>" method="GET">
+                    <button type="submit" class="btn btn-danger btn-sm rounded-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel edit"><i class="bi bi-x"></i></button>
+                  </form>
+                </td>
+            </tr>
                   <% } else {%>
           <tr>
             <td><%= individual.startLoc%></td>
@@ -77,7 +84,7 @@
     </div>
     <% if (!week.completed) { %>
     <form action="/driver/spreadsheet/complete/<%= week.id%>?_method=PUT" method="POST" class="text-center">
-      <button type="submit" class="btn btn-danger btn-sm" > Close week</button>
+      <button type="submit" class="btn btn-danger btn-sm rounded-pill" > Close week</button>
       <i class="bi bi-info-circle-fill" data-bs-toggle="tooltip" data-bs-placement="right" title="Once closed it will be sent to your admin and it can't be updated anymore"></i>
     </form>
     
