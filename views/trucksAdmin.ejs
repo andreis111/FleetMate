@@ -11,7 +11,7 @@
     </nav>
   </div>
 
-    <a href="/admin/trucks/createTruck" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Add truck</a>
+    <a href="/admin/trucks/createTruck" class="btn btn-primary rounded-pill"><i class="bi bi-plus-circle"></i> Add truck</a>
     <div class="row">
       <div class="col-lg-6">
         <div class="accordion" id="accordionExample">
@@ -46,12 +46,12 @@
                   <!-- Button to delete truck -->
                   <div class="button-container" style="display: flex">
                     <form action="/admin/trucks/deleteTruck/<%=truck.id%>?_method=DELETE" method="POST">
-                      <button class="btn btn-danger btn-sm bi bi-trash" aria-hidden="true" type="submit"></button>
+                      <button class="btn btn-danger btn-sm bi bi-trash rounded-3" aria-hidden="true" type="submit"></button>
                     </form>
 
                     <!-- Button to edit truck -->
                     <form action="/admin/trucks/edit/<%=truck._id%>">
-                      <button class="btn btn-primary btn-sm bi bi-pencil-square" aria-hidden="true" type="submit"></button>
+                      <button class="btn btn-primary btn-sm bi bi-pencil-square rounded-3" aria-hidden="true" type="submit"></button>
                     </form>
 
                   </div>

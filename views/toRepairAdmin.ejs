@@ -3,23 +3,44 @@
 <main id="main" class="main">
 
   <div class="pagetitle">
-    <h1>To repair:</h1>
+    <h1>Repairs</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-        <li class="breadcrumb-item active">To repair</li>
+        <li class="breadcrumb-item active">Repairs</li>
       </ol>
     </nav>
 </div>
     <!-- Repair list with checkbox -->
 <div class="col-lg-6 col-md-8">
+  <h5 class="text-danger">To repair:</h5>
   <ul class="list-group">
     <% for (const repair of repairs) { %>
+      
+      <% if (!repair.completed){ %>
+        
       <li class="list-group-item <%= repair.completed ? 'completed' : '' %>">
         <input class="form-check-input me-1" type="checkbox" value="<%= repair._id %>" <%= repair.completed ? 'checked' : '' %>>
         <%= repair.content %> - <%= repair.truckPlate %>
       </li>
+      <% } %>
     <% } %>
+    
+  </ul>
+
+  <h5 class="text-primary mt-3">Repaired:</h5>
+  <ul class="list-group">
+    <% for (const repair of repairs) { %>
+      
+      <% if (repair.completed){ %>
+        
+      <li class="list-group-item <%= repair.completed ? 'completed' : '' %>">
+        <input class="form-check-input me-1" type="checkbox" value="<%= repair._id %>" <%= repair.completed ? 'checked' : '' %>>
+        <%= repair.content %> - <%= repair.truckPlate %>
+      </li>
+      <% } %>
+    <% } %>
+    
   </ul>
 </div>
 
