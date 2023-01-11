@@ -20,14 +20,8 @@ module.exports = {
       
       // fetch the recent spreadsheets and repairs that were created by these drivers
       // 3 days ago
-      //$gte method in mongo that means "greater or equal to", in this case used to get dates for last 3 days
       const date = new Date();
       date.setDate(date.getDate() - 3);
-      const dateString = date.toLocaleDateString("en-us", {
-          day: "numeric",
-          month: "short",
-          year: "numeric"
-      });
 
       const spreadsheets = await WeeklySs.find({ 
                                                 createdBy: {$in: driverIds}, 
@@ -42,7 +36,8 @@ module.exports = {
                                       })
                                   .populate("createdBy", "userName")
                                   .sort({ createdAt: -1 });
-      res.render("adminMainPage.ejs", { user: req.user, spreadsheets: spreadsheets, repairs: repairs , date:dateString});
+      console.log(spreadsheets);
+      res.render("adminMainPage.ejs", { user: req.user, spreadsheets: spreadsheets, repairs: repairs });
     } catch (err) {
       console.log(err);
       res.redirect("/admin");
