@@ -1,3 +1,4 @@
+const moment = require('moment'); // require moment.js library
 const Admin = require("../models/Admin");
 const Driver = require("../models/Driver");
 const Truck = require("../models/Truck");
@@ -13,18 +14,41 @@ module.exports = {
   //render the admin main page
   getAdminMainPage: async (req, res) => {
     try {
-      //   const tasks = await Task.find({completedBy: null}).sort({createdDate: 'desc'}).lean();
-      //   const activeStaff = await Staff.find({ active: true, role: 'staff', adminId: req.user.id }).lean()
-      if (req.user.role === 'Admin') {
-        res.render("adminMainPage.ejs", {user : req.user});
-      } else {
-        res.redirect("/driver")
-      }
+      // find all drivers that are linked to the currently logged-in admin
+      const drivers = await Driver.find({adminId: req.user._id});
+      const driverIds = drivers.map(driver => driver._id);
+      
+      // fetch the recent spreadsheets and repairs that were created by these drivers
+      // 3 days ago
+      const date = new Date();
+      date.setDate(date.getDate() - 3);
+      const dateString = date.toLocaleDateString("en-us", {
+          day: "numeric",
+          month: "short",
+          year: "numeric"
+      });
 
+      const spreadsheets = await WeeklySs.find({ 
+                                                createdBy: {$in: driverIds}, 
+                                                createdAt: { $gte: date },
+                                                completed:true
+                                              })
+                                        .populate("createdBy", "userName")
+                                        .sort({ createdAt: -1 });
+      const repairs = await Repair.find({
+                                        createdBy: {$in: driverIds},
+                                        createdAt: {$gte: date }
+                                      })
+                                  .populate("createdBy", "userName")
+                                  .sort({ createdAt: -1 });
+      console.log(spreadsheets);
+      res.render("adminMainPage.ejs", { user: req.user, spreadsheets: spreadsheets, repairs: repairs , date:dateString});
     } catch (err) {
       console.log(err);
+      res.redirect("/admin");
     }
   },
+
 
   //Admin profile 
   getAdminProfile: async (req, res) => {

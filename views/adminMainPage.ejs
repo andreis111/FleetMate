@@ -11,6 +11,35 @@
         </nav>
     </div>
 
+    <div class="card-body mb-5">
+      <h5 class="card-title">Recent Activity <span>| Last 3 days</span></h5>
+      <div class="activity">
+        <%
+        let activityItems = [...spreadsheets, ...repairs]
+        activityItems.sort((a, b) => b.createdAt - a.createdAt)
+        if(activityItems.length > 0){
+           activityItems.forEach(function(item) {
+            if(item.type==='week'){
+              var icon = 'text-success'
+              var itemType = 'spreadsheet'
+            }else {
+              var icon = 'text-danger'
+              var itemType = 'repair'
+            }
+            %>
+            <div class="activity-item d-flex">
+              <div class="activite-label mb-2 mx-1"> <%= new Date(item.createdAt).toLocaleDateString().replace(/\//g, '.') %> </div>
+              <i class='bi bi-circle-fill activity-badge <%=icon%> align-self-start'></i>
+              <div class="activity-content mx-1">
+                <%= item.createdBy.userName %> created a new <%= itemType %>
+              </div>
+            </div><!-- End activity item-->
+            <% });
+        } else { %>
+           <p>No recent activity</p>
+        <% } %>
+      </div>
+    </div>
     <iframe src="https://trafficban.com/plugins/box.html?href=trafficban.com&language=en" scrolling="auto" frameborder="1" style="width:600px;height:500px"></iframe>
 
     

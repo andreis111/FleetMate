@@ -5,20 +5,20 @@ Main tasks:
     ✔ Start and run @done (19/12/2022, 16:42:45)
 
 Set-up server:
-    ☐ Controllers @high
-    ☐ Models @high
-    ☐ Views @high
+    ✔ Controllers @high @done (10/01/2023, 15:40:35)
+    ✔ Models @high @done (10/01/2023, 15:40:35)
+    ✔ Views @high @done (10/01/2023, 15:40:36)
 
 Routes:
-    ☐ @critical
+    ✔ @critical @done (10/01/2023, 15:40:32)
 
 Controllers:  
     1. Main: 
         ✔ @critical @done (26/12/2022, 13:29:45)
     2. Admin:
-        ☐ @critical
+        ✔ @critical @done (10/01/2023, 15:40:29)
     3. Driver:
-        ☐ @critical
+        ✔ @critical @done (10/01/2023, 15:40:30)
 Models:
     1. Admin:
         ✔ @critical @done (21/12/2022, 16:39:40)
@@ -96,10 +96,10 @@ Models:
                 notes
                 truckPlate
     
-        ☐ c. Button "End Week" -> dissapear edit/add buton for that week @low 
+        ✔ c. Button "End Week" -> dissapear edit/add buton for that week @low @done (10/01/2023, 15:40:21)
     
     6. Company details:
-        ☐ Model: 
+        ✔ Model: @done (10/01/2023, 15:40:17)
             name
             vat
             address
@@ -116,19 +116,19 @@ Views:
         ☐ Gif demo
         ☐ Dummy account
     2. Signup:
-        ☐ @critical 
+        ✔ @critical @done (10/01/2023, 15:40:51)
         ✔ Input email, password, confirm pass, name @done (21/12/2022, 16:40:28)
         ✔ Submit button @done (21/12/2022, 16:40:32)
         ✔ Text "admin account only" @done (21/12/2022, 16:44:37)
     3. Admin:
         Trucks (/admin/trucks):
-            ☐ @critical 
+            ✔ @critical @done (10/01/2023, 15:40:52)
             ✔ Accordion list of trucks @done (08/01/2023, 09:23:08)
             ✔ Each truck shows: Plate no, doc expires, repairs, info truck, photo @done (26/12/2022, 13:21:40)
             ✔ admin/trucks/delete/:id - delete a truck @done (26/12/2022, 13:20:39)
             ✔ + button to create truck @done (26/12/2022, 13:20:44)
         Trucks/create(admin/trucks/create):
-            ☐ @critical 
+            ✔ @critical @done (10/01/2023, 15:40:53)
             ✔ Input: mark, model, plate, chassisnr, km, expirevignette, expire insurance, expirecmr, expiremot, buttonphoto @done (26/12/2022, 13:20:52)
             ✔ button submit @done (26/12/2022, 13:20:51)
         Users(admin/users):
@@ -136,7 +136,7 @@ Views:
             ✔ admin/users/delete/:id - delete a driver @done (27/12/2022, 11:07:18)
             ✔ + button to add new driver @done (27/12/2022, 11:07:20)
         Users/create:
-            ☐ @critical 
+            ✔ @critical @done (10/01/2023, 15:40:55)
             ✔ Inputs for: email, pass, confirm, expirelicense, expirePermit, role, name, id card, adr, expireAdr @done (26/12/2022, 13:21:15)
             ✔ button submit @done (26/12/2022, 13:21:17)
         Users edit (admin/users/edit/:id):
@@ -152,7 +152,7 @@ Views:
             ✔ add like a todo list with checkboxes @done (30/12/2022, 09:33:20)
 
     4. Driver:
-        ☐ @critical 
+        ✔ @critical @done (10/01/2023, 15:40:57)
         Truck:
             ✔ Interface with truck details which he is assigned to @done (28/12/2022, 11:01:10)
         Spreadsheet:
