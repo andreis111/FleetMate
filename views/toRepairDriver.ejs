@@ -29,7 +29,11 @@
         <% if (!repair.completed){ %>
           
           <li class="list-group-item <%= repair.completed ? 'completed' : '' %>">
-            <%= repair.content %> - <%= repair.truckPlate %>
+            <p> Problem: <%= repair.content %>  </p>
+            <p> Plate: <%= repair.truckPlate %> </p>
+            <form action="/driver/repairs/delete/<%=repair.id%>?_method=DELETE" method="POST">
+              <button class="btn btn-danger btn-sm bi bi-trash rounded-3" type="submit"></button>
+            </form>
           </li>
         <% } %>
       <% } %>
@@ -43,7 +47,11 @@
         <% if (repair.completed){ %>
           
           <li class="list-group-item <%= repair.completed ? 'completed' : '' %>">
-            <%= repair.content %> - <%= repair.truckPlate %>
+            <p> Problem: <%= repair.content %>  </p>
+            <p> Plate: <%= repair.truckPlate %> </p>
+            <form action="/driver/repairs/delete/<%=repair.id%>?_method=DELETE" method="POST">
+              <button class="btn btn-danger btn-sm bi bi-trash rounded-3" type="submit"></button>
+            </form>
           </li>
         <% } %>
       <% } %>

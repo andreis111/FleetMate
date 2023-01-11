@@ -31,5 +31,6 @@ router.delete("/spreadsheet/deleteIndividual/:weekId/:individualId", ensureAuth,
 //Repair Routes
 router.get("/repairs", ensureAuth, driverController.getRepair);
 router.post("/repairs", ensureAuth, driverController.postRepair);
+router.delete("/repairs/delete/:id", ensureAuth, driverController.deleteRepair);
 
 module.exports = router;

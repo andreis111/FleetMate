@@ -38,7 +38,8 @@
         
       <li class="list-group-item <%= repair.completed ? 'completed' : '' %>">
         <input class="form-check-input me-1" type="checkbox" value="<%= repair._id %>" <%= repair.completed ? 'checked' : '' %>>
-        <%= repair.content %> - <%= repair.truckPlate %>
+        <p> Problem: <%= repair.content %>  </p>
+  <p> Plate: <%= repair.truckPlate %> </p>
       </li>
       <% } %>
     <% } %>
@@ -53,7 +54,8 @@
         
       <li class="list-group-item <%= repair.completed ? 'completed' : '' %>">
         <input class="form-check-input me-1" type="checkbox" value="<%= repair._id %>" <%= repair.completed ? 'checked' : '' %>>
-        <%= repair.content %> - <%= repair.truckPlate %>
+        <p> Problem: <%= repair.content %>  </p>
+        <p> Plate: <%= repair.truckPlate %> </p>
       </li>
       <% } %>
     <% } %>

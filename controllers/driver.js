@@ -269,6 +269,16 @@ module.exports = {
       } catch (err) {
         console.log(err);
       }
+  },
+  deleteRepair: async (req, res) => {
+    try {
+      await Repair.deleteOne({ _id: req.params.id });
+      console.log("Deleted Repair");
+      res.redirect(`/driver/repairs`);
+    } catch (err) {
+      console.log(err);
+      res.redirect(`/driver/repairs`);
+    }
 },
     
 }
