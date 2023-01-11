@@ -21,13 +21,33 @@
     </div>
   </form>
 
-  <div class="col-lg-6 col-md-8 mt-3">
+  <div class="col-lg-6 col-md-8 mt-5">
+    <h5 class="text-danger text-center">Ongoing:</h5>
     <ul class="list-group">
       <% for (const repair of repairs) { %>
-        <li class="list-group-item <%= repair.completed ? 'completed' : '' %>">
-          <%= repair.content %> - <%= repair.truckPlate %>
-        </li>
+        
+        <% if (!repair.completed){ %>
+          
+          <li class="list-group-item <%= repair.completed ? 'completed' : '' %>">
+            <%= repair.content %> - <%= repair.truckPlate %>
+          </li>
+        <% } %>
       <% } %>
+      
+    </ul>
+  
+    <h5 class="text-primary mt-3 text-center">Repaired:</h5>
+    <ul class="list-group">
+      <% for (const repair of repairs) { %>
+        
+        <% if (repair.completed){ %>
+          
+          <li class="list-group-item <%= repair.completed ? 'completed' : '' %>">
+            <%= repair.content %> - <%= repair.truckPlate %>
+          </li>
+        <% } %>
+      <% } %>
+      
     </ul>
   </div>
 </main>
