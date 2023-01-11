@@ -20,7 +20,11 @@ A fleet manager app that helps businesses manage and optimize their fleet of tru
 
 - Refactor controllers with .populate() instead of current code
 
+## Future improvements
+
 - Check for maps api in spreadsheets
+
+- Repairs: add importance
 
 ## Lessons Learned:
 

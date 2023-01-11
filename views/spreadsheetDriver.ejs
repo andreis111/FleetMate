@@ -10,9 +10,10 @@
         <li class="breadcrumb-item active">Spreadsheets</li>
       </ol>
     </nav>
-
+  </div>
     <!-- Form to create weekly spreadsheet -->
-    <div class="col-lg-4 col-sm-6 col-6">
+    <div class="d-flex justify-content-center">
+    <div class="col-lg-4 col-sm-6 col-6 ">
       <h5 class="card-title">Select dates (recommended weekly)</h5>
 
       <div class="card">
@@ -39,13 +40,13 @@
         </div>
       </div>
     </div>
-
+  </div>
       <!-- Loop to show all spreadsheets created by the driver (separated into completed or not completed) -->
         
-        <section class="section">
+        <section class="section ">
 
           <h5 class="mt-4 text-danger  text-center">Ongoing </h5>
-          <div class="row align-items-top">
+          <div class="row align-items-top d-flex justify-content-center">
             <% for(week of notCompleted) {%>
               <div class="col-lg-3 col-md-4 col-sm-6">
                 <% const options = {  year: 'numeric', month: 'numeric', day: 'numeric', separator: '.' }; %>
@@ -70,7 +71,7 @@
         <section class="section">
 
           <h5 class="mt-4 text-muted text-center">Completed</h5>
-          <div class="row align-items-top">
+          <div class="row align-items-top d-flex justify-content-center">
             <% for(week of completed) {%>
               <div class="col-lg-3 col-md-4 col-sm-6">
                 <% const options = {  year: 'numeric', month: 'numeric', day: 'numeric', separator: '.' }; %>
@@ -91,7 +92,7 @@
             <% } %>
           </div>
         </section>
-  </div>
+  
 </main>
 
 <a href="/logout">Logout</a>

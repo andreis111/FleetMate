@@ -13,7 +13,16 @@
         </nav>
     </div>
     
-
+    <% if (locals.messages.errors) { %>
+        <% messages.errors.forEach( el => { %>
+            <div class="alert alert-danger"><%= el.msg %></div>
+        <% }) %>    
+    <% } %>
+    <% if (locals.messages.info) { %>
+        <% messages.info.forEach( el => { %>
+            <div class="alert alert-info"><%= el.msg %></div>
+        <% }) %>    
+    <% } %>
 <!-- Form to create new driver -->
     <form action="/admin/drivers/createDriver" method="POST">
         <div>

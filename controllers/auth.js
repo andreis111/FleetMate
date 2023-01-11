@@ -161,16 +161,16 @@ exports.postSignupDriver = (req, res, next) => {
   });
 
   Driver.findOne(
-    { $or: [{ email: req.body.email }, { userName: req.body.userName }] },
+    {  email: req.body.email  },
     (err, existingUser) => {
       if (err) {
         return next(err);
       }
       if (existingUser) {
         req.flash("errors", {
-          msg: "Account with that email address or username already exists.",
+          msg: "Account with that email address already exists.",
         });
-        return res.redirect("../signup");
+        return res.redirect("/admin/drivers/createDriver");
       }
       user.save((err) => {
         if (err) {
