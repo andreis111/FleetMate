@@ -181,6 +181,6 @@ Others:
     ✔ Create user profiles containing company details too @done (09/01/2023, 08:04:51)
     ✘ Admin has an extra option for company details next to profile and signout @cancelled (09/01/2023, 08:05:09)
     ✔ Change Create new driver layout @done (11/01/2023, 12:27:14)
-    ☐ Filter spreadsheets on drivers/trucks
-    ☐ Filter repairs by truck
-    ☐ Redo repairs at driver to look like admin
+    ✔ Filter spreadsheets on drivers/trucks @done (11/01/2023, 14:27:42)
+    ✔ Filter repairs by truck @done (11/01/2023, 14:27:43)
+    ✔ Redo repairs at driver to look like admin @done (11/01/2023, 14:44:25)

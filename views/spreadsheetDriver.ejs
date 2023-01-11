@@ -12,9 +12,9 @@
     </nav>
   </div>
     <!-- Form to create weekly spreadsheet -->
-    <div class="d-flex justify-content-center">
-    <div class="col-lg-4 col-sm-6 col-6 ">
-      <h5 class="card-title">Select dates (recommended weekly)</h5>
+    <div class="d-flex ">
+    <div class="col-lg-4 col-sm-6 col-xl-3">
+      <h5 class="card-title text-center">Select dates (recommended weekly)</h5>
 
       <div class="card">
         <div class="card-body">
@@ -22,19 +22,19 @@
           <form action="/driver/spreadsheet/createWeek/" method="POST">
               <div class="row my-3">
                 <label for="startDate" class="col-sm-3 col-form-label">Start</label>
-                <div class="col-sm-8">
+                <div class="col-sm-9">
                   <input type="date" id="startDate" name="startDate" required class="form-control">
                 </div>
               </div>
               <div class="row mb-3">
                 <label for="endDate" class="col-sm-3 col-form-label">End</label>
-                <div class="col-sm-8">
+                <div class="col-sm-9">
                   <input type="date" id="endDate" name="endDate" required class="form-control">
                 </div>
               </div>
             
-              <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary rounded-pill">Create Weekly</button>
+              <div class="col-sm-12 text-center">
+                <button type="submit" class="btn btn-primary rounded-pill "><i class="bi bi-check-lg"></i> </button>
               </div>
           </form>
         </div>
@@ -45,8 +45,9 @@
         
         <section class="section ">
 
-          <h5 class="mt-4 text-danger  text-center">Ongoing </h5>
-          <div class="row align-items-top d-flex justify-content-center">
+          
+          <div class="row align-items-top d-flex">
+            <h5 class="mt-4 text-danger mx-5">Ongoing </h5>
             <% for(week of notCompleted) {%>
               <div class="col-lg-3 col-md-4 col-sm-6">
                 <% const options = {  year: 'numeric', month: 'numeric', day: 'numeric', separator: '.' }; %>
@@ -70,8 +71,8 @@
         
         <section class="section">
 
-          <h5 class="mt-4 text-muted text-center">Completed</h5>
-          <div class="row align-items-top d-flex justify-content-center">
+          <h5 class="mt-4 text-muted mx-5">Completed</h5>
+          <div class="row align-items-top d-flex">
             <% for(week of completed) {%>
               <div class="col-lg-3 col-md-4 col-sm-6">
                 <% const options = {  year: 'numeric', month: 'numeric', day: 'numeric', separator: '.' }; %>
