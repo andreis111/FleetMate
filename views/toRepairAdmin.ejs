@@ -11,6 +11,23 @@
       </ol>
     </nav>
 </div>
+  <div class="row align-items-top">
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <h6 class="text-center">Filter:</h6>
+      <div class="card"> 
+        <form action="/admin/repairs/filter?_method=GET" method="POST">
+          <select class="form-select" name = "truckId">
+            <option value="">Select truck</option>
+            <% for(truck of trucks) {%>
+            <option value="<%=truck._id%>"><%=truck.plate%></option>
+            <% } %>
+          </select>
+          <button type="submit" class="btn btn-primary rounded-3"><i class="bi bi-check"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+
     <!-- Repair list with checkbox -->
 <div class="col-lg-6 col-md-8">
   <h5 class="text-danger text-center">To repair:</h5>

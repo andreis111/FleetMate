@@ -194,7 +194,6 @@ module.exports = {
       const truck = await Truck.findById(req.params.id);
       const driver = await Driver.find({ truckId: req.params.id })
       const customOptions = await CustomOptionTruck.find({ truckId: req.params.id })
-      console.log(driver);
       res.render("editTruckAdmin.ejs", { truck: truck, user: req.user , driver: driver, customOptions: customOptions});
     } catch (err) {
       console.log(err);
@@ -381,8 +380,10 @@ module.exports = {
               //SPREADSHEET controllers:
   
   
-   getSpreadsheets: async (req, res) => {
+  getSpreadsheets: async (req, res) => {
+     
      try {
+      const trucks = await Truck.find({ adminId: req.user.id })
        const drivers = await Driver.find({ adminId: req.user.id });
        const driversIds = drivers.map(driver => driver.id);
        
@@ -390,17 +391,38 @@ module.exports = {
        const weekly = await WeeklySs.find({ createdBy: {$in: driversIds}, completed: {$eq: true} }).sort({ createdAt: 'desc' });
        const individuals = await Individual.find({ createdBy: weekly.id });
    
-       res.render("spreadsheetsAdmin.ejs", {weekly: weekly, user : req.user});
+       res.render("spreadsheetsAdmin.ejs", {weekly: weekly, user : req.user, trucks: trucks, drivers:drivers});
      } catch (err) {
        console.log(err);
      }
-   },
+  },
+   
+  filterSpreadsheets: async (req, res) => {
+    try {
+      const drivers = await Driver.find({ adminId: req.user.id });
+      const trucks = await Truck.find({ adminId: req.user.id })
+      const driversIds = drivers.map(driver => driver.id);
+      const filter = {completed: true}
+      
+  
+      if (req.body.truckId) {
+        filter.truckId = req.body.truckId;
+      }
+      if (req.body.driverId) {
+        filter.createdBy = req.body.driverId;
+      }
+      const filteredSpreadsheets = await WeeklySs.find(filter).sort({ createdAt: 'desc' });
+      console.log(filter);
+      res.render("spreadsheetsAdmin.ejs", { weekly: filteredSpreadsheets, user: req.user, trucks:trucks, drivers:drivers,  });
+    } catch (err) {
+      console.log(err);
+    }
+  },
    
   getIndividualSpreadsheet: async (req, res) => {
     try {
         const week = await WeeklySs.findById(req.params.id);
         const individuals = await Individual.find({ weekId: week.id })
-        console.log(week);
         //sum for Km, Other Costs, Fuel
         let totalKm = 0
         let totalCosts = 0
@@ -420,12 +442,33 @@ module.exports = {
     getRepairs: async (req, res) => {
       const drivers = await Driver.find({ adminId: req.user.id });
       const driverIds = drivers.map(driver => driver.id);
+      const trucks = await Truck.find({ adminId: req.user.id })
       const repairs = await Repair.find({ createdBy: { $in: driverIds } });
       try {
-        res.render("toRepairAdmin.ejs", {repairs: repairs, user : req.user});
+        res.render("toRepairAdmin.ejs", {repairs: repairs, user : req.user, trucks:trucks});
       } catch (err) {
         console.log(err);
       }
+  },
+  filterRepairs: async (req, res) => {
+    const drivers = await Driver.find({ adminId: req.user.id });
+    const driverIds = drivers.map(driver => driver.id);
+    
+    try {
+      
+      const trucks = await Truck.find({ adminId: req.user.id })
+      const filter = {createdBy: { $in: driverIds }}
+      
+  
+      if (req.body.truckId) {
+        filter.truckId = req.body.truckId;
+      }
+      const filtered= await Repair.find(filter).sort({ createdAt: 'desc' });
+      console.log(filter);
+      res.render("toRepairAdmin.ejs", { repairs: filtered, user : req.user, trucks:trucks, drivers:drivers,  });
+    } catch (err) {
+      console.log(err);
+    }
   },
     
   updateRepair: async (req, res) => {

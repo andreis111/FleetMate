@@ -3,15 +3,38 @@
 <main id="main" class="main">
 
   <div class="pagetitle">
-    <h1>Spreadsheets:</h1>
+    <h1>Spreadsheets</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/admin">Home</a></li>
         <li class="breadcrumb-item active">Spreadsheets</li>
       </ol>
     </nav>
-</div>
+  </div>
+
   
+  <div class="row align-items-top">
+      <div class="col-lg-3 col-md-4 col-sm-6">
+        <h6 class="text-center">Filter:</h6>
+        <div class="card"> 
+          <form action="/admin/spreadsheets/filter?_method=GET" method="POST">
+            <select class="form-select" name = "truckId">
+              <option value="">Select truck</option>
+              <% for(truck of trucks) {%>
+              <option value="<%=truck._id%>"><%=truck.plate%></option>
+              <% } %>
+            </select>
+            <select class="form-select" name = "driverId">
+              <option value="">Select driver</option>
+              <% for(driver of drivers) {%>
+              <option value="<%=driver._id%>"><%=driver.userName%></option>
+              <% } %>
+            </select>
+            <button type="submit" class="btn btn-primary rounded-3"><i class="bi bi-check"></i></button>
+          </form>
+        </div>
+      </div>
+  </div>
   <!-- Loop and show all spreadsheets from all it's drivers -->
 
   <section class="section">

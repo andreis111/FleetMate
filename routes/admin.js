@@ -37,10 +37,12 @@ router.delete("/drivers/deleteDriver/:id", ensureAuth, adminController.deleteDri
 
 //spreadsheets
 router.get("/spreadsheets", ensureAuth, adminController.getSpreadsheets);
+router.get("/spreadsheets/filter", ensureAuth, adminController.filterSpreadsheets);
 router.get("/spreadsheet/:id", ensureAuth, adminController.getIndividualSpreadsheet);
 
 //repairs
 router.get("/repairs", ensureAuth, adminController.getRepairs);
+router.get("/repairs/filter", ensureAuth, adminController.filterRepairs);
 router.post("/updateRepair", ensureAuth, adminController.updateRepair);
 
 module.exports = router;
