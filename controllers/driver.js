@@ -99,7 +99,7 @@ module.exports = {
             startDate: req.body.startDate,
             endDate: req.body.endDate,
             createdBy: req.user.id,
-            truckId: req.user.truckPlate,
+            truckId: req.user.truckId,
             userName: req.user.userName,
             truckPlate: truck.plate
           });
@@ -262,6 +262,7 @@ module.exports = {
             content: req.body.content,
             truckPlate: truck.plate,
             createdBy: req.user.id,
+            truckId: req.user.truckId,
         });
         console.log("Repair has been added!");
         res.redirect(`/driver/repairs/`);

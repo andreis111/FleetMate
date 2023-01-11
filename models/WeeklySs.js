@@ -13,6 +13,10 @@ const WeeklySchema = new mongoose.Schema({
     type: { type: String, default: 'week' },
     completed: { type: Boolean, default: false },
     createdAt: { type: Date, default: Date.now },
+    truckId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Truck"
+    },
 });
 
 

@@ -9,6 +9,10 @@ const RepairSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Driver"
     },
+    truckId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Truck"
+    },
 });
 
 
