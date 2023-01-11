@@ -50,7 +50,7 @@
               <div class="activite-label mb-2 mx-1"> <%= duration %> <%= unit %> ago </div>
               <i class='bi bi-circle-fill activity-badge <%=icon%> align-self-start'></i>
               <div class="activity-content mx-1">
-                <%= item.createdBy.userName %> created a new <%= itemType %>
+                <span class="fw-bold"><%= item.createdBy.userName %></span> created a new <%= itemType %>
               </div>
             </div><!-- End activity item-->
             <% });
