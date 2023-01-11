@@ -13,7 +13,7 @@
 
     <!-- Start activity item. functions to show data in descending order and following "x time ago" text-->
     <div class="card-body mb-5">
-      <h5 class="card-title">Recent Activity <span>| Last 3 days</span></h5>
+      <h5 class="card-title  ">Recent Activity <span>| Last 3 days</span></h5>
       <div class="activity">
         <%
         let activityItems = [...spreadsheets, ...repairs]
@@ -46,7 +46,7 @@
               var itemType = 'repair'
             }
             %>
-            <div class="activity-item d-flex justify-content-center">
+            <div class="activity-item d-flex">
               <div class="activite-label mb-2 mx-1"> <%= duration %> <%= unit %> ago </div>
               <i class='bi bi-circle-fill activity-badge <%=icon%> align-self-start'></i>
               <div class="activity-content mx-1">
@@ -59,7 +59,7 @@
         <% } %>
       </div>
     </div>
-    <div class="text-center">
+    <div>
       <iframe  src="https://trafficban.com/plugins/box.html?href=trafficban.com&language=en" scrolling="auto" frameborder="1" style="width:600px;height:500px"></iframe>
     </div>
     
