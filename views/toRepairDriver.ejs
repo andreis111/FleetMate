@@ -17,7 +17,16 @@
     <div class="form-group">
       <label for="content">Repair note: </label>
       <input type="text" id="content" name="content">
-      <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg"></i></button>
+      <% if(!user.truckId) { %>
+        
+          <button type="submit" class="btn btn-primary btn-sm rounded-3"  disabled ><i class="bi bi-plus-lg"></i></button>
+          <i class="bi bi-info-circle-fill" data-bs-toggle="tooltip" data-bs-placement="right" title="Repairs can be created only when a truck is assigned to you!"></i>
+        
+      <% } else { %>
+        
+          <button type="submit" class="btn btn-primary btn-sm rounded-3"><i class="bi bi-plus-lg"></i> </button>
+        
+      <% } %>
     </div>
   </form>
 

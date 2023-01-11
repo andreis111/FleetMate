@@ -12,30 +12,38 @@
     </nav>
   </div>
     <!-- Form to create weekly spreadsheet -->
-    <div class="d-flex ">
-    <div class="col-lg-4 col-sm-6 col-xl-3">
+    <div class="d-flex">
+    <div class="col-sm-5 col-lg-4 col-xl-3">
       <h5 class="card-title text-center">Select dates (recommended weekly)</h5>
 
       <div class="card">
         <div class="card-body">
 
           <form action="/driver/spreadsheet/createWeek/" method="POST">
-              <div class="row my-3">
-                <label for="startDate" class="col-sm-3 col-form-label">Start</label>
-                <div class="col-sm-9">
+              <div class="row my-3 px-0">
+                <label for="startDate" class="col-sm-4 col-form-label">Start</label>
+                <div class="col-sm-8 px-0">
                   <input type="date" id="startDate" name="startDate" required class="form-control">
                 </div>
               </div>
-              <div class="row mb-3">
-                <label for="endDate" class="col-sm-3 col-form-label">End</label>
-                <div class="col-sm-9">
+              <div class="row mb-3 px-0">
+                <label for="endDate" class="col-sm-4 col-form-label">End</label>
+                <div class="col-sm-8 px-0">
                   <input type="date" id="endDate" name="endDate" required class="form-control">
                 </div>
               </div>
-            
-              <div class="col-sm-12 text-center">
-                <button type="submit" class="btn btn-primary rounded-pill "><i class="bi bi-check-lg"></i> </button>
-              </div>
+          
+
+              <% if(!user.truckId) { %>
+                <div class="col-sm-12 text-center">
+                  <button type="submit" class="btn btn-primary rounded-pill "  disabled ><i class="bi bi-check-lg"></i></button>
+                  <i class="bi bi-info-circle-fill" data-bs-toggle="tooltip" data-bs-placement="right" title="Spreadsheets can be created only when a truck is assigned to you!"></i>
+                </div>
+              <% } else { %>
+                <div class="col-sm-12 text-center">
+                  <button type="submit" class="btn btn-primary rounded-pill "><i class="bi bi-check-lg"></i> </button>
+                </div>
+              <% } %>
           </form>
         </div>
       </div>
