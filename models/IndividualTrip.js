@@ -11,6 +11,8 @@ const InlineSsSchema = new mongoose.Schema({
     startDate: { type: String },
     endDate: { type: String },
     truckPlate: { type: String },
+    image: {type: String,require: true,},
+    cloudinaryId: {type: String,require: true},
     weekId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "WeeklySs"

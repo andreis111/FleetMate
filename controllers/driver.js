@@ -147,7 +147,7 @@ module.exports = {
     postIndividualTrip: async (req, res) => {
         try {
           // Upload image to cloudinary
-          // const result = await cloudinary.uploader.upload(req.file.path);
+          const result = await cloudinary.uploader.upload(req.file.path);
             
             await Individual.create({
             startLoc: req.body.startLoc,
@@ -159,7 +159,9 @@ module.exports = {
             otherCosts: req.body.otherCosts,
             notes: req.body.notes,
             truckPlate: req.user.truckPlate,
-            weekId: req.params.id
+            weekId: req.params.id,
+            image: result.secure_url,
+            cloudinaryId: result.public_id,
           });
           console.log("Trip has been added!");
           res.redirect(`/driver/spreadsheet/${req.params.id}`);

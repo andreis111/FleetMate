@@ -1275,7 +1275,7 @@ h6 {
   max-width: 100%;
   position: absolute;
   top: 10;
-  left: 0;
+  right: 0;
   z-index: 999999;
   transition: all 0.9s ease;
   display: none;
