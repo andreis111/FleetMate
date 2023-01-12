@@ -113,13 +113,26 @@ module.exports = {
   
   deleteSpreadsheet: async (req, res) => {
     try {
-      await WeeklySs.deleteOne({ _id: req.params.id });
-      await Individual.deleteMany({ weekId: req.params.id });
-      console.log("Deleted Spreadsheet and linked jobs");
-      res.redirect("/driver/spreadsheet");
+        // Get all individual trips linked to the spreadsheet
+        let individuals = await Individual.find({ weekId: req.params.id });
+
+        // Iterate through the individual trips to delete their photos from cloudinary
+        for (individual of individuals) {
+            if (individual.cloudinaryId) {
+                await cloudinary.uploader.destroy(individual.cloudinaryId);
+            } else {
+                console.log("cloudinaryId is not present, skipping image deletion step");
+            }
+        }
+
+        // Delete the spreadsheet and linked individual trips
+        await WeeklySs.deleteOne({ _id: req.params.id });
+        await Individual.deleteMany({ weekId: req.params.id });
+        console.log("Deleted Spreadsheet and linked jobs");
+        res.redirect("/driver/spreadsheet");
     } catch (err) {
-      console.log(err);
-      res.redirect("/driver/spreadsheet");
+        console.log(err);
+        res.redirect("/driver/spreadsheet");
     }
 },
     
@@ -165,6 +178,8 @@ module.exports = {
             notes: req.body.notes,
             truckPlate: req.user.truckPlate,
             weekId: req.params.id,
+            image: imageUrl,
+            cloudinaryId: cloudinaryId,
           });
           console.log("Trip has been added!");
           res.redirect(`/driver/spreadsheet/${req.params.id}`);
