@@ -166,7 +166,7 @@ Views:
 
 Others:
     ☐ Check roles before each res.render (see getAdminMainPage from admin controller). Do it in both admin controller and driver controller
-    ☐ Add delete buttons for repairs
+    ✔ Add delete buttons for repairs @done (12/01/2023, 15:13:33)
     
     ☐ Add photos to:
      ☐ admin profile, 
