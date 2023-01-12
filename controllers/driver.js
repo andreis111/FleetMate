@@ -257,37 +257,50 @@ module.exports = {
         }
     },
     
-  postRepair: async (req, res) => {
-    const truck = await Truck.findById(req.user.truckId)
+    postRepair: async (req, res) => {
+      const truck = await Truck.findById(req.user.truckId);
       try {
-        // Upload image to cloudinary
-        const result = await cloudinary.uploader.upload(req.file.path);
-
+          let imageUrl;
+          let cloudinaryId;
+          if (req.file) {
+              // Upload image to cloudinary
+              const result = await cloudinary.uploader.upload(req.file.path);
+              imageUrl = result.secure_url;
+              cloudinaryId = result.public_id;
+          }
+  
           await Repair.create({
-            content: req.body.content,
-            truckPlate: truck.plate,
-            createdBy: req.user.id,
-            truckId: req.user.truckId,
-            image: result.secure_url,
-            cloudinaryId: result.public_id,
-        });
-        console.log("Repair has been added!");
-        res.redirect(`/driver/repairs/`);
+              content: req.body.content,
+              truckPlate: truck.plate,
+              createdBy: req.user.id,
+              truckId: req.user.truckId,
+              image: imageUrl,
+              cloudinaryId: cloudinaryId,
+          });
+  
+          console.log("Repair has been added!");
+          res.redirect(`/driver/repairs/`);
       } catch (err) {
-        console.log(err);
+          console.log(err);
       }
   },
+    
   deleteRepair: async (req, res) => {
     try {
-      let repair = await Repair.findById(req.params.id)
-      await cloudinary.uploader.destroy(repair.cloudinaryId);
-      await Repair.remove({ _id: req.params.id });
-      console.log("Deleted Repair");
-      res.redirect(`/driver/repairs`);
+        let repair = await Repair.findById(req.params.id);
+        if (repair.cloudinaryId) {
+            await cloudinary.uploader.destroy(repair.cloudinaryId);
+        }
+        else {
+            console.log("cloudinaryId is not present, skipping image deletion step");
+        }
+        await Repair.remove({ _id: req.params.id });
+        console.log("Deleted Repair");
+        res.redirect(`/driver/repairs`);
     } catch (err) {
-      console.log(err);
-      res.redirect(`/driver/repairs`);
+        console.log(err);
+        res.redirect(`/driver/repairs`);
     }
-},
+}
     
 }

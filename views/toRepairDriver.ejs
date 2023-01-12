@@ -16,7 +16,7 @@
   <form action="/driver/repairs" enctype="multipart/form-data" method="POST">
     <div class="form-group">
       <label for="content">Repair note: </label>
-      <input type="text" id="content" name="content">
+      <input type="text" id="content" name="content" required>
       <label for="imageUpload">
         <i class="bi bi-upload btn btn-sm btn-info"></i>
       </label>
@@ -51,10 +51,12 @@
             <form action="/driver/repairs/delete/<%=repair.id%>?_method=DELETE" method="POST">
               <button  class="btn btn-danger btn-sm bi bi-trash position-absolute rounded-3" style="bottom: 0; right: 0;" aria-hidden="true" type="submit"></button>
             </form>
+            <% if (repair.image){ %>
             <div >
               <i  class="bi bi-card-image btn btn-secondary btn-sm expand-icon"></i>
               <img src="<%=repair.image%>" class="img-fluid expand-img" style="display:none">
             </div>
+            <% } %>
           </li>
         <% } %>
       <% } %>
