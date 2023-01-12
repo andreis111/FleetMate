@@ -235,6 +235,8 @@ module.exports = {
 
   deleteIndividual: async (req, res) => {
     try {
+      let individual = await Individual.findById(req.params.individualId)
+      await cloudinary.uploader.destroy(individual.cloudinaryId)
       await Individual.deleteOne({ _id: req.params.individualId });
       console.log("Deleted job");
       res.redirect(`/driver/spreadsheet/${req.params.weekId}`);
