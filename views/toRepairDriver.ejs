@@ -73,10 +73,10 @@
                 <button  class="btn btn-danger btn-sm bi bi-trash position-absolute rounded-3" style="bottom: 0; right: 0;" aria-hidden="true" type="submit"></button>
             </form>
             <div >
-                <i id="repair-<%= repair.id %>-expand-icon" class="bi bi-card-image"></i>
-                <img id="repair-<%= repair.id %>-expand-img" src="/img/news-2.jpg" class="img-fluid" style="display:none">
+              <i class="bi bi-card-image btn btn-secondary btn-sm expand-icon"></i>
+              <img src="<%=repair.image%>" class="img-fluid expand-img" style="display:none">
             </div>
-        </li>
+          </li>
           
         <% } %>
       <% } %>
