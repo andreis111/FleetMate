@@ -18,7 +18,7 @@
       <label for="content">Repair note: </label>
       <input type="text" id="content" name="content" required>
       <label for="imageUpload">
-        <i class="bi bi-upload btn btn-sm btn-info"></i>
+        <i class="bi bi-upload btn btn-sm btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Upload photo"></i>
       </label>
       <input type="file" class="form-control" id="imageUpload" name="file" style="display:none;">
       
@@ -29,7 +29,7 @@
         
       <% } else { %>
 
-          <button type="submit" class="btn btn-primary btn-sm rounded-3"><i class="bi bi-plus-lg"></i> </button>
+          <button type="submit" class="btn btn-primary btn-sm rounded-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Send repair"><i class="bi bi-plus-lg"></i> </button>
           
         
       <% } %>
@@ -45,15 +45,15 @@
         
         <% if (!repair.completed){ %>
           
-          <li class="list-group-item <%= repair.completed ? 'completed' : '' %>">
+          <li class="list-group-item <%= repair.completed ? 'completed' : '' %>  mb-1 lightRed">
             <p> Problem: <%= repair.content %>  </p>
             <p> Plate: <%= repair.truckPlate %> </p>
             <form action="/driver/repairs/delete/<%=repair.id%>?_method=DELETE" method="POST">
-              <button  class="btn btn-danger btn-sm bi bi-trash position-absolute rounded-3" style="bottom: 0; right: 0;" aria-hidden="true" type="submit"></button>
+              <button  class="btn btn-danger btn-sm bi bi-trash position-absolute rounded-3" style="bottom: 0; right: 0;" aria-hidden="true" type="submit " data-bs-toggle="tooltip" data-bs-placement="top" title="Delete repair"></button>
             </form>
             <% if (repair.image){ %>
             <div >
-              <i  class="bi bi-card-image btn btn-secondary btn-sm expand-icon"></i>
+              <i  class="bi bi-card-image btn btn-secondary btn-sm expand-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="See photo"></i>
               <img src="<%=repair.image%>" class="img-fluid expand-img" style="display:none">
             </div>
             <% } %>
@@ -68,14 +68,14 @@
       <% for (const repair of repairs) { %>
         <% if (repair.completed){ %>
           
-          <li id="repair-<%= repair.id %>" class="list-group-item <%= repair.completed ? 'completed' : '' %>">
+          <li id="repair-<%= repair.id %>" class="list-group-item <%= repair.completed ? 'completed' : '' %> lightBlue">
             <p> Problem: <%= repair.content %>  </p>
             <p> Plate: <%= repair.truckPlate %> </p>
             <form action="/driver/repairs/delete/<%=repair.id%>?_method=DELETE" method="POST">
                 <button  class="btn btn-danger btn-sm bi bi-trash position-absolute rounded-3" style="bottom: 0; right: 0;" aria-hidden="true" type="submit"></button>
             </form>
             <div >
-              <i class="bi bi-card-image btn btn-secondary btn-sm expand-icon"></i>
+              <i class="bi bi-card-image btn btn-secondary btn-sm expand-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="See photo"></i>
               <img src="<%=repair.image%>" class="img-fluid expand-img" style="display:none">
             </div>
           </li>

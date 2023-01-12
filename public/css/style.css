@@ -1284,3 +1284,12 @@ h6 {
 .expand-img.expanded {
   display: block;
 }
+
+
+.lightBlue {
+  background-color: #c2d9ff;
+}
+
+.lightRed {
+  background-color: #fdd2d2;
+}

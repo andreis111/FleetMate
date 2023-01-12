@@ -26,7 +26,7 @@
           </select>
           
       </div>
-      <button type="submit" class="btn btn-primary rounded-3 btn-sm"><i class="bi bi-check"></i></button>
+      <button type="submit" class="btn btn-primary rounded-3 btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Filter"><i class="bi bi-check"></i></button>
     </div>
     </div>
     
@@ -40,12 +40,12 @@
       
       <% if (!repair.completed){ %>
         
-      <li class="list-group-item <%= repair.completed ? 'completed' : '' %>">
+      <li class="lightRed list-group-item <%= repair.completed ? 'completed' : '' %> mb-1">
         <input class="form-check-input me-1" type="checkbox" value="<%= repair._id %>" <%= repair.completed ? 'checked' : '' %>>
         <p> Problem: <%= repair.content %>  </p>
         <p> Plate: <%= repair.truckPlate %> </p>
         <div >
-          <i  class="bi bi-card-image btn btn-secondary btn-sm expand-icon"></i>
+          <i  class="bi bi-card-image btn btn-secondary btn-sm expand-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="See photo"></i>
           <img src="<%=repair.image%>" class="img-fluid expand-img" style="display:none">
         </div>
       </li>
@@ -60,12 +60,12 @@
       
       <% if (repair.completed){ %>
         
-      <li class="list-group-item <%= repair.completed ? 'completed' : '' %>">
+      <li class="lightBlue list-group-item <%= repair.completed ? 'completed' : '' %> mb-1">
         <input class="form-check-input me-1" type="checkbox" value="<%= repair._id %>" <%= repair.completed ? 'checked' : '' %>>
         <p> Problem: <%= repair.content %>  </p>
         <p> Plate: <%= repair.truckPlate %> </p>
         <div >
-          <i  class="bi bi-card-image btn btn-secondary btn-sm expand-icon"></i>
+          <i  class="bi bi-card-image btn btn-secondary btn-sm expand-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="See photo"></i>
           <img src="<%=repair.image%>" class="img-fluid expand-img" style="display:none">
         </div>
       </li>

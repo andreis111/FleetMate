@@ -15,48 +15,54 @@
     <div class="card-body mb-5">
       <h5 class="card-title  ">Recent Activity <span>| Last 3 days</span></h5>
       <div class="activity">
-        <%
-        let activityItems = [...spreadsheets, ...repairs]
-        activityItems.sort((a, b) => b.createdAt > a.createdAt ? -1 : 1)
-        activityItems.reverse()
-        if(activityItems.length > 0){
-          activityItems.forEach(function(item) {
-            let itemDate = new Date(item.createdAt);
-            let currentDate = new Date();
-            let duration = (currentDate - itemDate) / 1000; // convert milliseconds to seconds
-            let unit = "seconds";
-            if (duration > 60) {
-              duration = duration / 60; // convert seconds to minutes
-              unit = "minutes";
-            }
-            if (duration > 60) {
-              duration = duration / 60; // convert minutes to hours
-              unit = "hours";
-            }
-            if (duration > 24) {
-              duration = duration / 24; // convert hours to days
-              unit = "days";
-            }
-            duration = Math.floor(duration); // round down to whole number
-            if(item.type==='week'){
-              var icon = 'text-success'
-              var itemType = 'spreadsheet'
-            }else {
-              var icon = 'text-danger'
-              var itemType = 'repair'
-            }
-            %>
-            <div class="activity-item d-flex">
-              <div class="activite-label mb-2 mx-1"> <%= duration %> <%= unit %> ago </div>
-              <i class='bi bi-circle-fill activity-badge <%=icon%> align-self-start'></i>
-              <div class="activity-content mx-1">
-                <span class="fw-bold"><%= item.createdBy.userName %></span> created a new <span class="fw-semibold"><%= itemType %></span>
-              </div>
-            </div><!-- End activity item-->
-            <% });
-        } else { %>
-           <p>No recent activity</p>
-        <% } %>
+      
+  <%
+  let activityItems = [...spreadsheets, ...repairs];
+  activityItems.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  if (activityItems.length > 0) {
+    activityItems.forEach(function(item) {
+      let itemDate = new Date(item.createdAt);
+      let currentDate = new Date();
+      let duration = (currentDate - itemDate) / 1000; // convert milliseconds to seconds
+      let unit = "seconds";
+      if (duration >= 60 && duration < 3600) {
+        duration = duration / 60; // convert seconds to minutes
+        unit = "minutes";
+      } else if (duration >= 3600 && duration < 86400) {
+        duration = duration / 3600; // convert minutes to hours
+        unit = "hours";
+      } else if (duration >= 86400) {
+        duration = duration / 86400; // convert hours to days
+        unit = "days";
+      }
+      duration = Math.round(duration); // round to nearest whole number
+      if (item.type === "week") {
+        var icon = "text-success";
+        var itemType = "spreadsheet";
+      } else {
+        var icon = "text-danger";
+        var itemType = "repair";
+      }
+%>
+      <div class="activity-item d-flex">
+        <div class="activite-label mb-2 mx-1"> <%= duration %> <%= unit %> ago </div>
+        <i class="bi bi-circle-fill activity-badge <%=icon%> align-self-start"></i>
+        <div class="activity-content mx-1">
+          <span class="fw-bold"><%= item.createdBy.userName %></span> created a new <span class="fw-semibold"><%= itemType %></span>
+        </div>
+      </div>
+      <%
+    });
+  } else {
+%>
+    <p>No recent activity</p>
+<% }%>
+
+
+    
+    
+
+
       </div>
     </div>
     <div>
