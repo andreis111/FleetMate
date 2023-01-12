@@ -65,11 +65,15 @@
             <td><%= individual.otherCosts%></td>
             <td><%= individual.fuel%></td>
             <td><%= individual.notes%></td>
+            
+            <!-- check if we have individual trip with photo, if not no icon shown -->
             <td>
+              <% if (individual.image) { %>
               <div >
                 <i  class="bi bi-card-image btn btn-secondary btn-sm expand-icon"></i>
                 <img src="<%=individual.image%>" class="img-fluid expand-img" style="display:none">
               </div>
+              <% } %>
             </td>
             <% if (!week.completed) { %>
             <td class="text-right">

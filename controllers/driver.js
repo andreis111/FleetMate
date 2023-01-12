@@ -147,8 +147,13 @@ module.exports = {
     postIndividualTrip: async (req, res) => {
         try {
           // Upload image to cloudinary
-          const result = await cloudinary.uploader.upload(req.file.path);
-            
+          
+          if (req.file) {
+            // Upload image to cloudinary
+            const result = await cloudinary.uploader.upload(req.file.path);
+            imageUrl = result.secure_url;
+            cloudinaryId = result.public_id;
+        }
             await Individual.create({
             startLoc: req.body.startLoc,
             endLoc: req.body.endLoc,
@@ -160,8 +165,6 @@ module.exports = {
             notes: req.body.notes,
             truckPlate: req.user.truckPlate,
             weekId: req.params.id,
-            image: result.secure_url,
-            cloudinaryId: result.public_id,
           });
           console.log("Trip has been added!");
           res.redirect(`/driver/spreadsheet/${req.params.id}`);
@@ -236,7 +239,12 @@ module.exports = {
   deleteIndividual: async (req, res) => {
     try {
       let individual = await Individual.findById(req.params.individualId)
-      await cloudinary.uploader.destroy(individual.cloudinaryId)
+      if (individual.cloudinaryId) {
+        await cloudinary.uploader.destroy(individual.cloudinaryId);
+    }
+    else {
+        console.log("cloudinaryId is not present, skipping image deletion step");
+    }
       await Individual.deleteOne({ _id: req.params.individualId });
       console.log("Deleted job");
       res.redirect(`/driver/spreadsheet/${req.params.weekId}`);
