@@ -25,6 +25,7 @@
       <% } else { %>
         
           <button type="submit" class="btn btn-primary btn-sm rounded-3"><i class="bi bi-plus-lg"></i> </button>
+          
         
       <% } %>
     </div>
@@ -41,7 +42,7 @@
             <p> Problem: <%= repair.content %>  </p>
             <p> Plate: <%= repair.truckPlate %> </p>
             <form action="/driver/repairs/delete/<%=repair.id%>?_method=DELETE" method="POST">
-              <button class="btn btn-danger btn-sm bi bi-trash rounded-3" type="submit"></button>
+              <button  class="btn btn-danger btn-sm bi bi-trash position-absolute rounded-3" style="bottom: 0; right: 0;" aria-hidden="true" type="submit"></button>
             </form>
           </li>
         <% } %>
@@ -52,19 +53,18 @@
     <h5 class="text-primary mt-3 text-center">Repaired:</h5>
     <ul class="list-group">
       <% for (const repair of repairs) { %>
-        
         <% if (repair.completed){ %>
           
           <li class="list-group-item <%= repair.completed ? 'completed' : '' %>">
             <p> Problem: <%= repair.content %>  </p>
             <p> Plate: <%= repair.truckPlate %> </p>
             <form action="/driver/repairs/delete/<%=repair.id%>?_method=DELETE" method="POST">
-              <button class="btn btn-danger btn-sm bi bi-trash rounded-3" type="submit"></button>
+              <button  class="btn btn-danger btn-sm bi bi-trash position-absolute rounded-3" style="bottom: 0; right: 0;" aria-hidden="true" type="submit"></button>
             </form>
           </li>
+          
         <% } %>
       <% } %>
-      
     </ul>
   </div>
 </main>
