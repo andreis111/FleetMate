@@ -278,11 +278,8 @@ module.exports = {
   deleteRepair: async (req, res) => {
     try {
       let repair = await Repair.findById(req.params.id)
-      console.log(repair);
       await cloudinary.uploader.destroy(repair.cloudinaryId);
-
       await Repair.remove({ _id: req.params.id });
-      
       console.log("Deleted Repair");
       res.redirect(`/driver/repairs`);
     } catch (err) {
