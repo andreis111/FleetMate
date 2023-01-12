@@ -1259,7 +1259,28 @@ h6 {
   color: #012970;
 }
 
+
+
+/* completed class */
 .completed {
   text-decoration: line-through;
 }
 
+
+
+
+/* expand photos */
+
+.expand-img {
+  max-width: 100%;
+  position: absolute;
+  top: 10;
+  left: 0;
+  z-index: 999999;
+  transition: all 0.9s ease;
+  display: none;
+}
+
+.expand-img.expanded {
+  display: block;
+}

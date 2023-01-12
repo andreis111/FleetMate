@@ -13,22 +13,29 @@
     </nav>
   </div>
 
-  <form action="/driver/repairs" method="POST">
+  <form action="/driver/repairs" enctype="multipart/form-data" method="POST">
     <div class="form-group">
       <label for="content">Repair note: </label>
       <input type="text" id="content" name="content">
+      <label for="imageUpload">
+        <i class="bi bi-upload btn btn-sm btn-info"></i>
+      </label>
+      <input type="file" class="form-control" id="imageUpload" name="file" style="display:none;">
+      
       <% if(!user.truckId) { %>
         
           <button type="submit" class="btn btn-primary btn-sm rounded-3"  disabled ><i class="bi bi-plus-lg"></i></button>
           <i class="bi bi-info-circle-fill" data-bs-toggle="tooltip" data-bs-placement="right" title="Repairs can be created only when a truck is assigned to you!"></i>
         
       <% } else { %>
-        
+
           <button type="submit" class="btn btn-primary btn-sm rounded-3"><i class="bi bi-plus-lg"></i> </button>
           
         
       <% } %>
+      
     </div>
+
   </form>
 
   <div class="col-lg-6 col-md-8 mt-5">
@@ -44,6 +51,10 @@
             <form action="/driver/repairs/delete/<%=repair.id%>?_method=DELETE" method="POST">
               <button  class="btn btn-danger btn-sm bi bi-trash position-absolute rounded-3" style="bottom: 0; right: 0;" aria-hidden="true" type="submit"></button>
             </form>
+            <div >
+              <i  class="bi bi-card-image btn btn-secondary btn-sm expand-icon"></i>
+              <img src="<%=repair.image%>" class="img-fluid expand-img" style="display:none">
+            </div>
           </li>
         <% } %>
       <% } %>
@@ -55,18 +66,23 @@
       <% for (const repair of repairs) { %>
         <% if (repair.completed){ %>
           
-          <li class="list-group-item <%= repair.completed ? 'completed' : '' %>">
+          <li id="repair-<%= repair.id %>" class="list-group-item <%= repair.completed ? 'completed' : '' %>">
             <p> Problem: <%= repair.content %>  </p>
             <p> Plate: <%= repair.truckPlate %> </p>
             <form action="/driver/repairs/delete/<%=repair.id%>?_method=DELETE" method="POST">
-              <button  class="btn btn-danger btn-sm bi bi-trash position-absolute rounded-3" style="bottom: 0; right: 0;" aria-hidden="true" type="submit"></button>
+                <button  class="btn btn-danger btn-sm bi bi-trash position-absolute rounded-3" style="bottom: 0; right: 0;" aria-hidden="true" type="submit"></button>
             </form>
-          </li>
+            <div >
+                <i id="repair-<%= repair.id %>-expand-icon" class="bi bi-card-image"></i>
+                <img id="repair-<%= repair.id %>-expand-img" src="/img/news-2.jpg" class="img-fluid" style="display:none">
+            </div>
+        </li>
           
         <% } %>
       <% } %>
     </ul>
   </div>
+
 </main>
 
 

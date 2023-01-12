@@ -338,3 +338,28 @@ document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
       });
   });
 });
+
+
+//extend when click icon (repairs and spreadsheets)
+const expandIcon = document.querySelectorAll('.expand-icon');
+const expandImg = document.querySelectorAll('.expand-img');
+  //loop through all
+for (let i = 0; i < expandIcon.length; i++) {
+  
+  //change style
+expandIcon[i].addEventListener('click', function() {
+  if (expandImg[i].getAttribute("style") === "display:none") {
+    expandImg[i].removeAttribute("style");
+  }
+  expandImg[i].classList.toggle('expanded');
+});
+
+  
+  // hide img when clicking anywhere outside of photo
+document.addEventListener('click', function(event) {
+  if (!event.target.matches('.expand-img') && !event.target.matches('.expand-icon') && expandImg[i].classList.contains('expanded')) {
+    expandImg[i].classList.remove('expanded');
+    expandImg[i].setAttribute("style", "display:none");
+  }
+});
+}

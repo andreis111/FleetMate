@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const upload = require("../middleware/multer");
 const authController = require("../controllers/auth");
 const adminController = require("../controllers/admin");
 const driverController = require("../controllers/driver");
@@ -30,7 +31,7 @@ router.delete("/spreadsheet/deleteIndividual/:weekId/:individualId", ensureAuth,
 
 //Repair Routes
 router.get("/repairs", ensureAuth, driverController.getRepair);
-router.post("/repairs", ensureAuth, driverController.postRepair);
+router.post("/repairs", ensureAuth, upload.single("file"), driverController.postRepair);
 router.delete("/repairs/delete/:id", ensureAuth, driverController.deleteRepair);
 
 module.exports = router;

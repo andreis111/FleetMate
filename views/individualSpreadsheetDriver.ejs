@@ -60,7 +60,7 @@
             <td><%= individual.otherCosts%></td>
             <td><%= individual.fuel%></td>
             <td><%= individual.notes%></td>
-            
+
             <% if (!week.completed) { %>
             <td class="text-right">
               <form action="/driver/spreadsheet/editIndividual/<%= week.id%>/<%= individual.id%>" >
@@ -74,6 +74,12 @@
               </form>
             </td>
             <% } %>
+            <td>
+              <div >
+                <i id="expand-icon" class="bi bi-card-image btn btn-secondary btn-sm"></i>
+                <img id="expand-img" src="/img/news-2.jpg" class="img-fluid" style="display:none">
+            </div>
+            </td>
           </tr>
         <% } %>
         </tbody>

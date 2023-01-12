@@ -4,6 +4,7 @@ const WeeklySs = require("../models/WeeklySs");
 const Individual = require("../models/IndividualTrip");
 const Repair = require("../models/Repair");
 const Company = require("../models/Company");
+const cloudinary = require("../middleware/cloudinary");
 
 module.exports = {
 
@@ -256,13 +257,15 @@ module.exports = {
     const truck = await Truck.findById(req.user.truckId)
       try {
         // Upload image to cloudinary
-        // const result = await cloudinary.uploader.upload(req.file.path);
+        const result = await cloudinary.uploader.upload(req.file.path);
 
           await Repair.create({
             content: req.body.content,
             truckPlate: truck.plate,
             createdBy: req.user.id,
             truckId: req.user.truckId,
+            image: result.secure_url,
+            cloudinaryId: result.public_id,
         });
         console.log("Repair has been added!");
         res.redirect(`/driver/repairs/`);
