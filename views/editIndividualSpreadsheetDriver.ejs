@@ -36,7 +36,7 @@
         <tbody>
         <% for(const individual of individuals) {%>
             <%if (individual.id === editTrip.id){%>
-                <form action="/driver/spreadsheet/editIndividual/<%= week.id%>/<%= individual.id%>?_method=PUT" method="POST">
+                <form action="/driver/spreadsheet/editIndividual/<%= week.id%>/<%= individual.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
                     <tr>
                       <td><input type="text" id="startLoc" name="startLoc" class="form-control form-control-sm" value="<%=individual.startLoc%>"></td>
                       <td><input type="date" id="startDate" name="startDate" class="form-control form-control-sm" value="<%=individual.startDate%>"></td>
@@ -46,6 +46,10 @@
                       <td><input type="number" id="otherCosts" name="otherCosts" class="form-control form-control-sm" placeholder="Nums only" value="<%=individual.otherCosts%>"></td>
                       <td><input type="number" id="fuel" name="fuel" class="form-control form-control-sm" placeholder="Nums only" value="<%=individual.fuel%>"></td>
                       <td><input type="text" id="notes" name="notes" class="form-control form-control-sm" value="<%=individual.notes%>"></td>
+                      <td>      <label for="imageUpload">
+                        <i class="bi bi-upload btn btn-sm btn-info"></i>
+                      </label>
+                      <input type="file" class="form-control" id="imageUpload" name="file" style="display:none;"></td>
                       <td class="text-right"><button type="submit" class="btn btn-primary btn-sm rounded-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Confirm edit"><i class="bi bi-check"></i></button></td>
                       
                     

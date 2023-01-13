@@ -180,7 +180,8 @@ module.exports = {
             weekId: req.params.id,
             image: imageUrl,
             cloudinaryId: cloudinaryId,
-          });
+            });
+          
           console.log("Trip has been added!");
           res.redirect(`/driver/spreadsheet/${req.params.id}`);
         } catch (err) {
@@ -235,8 +236,21 @@ module.exports = {
       ) {
         delete req.body[key]
       }
-    })
+    });
     try {
+      // Check if image file was uploaded
+      if (req.file) {
+        // Upload image to cloudinary
+        const result = await cloudinary.uploader.upload(req.file.path);
+        req.body.image = result.secure_url;
+        req.body.cloudinaryId = result.public_id;
+      }
+      // Find the individual and update it
+      const individual = await Individual.findById(req.params.individualId);
+      // Delete the old image if it exists
+      if (individual.cloudinaryId) {
+        await cloudinary.uploader.destroy(individual.cloudinaryId);
+      }
       await Individual.findOneAndUpdate(
         { _id: req.params.individualId },
         {

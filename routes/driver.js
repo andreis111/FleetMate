@@ -26,7 +26,7 @@ router.get("/spreadsheet/:id", ensureAuth, driverController.getIndividualSpreads
 router.post("/spreadsheet/createIndividual/:id", upload.single("file"), ensureAuth, driverController.postIndividualTrip);
 router.put("/spreadsheet/complete/:id", ensureAuth, driverController.putCompleteWeek);
 router.get("/spreadsheet/editIndividual/:weekId/:individualId", ensureAuth, driverController.getEditIndividual);
-router.put("/spreadsheet/editIndividual/:weekId/:individualId", ensureAuth, driverController.putEditIndividual);
+router.put("/spreadsheet/editIndividual/:weekId/:individualId", upload.single("file"), ensureAuth, driverController.putEditIndividual);
 router.delete("/spreadsheet/deleteIndividual/:weekId/:individualId", ensureAuth, driverController.deleteIndividual);
 
 //Repair Routes
