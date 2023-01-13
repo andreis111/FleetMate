@@ -13,6 +13,7 @@ module.exports = {
 
   //render the admin main page
   getAdminMainPage: async (req, res) => {
+    console.log(req.user.email);
     try {
       // find all drivers that are linked to the currently logged-in admin
       const drivers = await Driver.find({adminId: req.user._id});
@@ -36,8 +37,20 @@ module.exports = {
                                       })
                                   .populate("createdBy", "userName")
                                   .sort({ createdAt: -1 });
-      console.log(spreadsheets);
       res.render("adminMainPage.ejs", { user: req.user, spreadsheets: spreadsheets, repairs: repairs });
+    } catch (err) {
+      console.log(err);
+      res.redirect("/admin");
+    }
+  },
+  getDenied: async (req, res) => {
+    console.log(req.user.email);
+    try {
+      const drivers = await Driver.find({adminId: req.user._id});
+      const driverIds = drivers.map(driver => driver._id);
+ 
+      
+      res.render("accessDenied.ejs", { user: req.user});
     } catch (err) {
       console.log(err);
       res.redirect("/admin");
@@ -207,7 +220,7 @@ module.exports = {
       console.log("Truck has been added!");
       res.redirect("/admin/trucks");
     } catch (err) {
-      console.log(err);
+      handleError(error);
     }
   },
   

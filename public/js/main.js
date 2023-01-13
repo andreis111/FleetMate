@@ -370,3 +370,14 @@ var form = document.getElementById("uploadForm");
   fileInput.addEventListener("change", function() {
     form.submit();
   });
+
+  //show error
+  function showErrorMessage() {
+    // Select the error message div
+    const errorMessage = document.getElementById("error-message");
+    // Set the error message text
+    errorMessage.innerHTML = "You do not have permission to access this functionality";
+    // Remove the hidden class to show the error message
+    errorMessage.classList.remove("hidden");
+  }
+  

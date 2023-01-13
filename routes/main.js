@@ -7,6 +7,7 @@ const { ensureAuth } = require("../middleware/auth");
 
 //Main Routes 
 router.get("/", homeController.getIndex);
+
 // router.get("/driver", ensureAuth, driverController.getDriverMainPage);
 
 // Routes for user login/signup
