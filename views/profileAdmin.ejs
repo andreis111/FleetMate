@@ -96,16 +96,16 @@
                             <div class="d-flex">
 
                                     <!-- Form to edit photo, it has an event listener to auto upload once selected -->
-                            <form action="/driver/profile/edit?_method=PUT" method="POST" enctype="multipart/form-data" id="uploadForm">
+                            <form action="/admin/profile/edit?_method=PUT" method="POST" enctype="multipart/form-data" id="uploadForm">
                               <label for="imageUpload" >
-                                <i class="bi bi-upload btn btn-sm btn-primary"></i>
+                                <i class="bi bi-upload btn btn-sm btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Only .jpg, .jpeg and .png accepted"></i>
                               </label>
                               <input type="file" class="form-control" id="imageUpload" name="file" style="display:none;" required>
                               <input type="submit" value="Upload" style="display:none;">
                             </form>
 
                                   <!-- Form to delete photo -->
-                            <form action="/driver/profile/delete?_method=PUT" method="POST"  id="deleteForm">
+                            <form action="/admin/profile/delete?_method=PUT" method="POST"  id="deleteForm">
                               <label for="deleteForm" class="ml-2">
                                 <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
                               </label>

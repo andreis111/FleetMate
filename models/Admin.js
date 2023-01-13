@@ -7,8 +7,8 @@ const AdminSchema = new mongoose.Schema({
   password: String,
   role: { type: String, required: true, default: 'Admin' },
   createdAt: { type: Date, default: Date.now },
-  image: {type: String,require: true, default: null},
-  cloudinaryId: {type: String,require: true, default: null}
+  image: {type: String,require: true, default: ''},
+  cloudinaryId: {type: String,require: true, default: ''}
 });
 
 // Password hash middleware.
