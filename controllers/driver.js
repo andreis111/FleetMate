@@ -160,7 +160,8 @@ module.exports = {
     postIndividualTrip: async (req, res) => {
         try {
           // Upload image to cloudinary
-          
+          let imageUrl = '';
+          let cloudinaryId = '';
           if (req.file) {
             // Upload image to cloudinary
             const result = await cloudinary.uploader.upload(req.file.path);
