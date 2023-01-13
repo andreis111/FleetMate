@@ -363,3 +363,10 @@ document.addEventListener('click', function(event) {
   }
 });
 }
+
+//script to upload photo directly once it is selected from pop-up window
+var form = document.getElementById("uploadForm");
+  var fileInput = document.getElementById("imageUpload");
+  fileInput.addEventListener("change", function() {
+    form.submit();
+  });

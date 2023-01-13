@@ -3,6 +3,7 @@ const router = express.Router();
 const authController = require("../controllers/auth");
 const adminController = require("../controllers/admin");
 const driverController = require("../controllers/driver");
+const upload = require("../middleware/multer");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 //Main Routes
@@ -11,7 +12,7 @@ router.get("/", ensureAuth, adminController.getAdminMainPage);
 
 //Profile
 router.get("/profile", ensureAuth, adminController.getAdminProfile);
-router.put("/profile/edit", ensureAuth, adminController.putEditAdmin);
+router.put("/profile/edit", upload.single("file"), ensureAuth, adminController.putEditAdmin);
 
 //Company
 router.post("/profile/createCompany", ensureAuth, adminController.postCreateCompany);

@@ -6,8 +6,8 @@ const Truck = require("../models/Truck");
 const WeeklySs = require("../models/WeeklySs");
 const Individual = require("../models/IndividualTrip");
 const Repair = require("../models/Repair");
-const Company = require("../models/Company");
 const CustomOptionTruck = require("../models/CustomOptionTruck");
+const cloudinary = require("../middleware/cloudinary");
 
 module.exports = {
 
@@ -48,19 +48,7 @@ module.exports = {
   //Admin profile 
   getAdminProfile: async (req, res) => {
     try {
-      const company = await Company.find({ adminId: req.user.id });
-      console.log(company);
-      if (req.user.role === 'Admin') {
-        if (company.length > 0) {
-          // render the edit form
-          res.render("profileAdmin", {user : req.user, company: company, companyExist: true});
-        } else {
-          // render the create button
-          res.render("profileAdmin", {user : req.user, companyExist: false});
-        }
-      } else {
-        res.redirect("/admin/profile");
-      }
+      res.render("profileAdmin.ejs", {user : req.user});
     } catch (err) {
       console.log(err);
     }
@@ -77,6 +65,19 @@ module.exports = {
       }
     })
     try {
+      // Check if image file was uploaded
+      if (req.file) {
+        // Upload image to cloudinary
+        const result = await cloudinary.uploader.upload(req.file.path);
+        req.body.image = result.secure_url;
+        req.body.cloudinaryId = result.public_id;
+      }
+      // Find the individual and update it
+      const admin = await Admin.findById(req.user.id);
+      // Delete the old image if it exists
+      if (admin.cloudinaryId) {
+        await cloudinary.uploader.destroy(admin.cloudinaryId);
+      }
       await Admin.findOneAndUpdate(
         { _id: req.user.id },
         {

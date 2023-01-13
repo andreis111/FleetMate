@@ -98,7 +98,7 @@ exports.postSignup = (req, res, next) => {
     userName: req.body.userName,
     email: req.body.email,
     password: req.body.password,
-    role: 'admin'
+    role: 'Admin'
   });
 
   Admin.findOne(
