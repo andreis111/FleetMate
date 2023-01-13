@@ -11,7 +11,8 @@ router.get("/", ensureAuth, driverController.getDriverMainPage);
 
 //Profile Route
 router.get("/profile", ensureAuth, driverController.getDriverProfile);
-router.put("/profile/edit", ensureAuth, driverController.putEditDriver);
+router.put("/profile/edit", upload.single("file"), ensureAuth, driverController.putEditDriver);
+router.put("/profile/delete", upload.single("file"), ensureAuth, driverController.deletePhoto);
 
 //Truck Route
 router.get("/truck", ensureAuth, driverController.getTruck);

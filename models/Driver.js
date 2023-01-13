@@ -13,6 +13,8 @@ const DriverSchema = new mongoose.Schema({
     adminId: { type: mongoose.Schema.Types.ObjectId, ref: "Admin" },
     role: { type: String, required: true, default: 'Driver' },
     createdAt: { type: Date, default: Date.now },
+    image: {type: String,require: true, default: null},
+    cloudinaryId: {type: String,require: true, default: null}
 });
 
 // Password hash middleware.

@@ -38,6 +38,8 @@ module.exports = {
       console.log(err);
     }
   },
+
+          //edit driver, edit works for photo too
   putEditDriver: async (req, res) => {
     //iterate to see if body is empty or not and delete the empty fields
     Object.keys(req.body).forEach((key) => {
@@ -50,6 +52,19 @@ module.exports = {
       }
     })
     try {
+      // Check if image file was uploaded
+      if (req.file) {
+        // Upload image to cloudinary
+        const result = await cloudinary.uploader.upload(req.file.path);
+        req.body.image = result.secure_url;
+        req.body.cloudinaryId = result.public_id;
+      }
+      // Find the individual and update it
+      const driver = await Driver.findById(req.user.id);
+      // Delete the old image if it exists
+      if (driver.cloudinaryId) {
+        await cloudinary.uploader.destroy(admin.cloudinaryId);
+      }
       await Driver.findOneAndUpdate(
         { _id: req.user.id },
         {
@@ -62,7 +77,27 @@ module.exports = {
       console.log(err);
     }
   },
-
+            //delete photo from cloudinary, cloudinaryId and image
+  deletePhoto: async (req, res) => {
+    try {
+      const driver = await Driver.findById(req.user.id);
+      req.body.image = null;
+      req.body.cloudinaryId = null;
+      if (driver.cloudinaryId) {
+        await cloudinary.uploader.destroy(driver.cloudinaryId);
+      }
+      await Driver.findOneAndUpdate(
+        { _id: req.user.id },
+        {
+          $set: req.body,
+        }
+      );
+      console.log("photo deleted");
+      res.redirect(`/driver/profile`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
 
     //Get truck assigned page
   getTruck: async (req, res) => {
