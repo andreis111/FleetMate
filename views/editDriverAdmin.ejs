@@ -42,7 +42,7 @@
                              <% } %>
                                <option value="noTruck">No truck </option>
                            </select>
-                           <button type="submit" class="btn btn-primary rounded-3"><i class="bi bi-check"></i></button>
+                           <button type="submit" class="btn btn-primary rounded-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to assign"><i class="bi bi-check"></i></button>
                          </div>
                        </div>
                     </form>
@@ -121,10 +121,7 @@
                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                         <div class="col-md-8 col-lg-9">
                           <img src="/img/profile-img.jpg" alt="Profile">
-                          <div class="pt-2">
-                            <a href="#" class="btn btn-primary btn-sm disabled" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                            <a href="#" class="btn btn-danger btn-sm disabled" title="Remove my profile image"><i class="bi bi-trash"></i></a>
-                          </div>
+                          <i class="bi bi-info-circle-fill" data-bs-toggle="tooltip" data-bs-placement="right" title="Only driver can edit his own photo"></i>
                         </div>
                       </div>
   

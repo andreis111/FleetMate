@@ -97,7 +97,6 @@ module.exports = {
       const admin = await Admin.findById(req.user.id);
       req.body.image = null;
         req.body.cloudinaryId = null;
-      console.log(admin);
       if (admin.cloudinaryId) {
         await cloudinary.uploader.destroy(admin.cloudinaryId);
       }

@@ -63,7 +63,7 @@ module.exports = {
       const driver = await Driver.findById(req.user.id);
       // Delete the old image if it exists
       if (driver.cloudinaryId) {
-        await cloudinary.uploader.destroy(admin.cloudinaryId);
+        await cloudinary.uploader.destroy(driver.cloudinaryId);
       }
       await Driver.findOneAndUpdate(
         { _id: req.user.id },
