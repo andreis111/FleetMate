@@ -6,7 +6,7 @@ module.exports = {
         }
     
         // Check if the user's role is "demo"
-        if (req.user.email === 'admin@a.com') {
+        if (req.user.email === 'demo@demo.com') {
             return res.redirect("/admin/access-denied");
          }
   
