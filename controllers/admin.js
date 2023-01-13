@@ -91,52 +91,75 @@ module.exports = {
     }
   },
 
-  //Company
-  postCreateCompany: async (req, res) => {
+  //delete photo from cloudinary, cloudinaryId and image
+  deletePhoto: async (req, res) => {
     try {
-      // Upload image to cloudinary
-      // const result = await cloudinary.uploader.upload(req.file.path);
-
-      await Company.create({
-        name: req.body.name,
-        address: req.body.address,
-        vat: req.body.vat,
-        contactName: req.body.contactName,
-        contactPhone: req.body.contactPhone,
-        contactEmail: req.body.contactEmail,
-        adminId: req.user.id
-      });
-      console.log("Company has been added!");
-      res.redirect("/admin/profile");
-    } catch (err) {
-      console.log(err);
-    }
-  },
-
-  putEditCompany: async (req, res) => {
-    //iterate to see if body is empty or not and delete the empty fields
-    Object.keys(req.body).forEach((key) => {
-      if (
-        req.body[key] == null ||
-        req.body[key] == undefined ||
-        req.body[key] == ''
-      ) {
-        delete req.body[key]
+      const admin = await Admin.findById(req.user.id);
+      req.body.image = null;
+        req.body.cloudinaryId = null;
+      console.log(admin);
+      if (admin.cloudinaryId) {
+        await cloudinary.uploader.destroy(admin.cloudinaryId);
       }
-    })
-    try {
-      await Company.findOneAndUpdate(
-        { adminId: req.user.id },
+      await Admin.findOneAndUpdate(
+        { _id: req.user.id },
         {
           $set: req.body,
         }
       );
-      console.log("Company updated");
+      console.log("Admin updated");
       res.redirect(`/admin/profile`);
     } catch (err) {
       console.log(err);
     }
   },
+
+  // //Company
+  // postCreateCompany: async (req, res) => {
+  //   try {
+  //     // Upload image to cloudinary
+  //     // const result = await cloudinary.uploader.upload(req.file.path);
+
+  //     await Company.create({
+  //       name: req.body.name,
+  //       address: req.body.address,
+  //       vat: req.body.vat,
+  //       contactName: req.body.contactName,
+  //       contactPhone: req.body.contactPhone,
+  //       contactEmail: req.body.contactEmail,
+  //       adminId: req.user.id
+  //     });
+  //     console.log("Company has been added!");
+  //     res.redirect("/admin/profile");
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // },
+
+  // putEditCompany: async (req, res) => {
+  //   //iterate to see if body is empty or not and delete the empty fields
+  //   Object.keys(req.body).forEach((key) => {
+  //     if (
+  //       req.body[key] == null ||
+  //       req.body[key] == undefined ||
+  //       req.body[key] == ''
+  //     ) {
+  //       delete req.body[key]
+  //     }
+  //   })
+  //   try {
+  //     await Company.findOneAndUpdate(
+  //       { adminId: req.user.id },
+  //       {
+  //         $set: req.body,
+  //       }
+  //     );
+  //     console.log("Company updated");
+  //     res.redirect(`/admin/profile`);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // },
 
                   //TRUCKS controllers:
   
