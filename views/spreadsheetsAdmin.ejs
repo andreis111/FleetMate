@@ -14,8 +14,7 @@
 
   <form action="/admin/spreadsheets/filter?_method=GET" method="POST">
   <div class="row align-items-top">
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <h6 class="text-center">Filter:</h6>
+      <div class="col-lg-2 col-md-4 col-sm-6">
         <div class="card"> 
           
             <select class="form-select" name = "truckId">
@@ -30,18 +29,18 @@
               <option value="<%=driver._id%>"><%=driver.userName%></option>
               <% } %>
             </select>
-            
+            <button type="submit" class="btn btn-primary rounded-3 btn-sm mt-1"> Filter<i class="bi bi-check"></i></button>
         </div>
       </div>
   </div>
-  <button type="submit" class="btn btn-primary rounded-3 btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Filter"><i class="bi bi-check"></i></button>
+  
           </form>
   <!-- Loop and show all spreadsheets from all it's drivers -->
 
   <section class="section">
     <div class="row align-items-top">
       <% for(week of weekly) {%>
-        <div class="col-lg-3 col-md-4 col-sm-6">
+        <div class="col-lg-2 col-md-4 col-sm-6">
           <!-- Date format -->
           <% const options = {  year: 'numeric', month: 'numeric', day: 'numeric', separator: '.' }; %>
           <div class="card h-100">

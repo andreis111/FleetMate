@@ -12,10 +12,10 @@
         </nav>
     <p>Driver assigned: <%if(driver[0]) {%> 
         <span class="text-secondary fw-bold"><%=driver[0].userName%></span> 
-        <small><a href="/admin/drivers/" class="btn btn-secondary btn-sm rounded-3"><i class="bi bi-person-square"></i></a></small>
+        <small><a href="/admin/drivers/" class="btn btn-secondary btn-sm rounded-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Assign new driver"><i class="bi bi-person-square"></i></a></small>
         <% } else {%>
         <span class="text-danger">No driver assigned</span>
-        <small><a href="/admin/drivers/" class="btn btn-primary btn-sm rounded-3"><i class="bi bi-person-plus"></i></a></small>
+        <small><a href="/admin/drivers/" class="btn btn-primary btn-sm rounded-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Assign driver"><i class="bi bi-person-plus"></i></a></small>
         <% } %>
     </p>
     

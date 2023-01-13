@@ -28,7 +28,7 @@
             <th scope="col">Other costs</th>
             <th scope="col">Fuel</th>
             <th scope="col">Notes</th>
-            <th scope="col">POD</th>
+            <th scope="col" data-bs-toggle="tooltip" data-bs-placement="top" title="Proof of delivery">POD</th>
           </tr>
         </thead>
         <tbody>
@@ -49,7 +49,7 @@
             <td>
               <% if (individual.image) { %>
               <div >
-                <i  class="bi bi-card-image btn btn-secondary btn-sm expand-icon"></i>
+                <i  class="bi bi-card-image btn btn-secondary btn-sm expand-icon" data-bs-toggle="tooltip" data-bs-placement="right" title="Open/close POD"></i>
                 <img src="<%=individual.image%>" class="img-fluid expand-img" style="display:none">
               </div>
               <% } %>

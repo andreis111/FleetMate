@@ -43,15 +43,17 @@
                     <% } %>
                     
                   </ul>
-                  <!-- Button to delete truck -->
+                  
                   <div class="button-container" style="display: flex">
-                    <form action="/admin/trucks/deleteTruck/<%=truck.id%>?_method=DELETE" method="POST">
-                      <button class="btn btn-danger btn-sm bi bi-trash rounded-3" aria-hidden="true" type="submit"></button>
-                    </form>
 
                     <!-- Button to edit truck -->
                     <form action="/admin/trucks/edit/<%=truck._id%>">
-                      <button class="btn btn-primary btn-sm bi bi-pencil-square rounded-3" aria-hidden="true" type="submit"></button>
+                      <button class="btn btn-primary btn-sm bi bi-pencil-square rounded-3" aria-hidden="true" type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to edit"></button>
+                    </form>
+
+                    <!-- Button to delete truck -->
+                    <form action="/admin/trucks/deleteTruck/<%=truck.id%>?_method=DELETE" method="POST">
+                      <button class="btn btn-danger btn-sm bi bi-trash rounded-3" aria-hidden="true" type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to delete"></button>
                     </form>
 
                   </div>

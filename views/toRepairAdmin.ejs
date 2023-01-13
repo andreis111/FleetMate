@@ -13,8 +13,8 @@
 </div>
 <form action="/admin/repairs/filter?_method=GET" method="POST">
   <div class="row align-items-top">
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <h6 class="text-center">Filter:</h6>
+    <div class="col-lg-2 col-md-4 col-sm-6">
+ 
       <div class="card"> 
         
           <select class="form-select" name = "truckId">
@@ -24,16 +24,16 @@
             <% } %>
             
           </select>
-          
+          <button type="submit" class="btn btn-primary rounded-3 btn-sm mt-1" ><i class="bi bi-check"> Filter</i></button>
       </div>
-      <button type="submit" class="btn btn-primary rounded-3 btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Filter"><i class="bi bi-check"></i></button>
+      
     </div>
     </div>
     
   </form>
 
     <!-- Repair list with checkbox -->
-<div class="col-lg-6 col-md-8">
+<div class="col-lg-3 col-md-8">
   <h5 class="text-danger text-center">To repair:</h5>
   <ul class="list-group">
     <% for (const repair of repairs) { %>
@@ -44,10 +44,12 @@
         <input class="form-check-input me-1" type="checkbox" value="<%= repair._id %>" <%= repair.completed ? 'checked' : '' %>>
         <p> Problem: <%= repair.content %>  </p>
         <p> Plate: <%= repair.truckPlate %> </p>
-        <div >
-          <i  class="bi bi-card-image btn btn-secondary btn-sm expand-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="See photo"></i>
-          <img src="<%=repair.image%>" class="img-fluid expand-img" style="display:none">
-        </div>
+        <% if (repair.image){ %>
+          <div >
+            <i  class="bi bi-card-image btn btn-secondary btn-sm expand-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="See photo"></i>
+            <img src="<%=repair.image%>" class="img-fluid expand-img" style="display:none">
+          </div>
+          <% } %>
       </li>
       <% } %>
     <% } %>
@@ -64,10 +66,12 @@
         <input class="form-check-input me-1" type="checkbox" value="<%= repair._id %>" <%= repair.completed ? 'checked' : '' %>>
         <p> Problem: <%= repair.content %>  </p>
         <p> Plate: <%= repair.truckPlate %> </p>
-        <div >
-          <i  class="bi bi-card-image btn btn-secondary btn-sm expand-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="See photo"></i>
-          <img src="<%=repair.image%>" class="img-fluid expand-img" style="display:none">
-        </div>
+        <% if (repair.image){ %>
+          <div >
+            <i  class="bi bi-card-image btn btn-secondary btn-sm expand-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="See photo"></i>
+            <img src="<%=repair.image%>" class="img-fluid expand-img" style="display:none">
+          </div>
+          <% } %>
       </li>
       <% } %>
     <% } %>
