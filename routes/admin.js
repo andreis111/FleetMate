@@ -35,7 +35,7 @@ router.post("/trucks/addCustom/:id", checkRestrict, ensureAuth, adminController.
 router.get("/drivers", ensureAuth, adminController.getDrivers);
 router.get("/drivers/createDriver", ensureAuth, adminController.getCreateDriver);
 router.post("/drivers/createDriver", checkRestrict, ensureAuth, authController.postSignupDriver);
-router.get("/drivers/edit/:id", checkRestrict, ensureAuth, adminController.getEditDriver);
+router.get("/drivers/edit/:id", ensureAuth, adminController.getEditDriver);
 router.put("/drivers/edit/:id", checkRestrict, ensureAuth, adminController.putEditDriver);
 router.delete("/drivers/deleteDriver/:id", checkRestrict, ensureAuth, adminController.deleteDriver);
 
