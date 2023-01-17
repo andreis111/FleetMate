@@ -27,7 +27,7 @@ And continuous improvement of the codebase and integration of new technologies t
 
 - Repairs: add importance
 
-- Add truck documentation
+- Truck: ability to add documents so driver can easily have access to it
 
 - Add new functionality: trailers/chassis
 
