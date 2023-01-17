@@ -32,8 +32,7 @@ Creating a full-stack app taught me that it's important to plan and design the a
 
 ## Demo:
 
-![chrome_Mh3MeQDgDH](https://user-images.githubusercontent.com/96948675/212838890-d8fdf6ad-7e47-468e-a769-2b4085fddffa.gif)
-![chrome_Mh3MeQDgDH](https://i.imgur.com/HaWIwpZ.gif)
+![Gif demo](https://i.imgur.com/HaWIwpZ.gif)
 
 
 <!-- ## Examples:
