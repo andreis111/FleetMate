@@ -10,9 +10,7 @@ A fleet manager app that helps businesses manage and optimize their fleet of tru
 
 **Tech used:** HTML, CSS, JavaScript, Node.js, EJS, Express
 
-**Backend:** Node.js server with Express.js, written using the MVC architecture and MongoDB for database
 
-**Frontend:** Used ejs
 
 The front-end of the app was built using HTML, CSS, and JavaScript, while the back-end was powered by Node.js and Express. The app follows the Model-View-Controller (MVC) architecture, which allows for easy maintenance and scalability. Data is stored and managed using MongoDB, a NoSQL database that allows for efficient storage and retrieval of large amounts of data. 
 
