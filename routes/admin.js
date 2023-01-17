@@ -47,6 +47,6 @@ router.get("/spreadsheet/:id", ensureAuth, adminController.getIndividualSpreadsh
 //repairs
 router.get("/repairs", ensureAuth, adminController.getRepairs);
 router.get("/repairs/filter", ensureAuth, adminController.filterRepairs);
-router.post("/updateRepair", checkRestrict, ensureAuth, adminController.updateRepair);
+router.post("/updateRepair", ensureAuth, adminController.updateRepair);
 
 module.exports = router;
