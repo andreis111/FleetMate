@@ -30,6 +30,11 @@ A fleet manager app that helps businesses manage and optimize their fleet of tru
 
 Creating a full-stack app taught me that it's important to plan and design the app carefully before starting to code. This can save a lot of time and effort in the long run.
 
+## Demo:
+
+![chrome_Mh3MeQDgDH](https://user-images.githubusercontent.com/96948675/212838890-d8fdf6ad-7e47-468e-a769-2b4085fddffa.gif)
+
+
 <!-- ## Examples:
 
 Take a look at these couple examples that I have in my own portfolio: -->
