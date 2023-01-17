@@ -2,7 +2,7 @@
 
 A fleet manager app that helps businesses manage and optimize their fleet of trucks. It can track maintenance schedules, drivers' weekly spreadsheets, truck and driver individual pages with full info, repairs adding and scheduling
 
-**Link to project:** https://fleetmate.onrender.com/
+**Link to project:** https://fleetmate.cyclic.app/
 
 <!-- ![alt tag](http://placecorgi.com/1200/650) -->
 
