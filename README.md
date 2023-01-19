@@ -1,8 +1,8 @@
 # FleetMate
 
-A fleet manager app that helps businesses manage and optimize their fleet of trucks. It can track maintenance schedules, drivers' weekly spreadsheets, truck and driver individual pages with full info, repairs adding and scheduling
+A fleet manager app that helps businesses manage and optimize their fleet of trucks. This powerful tool allows administrators to easily manage their fleet by adding and assigning trucks and drivers to their company. Drivers can log their individual trips and create repair reports, all while being able to add photos for documentation. The app's user-friendly interface also allows for seamless communication between the admin and drivers, with the ability for both parties to view and utilize the information and photos provided by the other
 
-**Link to project:** https://fleetmate.cyclic.app/
+**Link to project:** https://fleetmate.onrender.com/ (slow first start because of render)
 
 <!-- ![alt tag](http://placecorgi.com/1200/650) -->
 
@@ -10,21 +10,26 @@ A fleet manager app that helps businesses manage and optimize their fleet of tru
 
 **Tech used:** HTML, CSS, JavaScript, Node.js, EJS, Express
 
-**Backend:** Node.js server with Express.js, written using the MVC architecture and MongoDB for database
 
-**Frontend:** Used ejs
+
+The front-end of the app was built using HTML, CSS, and JavaScript, while the back-end was powered by Node.js and Express. The app follows the Model-View-Controller (MVC) architecture, which allows for easy maintenance and scalability. Data is stored and managed using MongoDB, a NoSQL database that allows for efficient storage and retrieval of large amounts of data. 
 
 ## Optimizations
 
-- Will optimize the dinamic content with react for frontend
-
-- Refactor controllers with .populate() instead of current code
+Future optimization plans include incorporating React for a more responsive user interface and refactoring current code for improved performance.
+And continuous improvement of the codebase and integration of new technologies to enhance the overall user experience and optimize the app's performance.
 
 ## Future improvements
 
 - Check for maps api in spreadsheets
 
 - Repairs: add importance
+
+- Truck: ability to add documents so driver can easily have access to it
+
+- Add new functionality: trailers/chassis
+
+- Create a calendar for drivers to input their desired holiday dates
 
 ## Lessons Learned:
 
