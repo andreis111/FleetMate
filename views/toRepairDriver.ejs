@@ -2,8 +2,6 @@
 
 <main id="main" class="main">
   <div class="pagetitle">
-
-
     <h1>What needs to be repaired on this truck</h1>
     <nav>
       <ol class="breadcrumb">
@@ -16,79 +14,133 @@
   <form action="/driver/repairs" enctype="multipart/form-data" method="POST">
     <div class="form-group">
       <label for="content">Repair note: </label>
-      <input type="text" id="content" name="content" required>
+      <input type="text" id="content" name="content" required />
       <label for="imageUpload">
-        <i class="bi bi-upload btn btn-sm btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Upload photo"></i>
+        <i
+          class="bi bi-upload btn btn-sm btn-info"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="Upload photo"
+        ></i>
       </label>
-      <input type="file" class="form-control" id="imageUpload" name="file" style="display:none;">
-      
+      <input
+        type="file"
+        class="form-control"
+        id="imageUpload"
+        name="file"
+        style="display: none"
+      />
+
       <% if(!user.truckId) { %>
-        
-          <button type="submit" class="btn btn-primary btn-sm rounded-3"  disabled ><i class="bi bi-plus-lg"></i></button>
-          <i class="bi bi-info-circle-fill" data-bs-toggle="tooltip" data-bs-placement="right" title="Repairs can be created only when a truck is assigned to you!"></i>
-        
+
+      <button type="submit" class="btn btn-primary btn-sm rounded-3" disabled>
+        <i class="bi bi-plus-lg"></i>
+      </button>
+      <i
+        class="bi bi-info-circle-fill"
+        data-bs-toggle="tooltip"
+        data-bs-placement="right"
+        title="Repairs can be created only when a truck is assigned to you!"
+      ></i>
+
       <% } else { %>
 
-          <button type="submit" class="btn btn-primary btn-sm rounded-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Send repair"><i class="bi bi-plus-lg"></i> </button>
-          
-        
-      <% } %>
-      
-    </div>
+      <button
+        type="submit"
+        class="btn btn-primary btn-sm rounded-3"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Send repair"
+      >
+        <i class="bi bi-plus-lg"></i>
+      </button>
 
+      <% } %>
+    </div>
   </form>
 
   <div class="col-lg-3 col-md-8 mt-5">
     <h5 class="text-danger text-center">Ongoing:</h5>
     <ul class="list-group">
-      <% for (const repair of repairs) { %>
-        
-        <% if (!repair.completed){ %>
-          
-          <li class="list-group-item <%= repair.completed ? 'completed' : '' %>  mb-1 lightRed">
-            <p> Problem: <%= repair.content %>  </p>
-            <p> Plate: <%= repair.truckPlate %> </p>
-            <form action="/driver/repairs/delete/<%=repair.id%>?_method=DELETE" method="POST">
-              <button  class="btn btn-danger btn-sm bi bi-trash position-absolute rounded-3" style="bottom: 0; right: 0;" aria-hidden="true" type="submit " data-bs-toggle="tooltip" data-bs-placement="top" title="Delete repair"></button>
-            </form>
-            <% if (repair.image){ %>
-            <div >
-              <i  class="bi bi-card-image btn btn-secondary btn-sm expand-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="See photo"></i>
-              <img src="<%=repair.image%>" class="img-fluid expand-img" style="display:none">
-            </div>
-            <% } %>
-          </li>
+      <% for (const repair of repairs) { %> <% if (!repair.completed){ %>
+
+      <li
+        class="list-group-item <%= repair.completed ? 'completed' : '' %> mb-1 lightRed"
+      >
+        <p>Problem: <%= repair.content %></p>
+        <p>Plate: <%= repair.truckPlate %></p>
+        <form
+          action="/driver/repairs/delete/<%=repair.id%>?_method=DELETE"
+          method="POST"
+        >
+          <button
+            class="btn btn-danger btn-sm bi bi-trash position-absolute rounded-3"
+            style="bottom: 0; right: 0"
+            aria-hidden="true"
+            type="submit "
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="Delete repair"
+          ></button>
+        </form>
+        <% if (repair.image){ %>
+        <div>
+          <i
+            class="bi bi-card-image btn btn-secondary btn-sm expand-icon"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="See photo"
+          ></i>
+          <img
+            src="<%=repair.image%>"
+            class="img-fluid expand-img"
+            style="display: none"
+          />
+        </div>
         <% } %>
-      <% } %>
-      
+      </li>
+      <% } %> <% } %>
     </ul>
-  
+
     <h5 class="text-primary mt-3 text-center">Repaired:</h5>
     <ul class="list-group">
-      <% for (const repair of repairs) { %>
-        <% if (repair.completed){ %>
-          
-          <li id="repair-<%= repair.id %>" class="list-group-item <%= repair.completed ? 'completed' : '' %> lightBlue">
-            <p> Problem: <%= repair.content %>  </p>
-            <p> Plate: <%= repair.truckPlate %> </p>
-            <form action="/driver/repairs/delete/<%=repair.id%>?_method=DELETE" method="POST">
-                <button  class="btn btn-danger btn-sm bi bi-trash position-absolute rounded-3" style="bottom: 0; right: 0;" aria-hidden="true" type="submit"></button>
-            </form>
-            <div >
-              <i class="bi bi-card-image btn btn-secondary btn-sm expand-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="See photo"></i>
-              <img src="<%=repair.image%>" class="img-fluid expand-img" style="display:none">
-            </div>
-          </li>
-          
-        <% } %>
-      <% } %>
+      <% for (const repair of repairs) { %> <% if (repair.completed){ %>
+
+      <li
+        id="repair-<%= repair.id %>"
+        class="list-group-item <%= repair.completed ? 'completed' : '' %> lightBlue"
+      >
+        <p>Problem: <%= repair.content %></p>
+        <p>Plate: <%= repair.truckPlate %></p>
+        <form
+          action="/driver/repairs/delete/<%=repair.id%>?_method=DELETE"
+          method="POST"
+        >
+          <button
+            class="btn btn-danger btn-sm bi bi-trash position-absolute rounded-3"
+            style="bottom: 0; right: 0"
+            aria-hidden="true"
+            type="submit"
+          ></button>
+        </form>
+        <% if (repair.image){ %>
+        <div>
+          <i
+            class="bi bi-card-image btn btn-secondary btn-sm expand-icon"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            title="See photo"
+          ></i>
+          <img
+            src="<%=repair.image%>"
+            class="img-fluid expand-img"
+            style="display: none"
+          />
+        </div>
+      </li>
+      <% } %> <% } %> <% } %>
     </ul>
   </div>
-
 </main>
-
-
-
-
 
 <%- include('partials/footer') -%>

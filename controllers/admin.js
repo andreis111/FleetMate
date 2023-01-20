@@ -11,7 +11,7 @@ const cloudinary = require("../middleware/cloudinary");
 
 module.exports = {
 
-  //render the admin main page
+                //render the admin main page
   getAdminMainPage: async (req, res) => {
     console.log(req.user.email);
     try {
@@ -43,22 +43,10 @@ module.exports = {
       res.redirect("/admin");
     }
   },
-  getDenied: async (req, res) => {
-    console.log(req.user.email);
-    try {
-      const drivers = await Driver.find({adminId: req.user._id});
-      const driverIds = drivers.map(driver => driver._id);
- 
-      
-      res.render("accessDenied.ejs", { user: req.user});
-    } catch (err) {
-      console.log(err);
-      res.redirect("/admin");
-    }
-  },
+  
 
 
-  //Admin profile 
+              //Admin PROFILE 
   getAdminProfile: async (req, res) => {
     try {
       res.render("profileAdmin.ejs", {user : req.user});
@@ -237,58 +225,58 @@ module.exports = {
   },
 
     //edit truck. if body inputs empty then delete and edit only the ones we need
-    putEditTruck: async (req, res) => {
-      //iterate to see if body is empty or not and delete the empty fields
-      Object.keys(req.body).forEach((key) => {
-        if (
-          req.body[key] == null ||
-          req.body[key] == undefined ||
-          req.body[key] == ''
-        ) {
-          delete req.body[key]
-        }
-      });
-      try {
-        // Update the Truck document
-        await Truck.findOneAndUpdate(
-          { _id: req.params.id },
-          {
-            $set: req.body,
-          }
-        );
-        console.log("Truck updated");
-    
-        // Update the CustomOptionTruck documents
-        for (const key in req.body) {
-          if (key.startsWith('name')) {
-            const customOptionId = key.replace('name', '');
-            await CustomOptionTruck.findOneAndUpdate(
-              { _id: customOptionId },
-              {
-                $set: {
-                  name: req.body[key]
-                }
-              }
-            );
-          }
-          if (key.startsWith('content')) {
-            const customOptionId = key.replace('content', '');
-            await CustomOptionTruck.findOneAndUpdate(
-              { _id: customOptionId },
-              {
-                $set: {
-                  content: req.body[key]
-                }
-              }
-            );
-          }
-        }
-    
-        res.redirect(`/admin/trucks`);
-      } catch (err) {
-        console.log(err);
+  putEditTruck: async (req, res) => {
+    //iterate to see if body is empty or not and delete the empty fields
+    Object.keys(req.body).forEach((key) => {
+      if (
+        req.body[key] == null ||
+        req.body[key] == undefined ||
+        req.body[key] == ''
+      ) {
+        delete req.body[key]
       }
-    },
+    });
+    try {
+      // Update the Truck document
+      await Truck.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $set: req.body,
+        }
+      );
+      console.log("Truck updated");
+  
+      // Update the CustomOptionTruck documents
+      for (const key in req.body) {
+        if (key.startsWith('name')) {
+          const customOptionId = key.replace('name', '');
+          await CustomOptionTruck.findOneAndUpdate(
+            { _id: customOptionId },
+            {
+              $set: {
+                name: req.body[key]
+              }
+            }
+          );
+        }
+      if (key.startsWith('content')) {
+          const customOptionId = key.replace('content', '');
+          await CustomOptionTruck.findOneAndUpdate(
+            { _id: customOptionId },
+            {
+              $set: {
+                content: req.body[key]
+              }
+            }
+          );
+        }
+      }
+  
+      res.redirect(`/admin/trucks`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
 
     //delete truck, find it by id and .deleteOne (using a trash icon in ejs)
   deleteTruck: async (req, res) => {
@@ -307,8 +295,7 @@ module.exports = {
   },
 
 
-      //CUSTOM OPTION TRUCKS
-  
+            //CUSTOM OPTION TRUCKS
   postCustomOption: async (req, res) => {
     try {
       // Upload image to cloudinary
@@ -520,5 +507,21 @@ module.exports = {
       console.error(error);
       res.send('Error');
     }
-  }
+  },
+
+
+  //demo account, denied page
+  getDenied: async (req, res) => {
+    console.log(req.user.email);
+    try {
+      const drivers = await Driver.find({adminId: req.user._id});
+      const driverIds = drivers.map(driver => driver._id);
+ 
+      
+      res.render("accessDenied.ejs", { user: req.user});
+    } catch (err) {
+      console.log(err);
+      res.redirect("/admin");
+    }
+  },
 }
