@@ -165,12 +165,12 @@ Views:
             ✔ Linked checkbox with the admin @done (30/12/2022, 09:33:29)
 
 Others:
-    ☐ Check roles before each res.render (see getAdminMainPage from admin controller). Do it in both admin controller and driver controller
+    ✔ Check roles before each res.render (see getAdminMainPage from admin controller). Do it in both admin controller and driver controller @done (20/01/2023, 12:54:17)
     ✔ Add delete buttons for repairs @done (12/01/2023, 15:13:33)
     
     ☐ Add photos to:
-     ☐ admin profile, 
-     ☐ driver profile, 
+     ✔ admin profile, @done (20/01/2023, 12:54:15)
+     ✔ driver profile, @done (20/01/2023, 12:54:15)
      ✔ POD in spread, @done (12/01/2023, 14:31:45)
      ✔ repair @done (12/01/2023, 14:31:46)
 
