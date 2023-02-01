@@ -8,7 +8,7 @@ A fleet manager app that helps businesses manage and optimize their fleet of tru
 
 ## How It's Made:
 
-**Tech used:** HTML, CSS, JavaScript, Node.js, EJS, Express
+**Tech used:** HTML, CSS, JavaScript, Node.js, EJS, Express, Bootstrap
 
 
 
